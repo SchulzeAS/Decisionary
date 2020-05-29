@@ -8,8 +8,10 @@ class Poll {
     }
 	addAlternative(alternative) {
 		this.alternatives[this.alternatives.length] = alternative;
+		return this.alternatives;
 	}
 	addCriteria(criteriaName) {
 		this.criterias[this.criterias.length] = new Criteria(criteriaName, this.alternatives.length);
+		return this.criterias;
 	}
 }
