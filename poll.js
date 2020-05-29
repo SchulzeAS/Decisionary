@@ -4,7 +4,7 @@ class Poll {
         this.title = title;
         this.description = description;
 		this.alternatives = new Array( "", "" );
-		this.criterias = new Array();
+		this.criterias = new Array(new Criteria("", 2));
     }
 	addAlternative(alternative) {
 		this.alternatives[this.alternatives.length] = alternative;
@@ -20,10 +20,16 @@ class Poll {
 				e.values.pop();
 			});
 		}
-		return this;
+		return this.alternatives;
 	}
 	addCriteria(criteriaName) {
 		this.criterias[this.criterias.length] = new Criteria(criteriaName, this.alternatives.length);
+		return this.criterias;
+	}
+	removeCriteria(index) {
+		if (index >= 0 && index < this.criterias.length && this.criterias.length > 1) {
+			this.criterias.splice(index, 1);
+		}
 		return this.criterias;
 	}
 	moveCriteriaUp(index) {
