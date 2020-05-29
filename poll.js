@@ -13,6 +13,15 @@ class Poll {
 		});
 		return this.alternatives;
 	}
+	removeAlternative(index) {
+		if (index >= 0 && index < this.alternatives.length && this.alternatives.length > 2) {
+			this.alternatives.splice(index, 1);
+			this.criterias.forEach(e => {
+				e.values.pop();
+			});
+		}
+		return this;
+	}
 	addCriteria(criteriaName) {
 		this.criterias[this.criterias.length] = new Criteria(criteriaName, this.alternatives.length);
 		return this.criterias;
