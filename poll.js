@@ -8,6 +8,9 @@ class Poll {
     }
 	addAlternative(alternative) {
 		this.alternatives[this.alternatives.length] = alternative;
+		this.criterias.forEach(e => {
+			e.values[e.values.length] = "";
+		});
 		return this.alternatives;
 	}
 	addCriteria(criteriaName) {
