@@ -4,7 +4,7 @@ class Poll {
         this.title = title;
         this.description = description;
 		this.alternatives = new Array( "", "" );
-		this.criteria = new Array();
+		this.criterias = new Array();
     }
 	addAlternative(alternative) {
 		this.alternatives[this.alternatives.length] = alternative;
