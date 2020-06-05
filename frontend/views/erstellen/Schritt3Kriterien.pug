@@ -1,9 +1,13 @@
 block layout-content 
-	div.Message
-		div.Title
-			h1 Kriterien etc 3
+	h1 Kriterien eintragen 3
+	div#KriterienContainer
+		div.Kriterium
 			h3 Kriterium 1 
-				input
+				input.KriteriumInputs
+		div.Kriterium
 			h3 Kriterium 2 
-				input
-			button +
+				input.KriteriumInputs
+		div#KriterienButtons.plusMinusButtons
+			button#addKriteriumButton(onclick='addInput("Krit")') +
+			button#removeKriteriumButton(onclick='removeInput("Krit")') -
+

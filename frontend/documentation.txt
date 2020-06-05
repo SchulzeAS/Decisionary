@@ -1,0 +1,9 @@
+Server starten im Ordner mit index.js : "node index.js"
+
+installierte npm pakete:
+nodemon // startet den Server automatisch neu wenn Änderungen vorgenommen werden
+express // um views verwenden zu können
+pug // template engine in Verbindung mit Express // pug hieß früher jade wenn ihr googelt
+Browersync // aktualisiert automatisch den Browser wenn Änderungen erkannt werden 
+// für frontend css entwicklung // auf Port 3000
+// startet mit "npm run ui" in neuer Konsole

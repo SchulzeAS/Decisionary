@@ -1,9 +1,12 @@
 block layout-content 
-	div.Message
-		div.Title
-			h1 Alternativen eintragen 2
+	h1 Alternativen eintragen 2
+	div#AlternativenContainer
+		div.Alternative
 			h3 Alternative 1 
-				input
+				input.AlternativeInputs
+		div.Alternative
 			h3 Alternative 2 
-				input
-			button +
+				input.AlternativeInputs(data-alternative)
+		div#AlternativeButtons.plusMinusButtons
+			button#addAlternativeButton(onclick='addInput("Alt")') +
+			button#removeAlternativeButton(onclick='removeInput("Alt")') -

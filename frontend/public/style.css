@@ -6,12 +6,10 @@
   --logo-font: "Share Tech Mono", monospace;
   --header-font: "Raleway", sans-serif;
   --core-font: "Merriweather Sans", sans-serif;
+  --nav-disabled: "grey";
 
-  --primary: #ffffff;
-  --secondary: #2a3747;
-
-  --highlight: #fa4141;
-
+  --primary-font: #ffffff;
+  --secondary-font: #2a3747;
   --ui-shawdow: 0 2px 4px -1px rgba(0, 0, 0, 0.06),
     0 4px 5px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.08);
   fill: rgba(0, 0, 0, 0.54);
@@ -49,7 +47,7 @@ h3 {
   padding: 0;
   margin: 0;
 
-  color: var(--secondary);
+  color: var(--secondary-font);
 }
 
 h1 {
@@ -71,12 +69,16 @@ h1 {
 	top:10px;
 	left:10px;
 	width:100%;
-	height:50px;
+	height:40px;
 	background-color:grey;
 }
 
 #navigatorTop{
 	
+}
+
+#navThema{
+	background-color:green;
 }
 
 .navElement{
@@ -131,8 +133,9 @@ h1 {
 	visibility:visible;
 }
 
-.Message {
-
+.plusMinusButtons{
+	position:absolute;
+	left:300px;
 }
 
 
