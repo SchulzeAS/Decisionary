@@ -37,7 +37,7 @@ function hideView(view){
 function specificViewChanges(curView){
 	nxtBtnText = "next";
 	backBtnText = "back";
-	console.log("specificViewChanges: " + curView)
+	//console.log("specificViewChanges: " + curView)
 	
 	document.getElementById("navBack").style.visibility="visible";
 	document.getElementById("navNext").style.visibility="visible";
