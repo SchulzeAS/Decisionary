@@ -106,6 +106,7 @@ h1 {
 #navBack{
 	position: absolute;
 	left:20px;
+	visibility:hidden;
 }
 
 .Schritte {

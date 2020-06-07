@@ -16,6 +16,7 @@ function next(){
 	if(currentView < schritte.length-1) currentView +=1; else currentView = 0;
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor="green";
+	specificViewChanges(currentView);
 }
 
 function back(){
@@ -25,11 +26,38 @@ function back(){
 	if(currentView > 0) currentView -=1; else currentView = schritte.length-1;
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor="green";
+	specificViewChanges(currentView);
 }
 
 function hideView(view){
 	document.getElementById(view).style.visibility="hidden";
 	document.getElementById(view).style.zIndex=0;
+}
+
+function specificViewChanges(curView){
+	nxtBtnText = "next";
+	backBtnText = "back";
+	console.log("specificViewChanges: " + curView)
+	
+	document.getElementById("navBack").style.visibility="visible";
+	document.getElementById("navNext").style.visibility="visible";
+	
+	if(curView == 3){ // current view is"Uebersicht"
+		nxtBtnText = "finish";
+		console.log("caught it");
+	}
+	
+	if(curView == 0){ // current view is"Link teilen" aka we are done
+		document.getElementById("navBack").style.visibility="hidden";
+	}
+	
+	if(curView == 4){ // current view is"Link teilen" aka we are done
+		document.getElementById("navBack").style.visibility="hidden";
+		document.getElementById("navNext").style.visibility="hidden";
+	}
+		
+	document.getElementById("navBack").innerHTML=backBtnText;
+	document.getElementById("navNext").innerHTML=nxtBtnText;
 }
 
 function disableNavElement(nav){
