@@ -140,6 +140,19 @@ h1 {
 	left:300px;
 }
 
+.copyButton{
+	background-image:url(clipboard.png);
+	border-radius: 10%;
+	background-size: contain;
+	width:20px;
+	height:20px;
+	position:relative;
+	bottom:5px;
+	left:5px;
+}
+.copyButton:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
 .tooltip {
   position: relative;
   display: inline-block;
