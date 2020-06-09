@@ -7,8 +7,8 @@ var kritCounter = 2;
 var altContainer = "AlternativenContainer"
 var kritContainer = "KriterienContainer"
 
-var navActiveColor = "rgb(127, 255, 0)";
-var navDisabledColor = "rgb(102, 205, 0)";
+var navActiveColor = "rgb(0, 255, 154)";
+var navDisabledColor = "rgb(60, 179, 113)";
 function next(){
 	//console.log(currentView);
 	//console.log(schritte.length);
