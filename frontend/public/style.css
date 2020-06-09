@@ -6,7 +6,8 @@
   --logo-font: "Share Tech Mono", monospace;
   --header-font: "Raleway", sans-serif;
   --core-font: "Merriweather Sans", sans-serif;
-  --nav-disabled: "grey";
+  --nav-disabled: rgb(102, 205, 0);
+  --nav-active: rgb(127, 255, 0);
 
   --primary-font: #ffffff;
   --secondary-font: #2a3747;
@@ -70,7 +71,7 @@ h1 {
 	left:10px;
 	width:100%;
 	height:40px;
-	background-color:grey;
+	background-color:var(--nav-disabled);
 }
 
 #navigatorTop{
@@ -78,7 +79,7 @@ h1 {
 }
 
 #navThema{
-	background-color:green;
+	background-color:var(--nav-active);
 }
 
 .navElement{

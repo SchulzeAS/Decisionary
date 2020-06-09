@@ -7,7 +7,8 @@ var kritCounter = 2;
 var altContainer = "AlternativenContainer"
 var kritContainer = "KriterienContainer"
 
-
+var navActiveColor = "rgb(127, 255, 0)";
+var navDisabledColor = "rgb(102, 205, 0)";
 function next(){
 	//console.log(currentView);
 	//console.log(schritte.length);
@@ -15,7 +16,7 @@ function next(){
 	disableNavElement(schritteNav[currentView]);
 	if(currentView < schritte.length-1) currentView +=1; else currentView = 0;
 	document.getElementById(schritte[currentView]).style.visibility="visible";
-	document.getElementById(schritteNav[currentView]).style.backgroundColor="green";
+	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
 }
 
@@ -25,7 +26,7 @@ function back(){
 	disableNavElement(schritteNav[currentView]);
 	if(currentView > 0) currentView -=1; else currentView = schritte.length-1;
 	document.getElementById(schritte[currentView]).style.visibility="visible";
-	document.getElementById(schritteNav[currentView]).style.backgroundColor="green";
+	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
 }
 
@@ -61,7 +62,7 @@ function specificViewChanges(curView){
 }
 
 function disableNavElement(nav){
-	document.getElementById(nav).style.backgroundColor="grey"
+	document.getElementById(nav).style.backgroundColor=navDisabledColor;
 }
 
 function addInput(type){
