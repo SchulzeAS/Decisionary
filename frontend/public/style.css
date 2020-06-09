@@ -190,3 +190,22 @@ h1 {
   visibility: visible;
   opacity: 1;
 }
+
+#UebersichtTables{
+	position:relative;
+	top:40px;
+}
+
+#AlternativenTable{
+	position:absolute;
+	left:0px;
+}
+
+#KriterienTable{
+	position:absolute;
+	left:400px;
+}
+
+#UebersichtTables legend{
+	color:red;
+}

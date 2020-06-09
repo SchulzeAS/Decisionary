@@ -45,7 +45,8 @@ function specificViewChanges(curView){
 	
 	if(curView == 3){ // current view is"Uebersicht"
 		nxtBtnText = "finish";
-		console.log("caught it");
+		console.log("Uebersicht");
+		Uebersicht();
 	}
 	
 	if(curView == 0){ // current view is"Link teilen" aka we are done
@@ -104,13 +105,13 @@ function createInput(type){
 	if(type == "Alt"){
 		altCounter++;
 		tempString = "Alternative " + altCounter + " " ;
-		newInput.class = "AlternativeInputs";
+		newInput.className = "AlternativeInputs";
 		newInputDiv.id = "alt" + altCounter;
 	}
 	if (type == "Krit"){
 		kritCounter++;
 		tempString = "Kriterium " + kritCounter + " " ;
-		newInput.class = "KriteriumInputs";
+		newInput.className = "KriteriumInputs";
 		newInputDiv.id = "krit" + kritCounter;
 	}
 	
@@ -136,3 +137,108 @@ function outFunc(tooltipId) {
   var tooltip = document.getElementById(tooltipId);
   tooltip.innerHTML = "Link kopieren";
 }
+
+function Uebersicht(){
+	var nameSpan = document.getElementById("NameSpan");
+	var beschreibungSpan = document.getElementById("BeschreibungSpan");
+	var altTable = document.getElementById("AlternativenTable");
+	var kritTable = document.getElementById("KriterienTable");
+	
+	clearTable(altTable);
+	clearTable(kritTable);
+	
+	
+
+	
+	nameSpan.innerHTML = document.getElementById("NameInput").value;
+	beschreibungSpan.innerHTML = document.getElementById("BeschreibungInput").value;
+	
+	var alternatives = getInputsValue("AlternativeInputs");
+	var kriterien = getInputsValue("KriteriumInputs");
+	console.log(alternatives);
+	fillTableUebersicht(altTable,"Alternative ",alternatives);
+	fillTableUebersicht(kritTable,"Kriterium",kriterien);
+	
+
+	
+}
+
+	function fillTableUebersicht(table,typeText,array){
+		//table.caption.innerHTML = "adad";
+		//console.log(table.caption.innerHTML);
+		for (i = 0; i < array.length; i++) {
+			var row = document.createElement("tr");
+			//var cell1 = document.createElement("td");
+			var cell2 = document.createElement("td");
+
+			//textnode1=document.createTextNode(typeText +" "+(i+1));
+			textnode2=document.createTextNode(array[i]);
+
+			//cell1.appendChild(textnode1);
+			cell2.appendChild(textnode2);
+			//row.appendChild(cell1);
+			row.appendChild(cell2);
+			
+			table.appendChild(row);
+	} 
+	}
+	
+	function clearTable(table){
+		//console.log("table has "  + table.childNodes.length + "childen")
+		while(table.childNodes.length > 1){
+			table.removeChild(table.lastChild);
+		}
+	}
+
+function getInputsValue(inputfield){
+	var inputArray = document.getElementsByClassName(inputfield);
+	var values = [inputArray.length];
+
+	
+	for (i = 0; i < inputArray.length; i++) {
+		if(inputArray[i].value != "")
+			values[i] = inputArray[i].value;
+	} 
+	
+	return values;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
