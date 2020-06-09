@@ -121,3 +121,18 @@ function createInput(type){
 	//newInputDiv.appendChild(newInput);
 	return newInputDiv;
 }
+
+function copyLink(inputFieldId,tooltipId) {
+  var copyText = document.getElementById(inputFieldId);
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  document.execCommand("copy");
+  var tooltip = document.getElementById(tooltipId);
+  tooltip.innerHTML = "Kopiert: " + copyText.value;
+} 
+
+function outFunc(tooltipId) {
+  var tooltip = document.getElementById(tooltipId);
+  tooltip.innerHTML = "Link kopieren";
+}
