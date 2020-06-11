@@ -9,33 +9,42 @@ var kritContainer = "KriterienContainer"
 
 var navActiveColor = "rgb(0, 255, 154)";
 var navDisabledColor = "rgb(60, 179, 113)";
-function next(){
+function next() {
 	//console.log(currentView);
 	//console.log(schritte.length);
 	hideView(schritte[currentView]);
 	disableNavElement(schritteNav[currentView]);
-	if(currentView < schritte.length-1) currentView +=1; else currentView = 0;
+	if(currentView < schritte.length-1) {
+		currentView +=1;
+	} else {
+		currentView = 0;
+	} 
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
 }
 
-function back(){
+function back() {
 	//console.log(currentView);
 	hideView(schritte[currentView]);
 	disableNavElement(schritteNav[currentView]);
-	if(currentView > 0) currentView -=1; else currentView = schritte.length-1;
+	if(currentView > 0)
+	{
+		currentView -=1;
+	} else {
+		currentView = schritte.length-1;
+	}
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
 }
 
-function hideView(view){
+function hideView(view) {
 	document.getElementById(view).style.visibility="hidden";
 	document.getElementById(view).style.zIndex=0;
 }
 
-function specificViewChanges(curView){
+function specificViewChanges(curView) {
 	nxtBtnText = "next";
 	backBtnText = "back";
 	//console.log("specificViewChanges: " + curView)
@@ -43,17 +52,17 @@ function specificViewChanges(curView){
 	document.getElementById("navBack").style.visibility="visible";
 	document.getElementById("navNext").style.visibility="visible";
 	
-	if(curView == 3){ // current view is"Uebersicht"
+	if(curView == 3) { // current view is"Uebersicht"
 		nxtBtnText = "finish";
 		console.log("Uebersicht");
 		Uebersicht();
 	}
 	
-	if(curView == 0){ // current view is"Link teilen" aka we are done
+	if(curView == 0) { // current view is"Link teilen" aka we are done
 		document.getElementById("navBack").style.visibility="hidden";
 	}
 	
-	if(curView == 4){ // current view is"Link teilen" aka we are done
+	if(curView == 4) { // current view is"Link teilen" aka we are done
 		document.getElementById("navBack").style.visibility="hidden";
 		document.getElementById("navNext").style.visibility="hidden";
 	}
@@ -62,16 +71,16 @@ function specificViewChanges(curView){
 	document.getElementById("navNext").innerHTML=nxtBtnText;
 }
 
-function disableNavElement(nav){
+function disableNavElement(nav) {
 	document.getElementById(nav).style.backgroundColor=navDisabledColor;
 }
 
-function addInput(type){
-	if(type == "Alt" || type == "Krit"){
-		if(type == "Alt"){
+function addInput(type) {
+	if(type == "Alt" || type == "Krit") {
+		if(type == "Alt") {
 			document.getElementById(altContainer).appendChild(createInput(type))
 		}
-		if(type == "Krit"){
+		if(type == "Krit") {
 			document.getElementById(kritContainer).appendChild(createInput(type))
 		}
 	}
@@ -80,7 +89,7 @@ function addInput(type){
 	}
 }
 
-function removeInput(type){
+function removeInput(type) {
 	if(type == "Alt" || type == "Krit"){
 		if(type == "Alt" && altCounter > 2){
 			var tempString = "alt"+altCounter
@@ -96,19 +105,19 @@ function removeInput(type){
 	}
 }
 
-function createInput(type){
+function createInput(type) {
 	
 	var newInputDiv = document.createElement('div');
 	var newInputH3 = document.createElement('h3');
 	var newInput = document.createElement('input');
 	
-	if(type == "Alt"){
+	if(type == "Alt") {
 		altCounter++;
 		tempString = "Alternative " + altCounter + " " ;
 		newInput.className = "AlternativeInputs";
 		newInputDiv.id = "alt" + altCounter;
 	}
-	if (type == "Krit"){
+	if (type == "Krit") {
 		kritCounter++;
 		tempString = "Kriterium " + kritCounter + " " ;
 		newInput.className = "KriteriumInputs";
@@ -138,7 +147,7 @@ function outFunc(tooltipId) {
   tooltip.innerHTML = "Link kopieren";
 }
 
-function Uebersicht(){
+function Uebersicht() {
 	var nameSpan = document.getElementById("NameSpan");
 	var beschreibungSpan = document.getElementById("BeschreibungSpan");
 	//var altTable = document.getElementById("AlternativenTable");
@@ -160,120 +169,77 @@ function Uebersicht(){
 	//fillTableUebersicht(altTable,"Alternative ",alternatives);
 	//fillTableUebersicht(kritTable,"Kriterium",kriterien);
 	createTableUebersicht(alternatives,kriterien);
-	
-
-	
 }
-		//old function 
-	function fillTableUebersicht(table,typeText,array){
-		//table.caption.innerHTML = "adad";
-		//console.log(table.caption.innerHTML);
-		for (i = 0; i < array.length; i++) {
-			var row = document.createElement("tr");
-			//var cell1 = document.createElement("td");
-			var cell2 = document.createElement("td");
+	//old function 
+function fillTableUebersicht(table,typeText,array) {
+	//table.caption.innerHTML = "adad";
+	//console.log(table.caption.innerHTML);
+	for (i = 0; i < array.length; i++) {
+		var row = document.createElement("tr");
+		//var cell1 = document.createElement("td");
+		var cell2 = document.createElement("td");
 
-			//textnode1=document.createTextNode(typeText +" "+(i+1));
-			textnode2=document.createTextNode(array[i]);
+		//textnode1=document.createTextNode(typeText +" "+(i+1));
+		textnode2=document.createTextNode(array[i]);
 
-			//cell1.appendChild(textnode1);
-			cell2.appendChild(textnode2);
-			//row.appendChild(cell1);
-			row.appendChild(cell2);
-			
-			table.appendChild(row);
+		//cell1.appendChild(textnode1);
+		cell2.appendChild(textnode2);
+		//row.appendChild(cell1);
+		row.appendChild(cell2);
+		
+		table.appendChild(row);
 	} 
-	}
-	// new function for a single table for both criteria and alternatives
-	function createTableUebersicht(altArray,kritArray){
-		//table.caption.innerHTML = "adad";
-		//console.log(table.caption.innerHTML);
-		
-		var FirstRow = document.createElement("tr");
-		
-					var cell = document.createElement("td");
-			var textnode=document.createTextNode("");
-			cell.appendChild(textnode);
-			FirstRow.appendChild(cell);
-		
-		for (i = 0; i < altArray.length; i++) {
-			var cell = document.createElement("td");
-			var textnode=document.createTextNode(altArray[i]);
-			cell.appendChild(textnode);
-			FirstRow.appendChild(cell);
-	}
-		document.getElementById("combinedTable").appendChild(FirstRow);
-		
-		for (i = 0; i < kritArray.length; i++) {
-			var row = document.createElement("tr");
-			var cell2 = document.createElement("td");
-			textnode2=document.createTextNode(kritArray[i]);
-
-			//cell1.appendChild(textnode1);
-			cell2.appendChild(textnode2);
-			//row.appendChild(cell1);
-			row.appendChild(cell2);
-			
-			document.getElementById("combinedTable").appendChild(row);
-	} 
-	}
+}
+// new function for a single table for both criteria and alternatives
+function createTableUebersicht(altArray,kritArray) {
+	//table.caption.innerHTML = "adad";
+	//console.log(table.caption.innerHTML);
 	
-	function clearTable(table){
-		//console.log("table has "  + table.childNodes.length + "childen")
-		while(table.childNodes.length > 0){
-			table.removeChild(table.lastChild);
-		}
+	var FirstRow = document.createElement("tr");
+	
+				var cell = document.createElement("td");
+		var textnode=document.createTextNode("");
+		cell.appendChild(textnode);
+		FirstRow.appendChild(cell);
+	
+	for (i = 0; i < altArray.length; i++) {
+		var cell = document.createElement("td");
+		var textnode=document.createTextNode(altArray[i]);
+		cell.appendChild(textnode);
+		FirstRow.appendChild(cell);
 	}
+	document.getElementById("combinedTable").appendChild(FirstRow);
+	
+	for (i = 0; i < kritArray.length; i++) {
+		var row = document.createElement("tr");
+		var cell2 = document.createElement("td");
+		textnode2=document.createTextNode(kritArray[i]);
 
-function getInputsValue(inputfield){
+		//cell1.appendChild(textnode1);
+		cell2.appendChild(textnode2);
+		//row.appendChild(cell1);
+		row.appendChild(cell2);
+		
+		document.getElementById("combinedTable").appendChild(row);
+	} 
+}
+	
+function clearTable(table) {
+	//console.log("table has "  + table.childNodes.length + "childen")
+	while(table.childNodes.length > 0) {
+		table.removeChild(table.lastChild);
+	}
+}
+
+function getInputsValue(inputfield) {
 	var inputArray = document.getElementsByClassName(inputfield);
 	var values = [inputArray.length];
 
-	
 	for (i = 0; i < inputArray.length; i++) {
-		if(inputArray[i].value != "")
+		if(inputArray[i].value != "") {
 			values[i] = inputArray[i].value;
+		}
 	} 
 	
 	return values;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
