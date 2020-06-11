@@ -9,11 +9,38 @@ var kritContainer = "KriterienContainer"
 
 var navActiveColor = "rgb(0, 255, 154)";
 var navDisabledColor = "rgb(60, 179, 113)";
+
+var currentPoll;
+
+function modifyData(viewIndex) {
+	switch (viewIndex) {
+		case 0:
+			var name = document.getElementById('NameInput').value;
+			var description = document.getElementById('BeschreibungInput').value;
+			if (!currentPoll) {
+				currentPoll = new Poll(
+					create_UUID(), 
+					name, 
+					description
+				);
+			} else {
+				currentPoll.title = name;
+				currentPoll.description = description;
+			}
+			console.log(currentPoll);
+			break;
+	
+		default:
+			break;
+	}
+}
+
 function next() {
 	//console.log(currentView);
 	//console.log(schritte.length);
 	hideView(schritte[currentView]);
 	disableNavElement(schritteNav[currentView]);
+	modifyData(currentView);
 	if(currentView < schritte.length-1) {
 		currentView +=1;
 	} else {
