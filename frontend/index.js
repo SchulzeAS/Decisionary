@@ -47,6 +47,6 @@ app.get("/logout", (req, res) => {
  * Server Activation
  */
  
- app.listen(port, () => {
+ app.listen(port,'0.0.0.0', () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
