@@ -1,3 +1,6 @@
+const altId = "alt";
+const kritId = "krit";
+
 currentView = 0
 var schritte = ["Schritt1Thema","Schritt2Alternativen","Schritt3Kriterien","Schritt4Ubersicht","Schritt5Teilen"];
 var schritteNav = ["navThema","navAlt","navKrit","navUebersicht","navTeilen"];
@@ -23,7 +26,7 @@ function modifyData(viewIndex) {
 			var description = document.getElementById('BeschreibungInput').value;
 			if (!currentPoll) {
 				currentPoll = new Poll(
-					create_UUID(), 
+					createUuid(), 
 					name, 
 					description
 				);
@@ -31,9 +34,7 @@ function modifyData(viewIndex) {
 				currentPoll.title = name;
 				currentPoll.description = description;
 			}
-			console.log(currentPoll);
 			break;
-	
 		default:
 			break;
 	}
@@ -53,6 +54,7 @@ function next() {
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
+	console.log(currentPoll);
 }
 
 function back() {
@@ -109,10 +111,12 @@ function disableNavElement(nav) {
 function addInput(type) {
 	if(type == "Alt" || type == "Krit") {
 		if(type == "Alt") {
-			document.getElementById(altContainer).appendChild(createInput(type))
+			document.getElementById(altContainer).appendChild(createInput(type));
+			currentPoll.addAlternative("");
 		}
 		if(type == "Krit") {
 			document.getElementById(kritContainer).appendChild(createInput(type))
+			currentPoll.addCriteria("");
 		}
 	}
 	else{
@@ -142,19 +146,22 @@ function createInput(type) {
 	var newInputH3 = document.createElement('h3');
 	var newInput = document.createElement('input');
 	
+	
 	if(type == "Alt") {
 		altCounter++;
 		tempString = "Alternative " + altCounter + " " ;
 		newInput.className = "AlternativeInputs";
+		newInputDiv.className = "Alternative";
 		newInputDiv.id = "alt" + altCounter;
 	}
 	if (type == "Krit") {
 		kritCounter++;
 		tempString = "Kriterium " + kritCounter + " " ;
 		newInput.className = "KriteriumInputs";
+		newInputDiv.className = "Kriterium";
 		newInputDiv.id = "krit" + kritCounter;
 	}
-	
+	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
 	newInputH3.appendChild(newInput);
 	newInputDiv.appendChild(newInputH3);
@@ -273,4 +280,18 @@ function getInputsValue(inputfield) {
 	} 
 	
 	return values;
+}
+
+function onUpdateInput(e) {
+	var input = e.target.value;
+	var parent = e.target.parentElement.parentElement;
+	var idx;
+	if (parent.className == "Alternative") {
+		idx = parent.id.replace(altId, "") - 1;
+		currentPoll.alternatives[idx] = input;
+	} 
+	if (parent.className == "Kriterium") {
+		idx = parent.id.replace(kritId, "") - 1;
+		currentPoll.criterias[idx].name = input;
+	}
 }
