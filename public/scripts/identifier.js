@@ -1,4 +1,7 @@
-function create_UUID(){
+/**
+ * creates a Universally Unique Identifier and returns it as a string
+ */
+function createUuid(){
     var dt = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = (dt + Math.random()*16)%16 | 0;

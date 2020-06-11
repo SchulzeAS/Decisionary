@@ -12,6 +12,10 @@ var navDisabledColor = "rgb(60, 179, 113)";
 
 var currentPoll;
 
+/**
+ * prepares the Poll oject for the next step
+ * @param {int} viewIndex Index of the current view
+ */
 function modifyData(viewIndex) {
 	switch (viewIndex) {
 		case 0:
