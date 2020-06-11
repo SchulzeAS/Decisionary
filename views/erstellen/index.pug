@@ -2,20 +2,20 @@ extends ../layout
 
 
 block layout-content
-	div#erstellenContainer
+	div#creationContainer
 		div.navigator#navigatorTop
 			include navigator.pug
-		div.SchritteContainer
-			div#Schritt1Thema.Schritte
-				include Schritt1Thema.pug
-			div#Schritt2Alternativen.Schritte
-				include Schritt2Alternativen.pug
-			div#Schritt3Kriterien.Schritte
-				include Schritt3Kriterien.pug
-			div#Schritt4Ubersicht.Schritte
-				include Schritt4Ubersicht.pug	
-			div#Schritt5Teilen.Schritte
-				include Schritt5Teilen.pug
+		div.stepsContainer
+			div#step1Topic.Steps
+				include Step1Topic.pug
+			div#step2Alternatives.Steps
+				include Step2Alternatives.pug
+			div#step3Criterias.Steps
+				include Step3Criterias.pug
+			div#step4Overview.Steps
+				include Step4Overview.pug	
+			div#step5Share.Steps
+				include Step5Share.pug
 			
 			button.navButton#navBack(onclick='back()') back
 			button.navButton#navNext(onclick='next()') next

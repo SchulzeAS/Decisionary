@@ -51,13 +51,13 @@ function disableNavElement(nav) {
  * @param {string} type name of the input type
  */
 function addInput(type) {
-	if(type == "Alt" || type == "Krit") {
+	if(type == "Alt" || type == "Crit") {
 		if(type == "Alt") {
-			document.getElementById(altContainer).appendChild(createInput(type));
+			document.getElementById(alternativesContainer).appendChild(createInput(type));
 			currentPoll.addAlternative("");
 		}
-		if(type == "Krit") {
-			document.getElementById(kritContainer).appendChild(createInput(type))
+		if(type == "Crit") {
+			document.getElementById(criteriasContainer).appendChild(createInput(type))
 			currentPoll.addCriteria("");
 		}
 	}
@@ -71,13 +71,13 @@ function addInput(type) {
  * @param {string} type name of the input type
  */
 function removeInput(type) {
-	if(type == "Alt" || type == "Krit"){
+	if(type == "Alt" || type == "Crit"){
 		if(type == "Alt" && altCounter > 2){
-			var tempString = "alt"+altCounter
+			var tempString = altId + altCounter;
 			altCounter--;
 		}
-		if(type == "Krit" && kritCounter > 2){
-			var tempString = "krit"+kritCounter
+		if(type == "Crit" && kritCounter > 2){
+			var tempString = kritId + kritCounter;
 			kritCounter--;
 		}
 		// hier ist noch immer null wenn nichts removed werden soll FIXEN
@@ -104,7 +104,7 @@ function createInput(type) {
 		newInputDiv.className = "Alternative";
 		newInputDiv.id = "alt" + altCounter;
 	}
-	if (type == "Krit") {
+	if (type == "Crit") {
 		kritCounter++;
 		tempString = "Kriterium " + kritCounter + " " ;
 		newInput.className = "KriteriumInputs";

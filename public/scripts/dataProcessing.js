@@ -6,7 +6,7 @@ function modifyData(viewIndex) {
 	switch (viewIndex) {
 		case 0:
 			var name = document.getElementById('NameInput').value;
-			var description = document.getElementById('BeschreibungInput').value;
+			var description = document.getElementById('DescriptionInput').value;
 			if (!currentPoll) {
 				currentPoll = new Poll(
 					createUuid(), 

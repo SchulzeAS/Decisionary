@@ -1,14 +1,14 @@
 function Uebersicht() {
-	var nameSpan = document.getElementById("NameSpan");
-	var beschreibungSpan = document.getElementById("BeschreibungSpan");
+	var nameSpan = document.getElementById("nameSpan");
+	var descriptionSpan = document.getElementById("descriptionSpan");
 	
 	clearTable(document.getElementById("combinedTable"));
 	
 	nameSpan.innerHTML = document.getElementById("NameInput").value;
-	beschreibungSpan.innerHTML = document.getElementById("BeschreibungInput").value;
+	descriptionSpan.innerHTML = document.getElementById("DescriptionInput").value;
 	
-	var alternatives = getInputsValue("AlternativeInputs");
-	var kriterien = getInputsValue("KriteriumInputs");
+	var alternatives = getInputsValue("alternativeInputs");
+	var kriterien = getInputsValue("criteriaInputs");
 
 	createTableUebersicht(alternatives,kriterien);
 }

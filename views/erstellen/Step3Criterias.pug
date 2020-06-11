@@ -1,0 +1,13 @@
+block layout-content 
+	h1 Kriterien eintragen 3
+	div#criteriasContainer
+		div.criteria
+			h3 Kriterium 1 
+				input.criteriaInputs
+		div.criteria
+			h3 Kriterium 2 
+				input.criteriaInputs
+		div#criteriasButtons.plusMinusButtons
+			button#addCriteriaButton(onclick='addInput("Crit")') +
+			button#removeCriteriaButton(onclick='removeInput("Crit")') -
+
