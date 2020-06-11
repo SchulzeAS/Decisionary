@@ -196,16 +196,7 @@ h1 {
 	top:40px;
 }
 
-#AlternativenTable{
+#combinedTable{
 	position:absolute;
-	left:0px;
-}
-
-#KriterienTable{
-	position:absolute;
-	left:400px;
-}
-
-#UebersichtTables legend{
-	color:red;
+	top:40px;
 }

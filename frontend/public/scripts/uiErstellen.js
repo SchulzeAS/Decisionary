@@ -141,11 +141,12 @@ function outFunc(tooltipId) {
 function Uebersicht(){
 	var nameSpan = document.getElementById("NameSpan");
 	var beschreibungSpan = document.getElementById("BeschreibungSpan");
-	var altTable = document.getElementById("AlternativenTable");
-	var kritTable = document.getElementById("KriterienTable");
+	//var altTable = document.getElementById("AlternativenTable");
+	//var kritTable = document.getElementById("KriterienTable");
 	
-	clearTable(altTable);
-	clearTable(kritTable);
+	//clearTable(altTable);
+	//clearTable(kritTable);
+	clearTable(document.getElementById("combinedTable"));
 	
 	
 
@@ -156,13 +157,14 @@ function Uebersicht(){
 	var alternatives = getInputsValue("AlternativeInputs");
 	var kriterien = getInputsValue("KriteriumInputs");
 	console.log(alternatives);
-	fillTableUebersicht(altTable,"Alternative ",alternatives);
-	fillTableUebersicht(kritTable,"Kriterium",kriterien);
+	//fillTableUebersicht(altTable,"Alternative ",alternatives);
+	//fillTableUebersicht(kritTable,"Kriterium",kriterien);
+	createTableUebersicht(alternatives,kriterien);
 	
 
 	
 }
-
+		//old function 
 	function fillTableUebersicht(table,typeText,array){
 		//table.caption.innerHTML = "adad";
 		//console.log(table.caption.innerHTML);
@@ -182,10 +184,43 @@ function Uebersicht(){
 			table.appendChild(row);
 	} 
 	}
+	// new function for a single table for both criteria and alternatives
+	function createTableUebersicht(altArray,kritArray){
+		//table.caption.innerHTML = "adad";
+		//console.log(table.caption.innerHTML);
+		
+		var FirstRow = document.createElement("tr");
+		
+					var cell = document.createElement("td");
+			var textnode=document.createTextNode("");
+			cell.appendChild(textnode);
+			FirstRow.appendChild(cell);
+		
+		for (i = 0; i < altArray.length; i++) {
+			var cell = document.createElement("td");
+			var textnode=document.createTextNode(altArray[i]);
+			cell.appendChild(textnode);
+			FirstRow.appendChild(cell);
+	}
+		document.getElementById("combinedTable").appendChild(FirstRow);
+		
+		for (i = 0; i < kritArray.length; i++) {
+			var row = document.createElement("tr");
+			var cell2 = document.createElement("td");
+			textnode2=document.createTextNode(kritArray[i]);
+
+			//cell1.appendChild(textnode1);
+			cell2.appendChild(textnode2);
+			//row.appendChild(cell1);
+			row.appendChild(cell2);
+			
+			document.getElementById("combinedTable").appendChild(row);
+	} 
+	}
 	
 	function clearTable(table){
 		//console.log("table has "  + table.childNodes.length + "childen")
-		while(table.childNodes.length > 1){
+		while(table.childNodes.length > 0){
 			table.removeChild(table.lastChild);
 		}
 	}
