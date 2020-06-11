@@ -1,7 +1,7 @@
 class Poll {
 	/**
 	 * representation of a poll
-	 * @param {*} id Identifier for the poll
+	 * @param {string} id Identifier for the poll
 	 * @param {string} title Title of the poll
 	 * @param {string} description Description of the poll 
 	 */

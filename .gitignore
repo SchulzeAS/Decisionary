@@ -2,3 +2,4 @@
 **/.vscode/
 **/.ignore
 **/node_modules/
+out/
