@@ -1,7 +1,8 @@
 const altId = "alt";
 const kritId = "krit";
+const baseUrl = "http://example.dev";
 
-currentView = 0
+currentView = 0;
 var schritte = [ "step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share" ];
 var schritteNav = [ "navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare" ];
 
