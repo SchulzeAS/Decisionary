@@ -19,39 +19,40 @@ function addInput(type) {
 }
 
 /**
- * removes an input
- * @param {string} type name of the input type
- */
-function removeInput(type) {
-	if(type == "Alt" || type == "Crit"){
-		removeElement = false;
-		//only remove inputs if there are more then the minimum left
-		if(type == "Alt" && altCounter > minAlternatives){
-			var tempString = altId + altCounter;
-			altCounter--;
-			removeElement = true;
-		}
-		if(type == "Crit" && critCounter > minCriterias){
-			var tempString = critId + critCounter;
-			critCounter--;
-			removeElement = true;
-		}
-		if(removeElement){
-			var toBeRemoved = document.getElementById(tempString);
-			toBeRemoved.parentNode.removeChild(toBeRemoved);
-		}
-	}
-}
-
-/**
  * removed a specific div containing an input
  * and moves all other elements up
  * @param {string} div Id to be removed
  */
-
 function removeSpecificInput(divId){
 	var divToBeRemoved = document.getElementById(divId);
-	divToBeRemoved.remove();
+	if (divId.includes(altId) && altCounter > minAlternatives) {
+		var index = divId.replace(altId, '');
+		altCounter--;
+		divToBeRemoved.remove();
+		var container = document.getElementById('alternativesContainer');
+		for (let i = 0; i < container.childElementCount; i++) {
+			// change id of remaining inputs to new position
+			const element = container.children[i];
+			var elementIndex = element.id.replace(altId, '');
+			if (elementIndex > index) {
+				element.id = altId + (elementIndex - 1);
+			}
+		}
+	}
+	if (divId.includes(critId) && critCounter > minCriterias) {
+		var index = divId.replace(critId, '');
+		critCounter--;
+		divToBeRemoved.remove();
+		var container = document.getElementById('criteriasContainer');
+		for (let i = 0; i < container.childElementCount; i++) {
+			// change id of remaining inputs to new position
+			const element = container.children[i];
+			var elementIndex = element.id.replace(critId, '');
+			if (elementIndex > index) {
+				element.id = critId + (elementIndex - 1);
+			}
+		}
+	}
 }
 
 /**
