@@ -10,8 +10,8 @@ var minAlternatives = 2;
 var maxAlternatives = 15;
 var altCounter = 0;
 
-var minCriteria = 1;
-var maxCriteria = 15;
+var minCriterias = 1;
+var maxCriterias = 15;
 var critCounter = 0;
 
 var alternativesContainer = "alternativesContainer"

@@ -28,7 +28,7 @@ function specificViewChanges(curView) {
 			}
 			break;
 		case 2: // current view is "Kriterien"
-			while (critCounter < minCriteria) {
+			while (critCounter < minCriterias) {
 				addInput("Crit");
 			}
 			break;

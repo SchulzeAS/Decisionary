@@ -4,11 +4,11 @@
  */
 function addInput(type) {
 	if(type == "Alt" || type == "Crit") {
-		if(type == "Alt") {
+		if(type == "Alt" && altCounter < maxAlternatives) {
 			document.getElementById(alternativesContainer).appendChild(createInput(type));
 			currentPoll.addAlternative("");
 		}
-		if(type == "Crit") {
+		if(type == "Crit" && critCounter < maxCriterias) {
 			document.getElementById(criteriasContainer).appendChild(createInput(type))
 			currentPoll.addCriteria("");
 		}
@@ -31,7 +31,7 @@ function removeInput(type) {
 			altCounter--;
 			removeElement = true;
 		}
-		if(type == "Crit" && critCounter > minCriteria){
+		if(type == "Crit" && critCounter > minCriterias){
 			var tempString = critId + critCounter;
 			critCounter--;
 			removeElement = true;
