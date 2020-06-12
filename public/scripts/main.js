@@ -17,6 +17,5 @@ var criteriasContainer = "criteriasContainer"
 
 var navActiveColor = "rgb(0, 255, 154)";
 var navDisabledColor = "rgb(60, 179, 113)";
-setColorsOnStartUp();
 
 var currentPoll;
