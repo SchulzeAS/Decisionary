@@ -87,8 +87,8 @@ function createInput(type) {
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
 	newInputH3.appendChild(newInput);
+	newInputH3.appendChild(newInputDeleteBtn);
 	newInputDiv.appendChild(newInputH3);
-	newInputDiv.appendChild(newInputDeleteBtn);
 	
 	return newInputDiv;
 }
