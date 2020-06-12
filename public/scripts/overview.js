@@ -12,20 +12,6 @@ function Uebersicht() {
 
 	createTableUebersicht(alternatives,criteria);
 }
-/* can be deleted
-function fillTableUebersicht(table,typeText,array) {
-	for (i = 0; i < array.length; i++) {
-		var row = document.createElement("tr");
-		var cell2 = document.createElement("td");
-
-		textnode2=document.createTextNode(array[i]);
-
-		cell2.appendChild(textnode2);
-		row.appendChild(cell2);
-		
-		table.appendChild(row);
-	} 
-}*/
 
 function createTableUebersicht(altArray,critArray) {
 	var FirstRow = document.createElement("tr");

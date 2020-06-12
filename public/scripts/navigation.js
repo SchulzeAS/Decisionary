@@ -13,7 +13,6 @@ function next() {
 	document.getElementById(schritte[currentView]).style.visibility="visible";
 	document.getElementById(schritteNav[currentView]).style.backgroundColor=navActiveColor;
 	specificViewChanges(currentView);
-	console.log(currentPoll);
 }
 
 /**
