@@ -65,25 +65,33 @@ function createInput(type) {
 	var newInput = document.createElement('input');
 	var newInputDeleteBtn = document.createElement('button');
 	newInputDeleteBtn.innerHTML = "X";
+	var displayIndex;
 	
 	if(type == "Alt") {
-		altCounter++;
-		tempString = "Alternative " + altCounter + " " ;
+		displayIndex = ++altCounter
+		tempString = "Alternative " + displayIndex + " " ;
 		newInput.className = "AlternativeInputs";
 		newInputDiv.className = "Alternative";
-		newInputDiv.id = "alt" + altCounter;
+		newInputDiv.id = "alt" + displayIndex;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
+		newInputDeleteBtn.onclick = function() { 
+			removeSpecificInput(newInputDiv.id);
+			currentPoll.removeAlternative(displayIndex - 1);
+		};
 	}
 	if (type == "Crit") {
-		critCounter++;
-		tempString = "Kriterium " + critCounter + " " ;
+		displayIndex = ++critCounter;
+		tempString = "Kriterium " + displayIndex + " " ;
 		newInput.className = "CriteriaInputs";
 		newInputDiv.className = "Criteria";
-		newInputDiv.id = "crit" + critCounter;
+		newInputDiv.id = "crit" + displayIndex;
 		newInputDeleteBtn.id = "removeCriteriaBtn";
+		newInputDeleteBtn.onclick = function() { 
+			removeSpecificInput(newInputDiv.id);
+			currentPoll.removeCriteria(displayIndex - 1);
+		};
 	}
 	newInputDeleteBtn.className = "removeBtn";
-	newInputDeleteBtn.onclick = "removeSpecificInput('"+newInputDiv.id+"')";
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
 	newInputH3.appendChild(newInput);
