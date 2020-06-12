@@ -9,8 +9,8 @@ class Poll {
         this.id = id;
         this.title = title;
         this.description = description;
-		this.alternatives = new Array( "", "" );
-		this.criterias = new Array(new Criteria("", 2));
+		this.alternatives = new Array();
+		this.criterias = new Array();
 	}
 	/**
 	 * adds a new alternative to the array of alternatives

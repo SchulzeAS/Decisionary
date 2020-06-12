@@ -1,12 +1,6 @@
 block layout-content 
 	h1 Alternativen eintragen 2
 	div#alternativesContainer
-		div.alternative#alt1
-			h3 Alternative 1 
-				input.alternativeInputs
-		div.alternative#alt2
-			h3 Alternative 2 
-				input.alternativeInputs(data-alternative)
-		div#alternativeButtons.plusMinusButtons
-			button#addAlternativeButton(onclick='addInput("Alt")') +
-			button#removeAlternativeButton(onclick='removeInput("Alt")') -
+	div#alternativeButtons.plusMinusButtons
+		button#addAlternativeButton(onclick='addInput("Alt")') +
+		button#removeAlternativeButton(onclick='removeInput("Alt")') -

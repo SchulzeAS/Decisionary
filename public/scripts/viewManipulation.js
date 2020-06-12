@@ -22,6 +22,16 @@ function specificViewChanges(curView) {
 		case 0: // current view is "Step1Topic", we are at the beginning
 			document.getElementById("navBack").style.visibility="hidden";
 			break;
+		case 1:	// current view is "Alternativen"
+			while (altCounter < minAlternatives) {
+				addInput("Alt");				
+			}
+			break;
+		case 2: // current view is "Kriterien"
+			while (critCounter < minCriteria) {
+				addInput("Crit");
+			}
+			break;
 		case 3:	// current view is"Uebersicht"
 			nxtBtnText = "finish";
 			Uebersicht();

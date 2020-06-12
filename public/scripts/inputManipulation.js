@@ -105,8 +105,8 @@ function onUpdateInput(e) {
 		idx = parent.id.replace(altId, "") - 1;
 		currentPoll.alternatives[idx] = input;
 	} 
-	if (parent.className == "Kriterium") {
-		idx = parent.id.replace(kritId, "") - 1;
+	if (parent.className == "Criteria") {
+		idx = parent.id.replace(critId, "") - 1;
 		currentPoll.criterias[idx].name = input;
 	}
 }
