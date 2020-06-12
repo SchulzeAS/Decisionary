@@ -15,26 +15,27 @@ function specificViewChanges(curView) {
 	nxtBtnText = "next";
 	backBtnText = "back";
 	//console.log("specificViewChanges: " + curView)
-	
 	document.getElementById("navBack").style.visibility="visible";
 	document.getElementById("navNext").style.visibility="visible";
-	
-	if(curView == 3) { // current view is"Uebersicht"
-		nxtBtnText = "finish";
-		Uebersicht();
+
+	switch (curView) {
+		case 0: // current view is "Step1Topic", we are at the beginning
+			document.getElementById("navBack").style.visibility="hidden";
+			break;
+		case 3:	// current view is"Uebersicht"
+			nxtBtnText = "finish";
+			Uebersicht();
+			break;
+		case 4:	// current view is"Link teilen" aka we are done
+			document.getElementById("navBack").style.visibility="hidden";
+			document.getElementById("navNext").style.visibility="hidden";
+			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id + "/" + "vote";
+			document.getElementById("InputAuswerten").value = baseUrl + "/" + currentPoll.id + "/" + "result";
+			break;
+		default:
+			break;
 	}
 	
-	if(curView == 0) { // current view is "Step1Topic", we are at the beginning
-		document.getElementById("navBack").style.visibility="hidden";
-	}
-	
-	if(curView == 4) { // current view is"Link teilen" aka we are done
-		document.getElementById("navBack").style.visibility="hidden";
-		document.getElementById("navNext").style.visibility="hidden";
-		document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id + "/" + "vote";
-		document.getElementById("InputAuswerten").value = baseUrl + "/" + currentPoll.id + "/" + "result";
-	}
-		
 	document.getElementById("navBack").innerHTML=backBtnText;
 	document.getElementById("navNext").innerHTML=nxtBtnText;
 }
