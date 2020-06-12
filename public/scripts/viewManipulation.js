@@ -21,11 +21,10 @@ function specificViewChanges(curView) {
 	
 	if(curView == 3) { // current view is"Uebersicht"
 		nxtBtnText = "finish";
-		console.log("Uebersicht");
 		Uebersicht();
 	}
 	
-	if(curView == 0) { // current view is"Link teilen" aka we are done
+	if(curView == 0) { // current view is "Step1Topic", we are at the beginning
 		document.getElementById("navBack").style.visibility="hidden";
 	}
 	
@@ -74,17 +73,22 @@ function addInput(type) {
  */
 function removeInput(type) {
 	if(type == "Alt" || type == "Crit"){
-		if(type == "Alt" && altCounter > 2){
+		removeElement = false;
+		//only remove inputs if there are more then the minimum left
+		if(type == "Alt" && altCounter > minAlternatives){
 			var tempString = altId + altCounter;
 			altCounter--;
+			removeElement = true;
 		}
-		if(type == "Crit" && kritCounter > 2){
-			var tempString = kritId + kritCounter;
-			kritCounter--;
+		if(type == "Crit" && critCounter > minCriteria){
+			var tempString = critId + critCounter;
+			critCounter--;
+			removeElement = true;
 		}
-		// hier ist noch immer null wenn nichts removed werden soll FIXEN
-		var toBeRemoved = document.getElementById(tempString);
+		if(removeElement){
+			var toBeRemoved = document.getElementById(tempString);
 			toBeRemoved.parentNode.removeChild(toBeRemoved);
+		}
 	}
 }
 
@@ -107,11 +111,11 @@ function createInput(type) {
 		newInputDiv.id = "alt" + altCounter;
 	}
 	if (type == "Crit") {
-		kritCounter++;
-		tempString = "Kriterium " + kritCounter + " " ;
-		newInput.className = "KriteriumInputs";
-		newInputDiv.className = "Kriterium";
-		newInputDiv.id = "krit" + kritCounter;
+		critCounter++;
+		tempString = "Kriterium " + critCounter + " " ;
+		newInput.className = "CriteriaInputs";
+		newInputDiv.className = "Criteria";
+		newInputDiv.id = "crit" + critCounter;
 	}
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;

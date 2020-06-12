@@ -24,7 +24,7 @@ function modifyData(viewIndex) {
 }
 
 /**
- * copies the contetn of the input field and changes the tooltip as feed back
+ * copies the content of the input field and changes the tooltip as feed back
  * @param {string} inputFieldId identifier of the inputfield
  * @param {string} tooltipId identifier of the tooltip
  */
@@ -36,4 +36,14 @@ function copyLink(inputFieldId, tooltipId) {
     document.execCommand("copy");
     var tooltip = document.getElementById(tooltipId);
     tooltip.innerHTML = "Kopiert: " + copyText.value;
+}
+
+/**
+ * hide the tooltip when the mouse moves out of the button area
+ * @param {string} id of the tooltip
+ */
+
+function toolTipMouseOut(tooltipId) {
+	var tooltip = document.getElementById(tooltipId);
+	tooltip.innerHTML = "Link kopieren";
 }

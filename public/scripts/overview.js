@@ -8,11 +8,11 @@ function Uebersicht() {
 	descriptionSpan.innerHTML = document.getElementById("DescriptionInput").value;
 	
 	var alternatives = getInputsValue("alternativeInputs");
-	var kriterien = getInputsValue("criteriaInputs");
+	var criteria = getInputsValue("criteriaInputs");
 
-	createTableUebersicht(alternatives,kriterien);
+	createTableUebersicht(alternatives,criteria);
 }
-
+/* can be deleted
 function fillTableUebersicht(table,typeText,array) {
 	for (i = 0; i < array.length; i++) {
 		var row = document.createElement("tr");
@@ -25,9 +25,9 @@ function fillTableUebersicht(table,typeText,array) {
 		
 		table.appendChild(row);
 	} 
-}
+}*/
 
-function createTableUebersicht(altArray,kritArray) {
+function createTableUebersicht(altArray,critArray) {
 	var FirstRow = document.createElement("tr");
 	
 				var cell = document.createElement("td");
@@ -43,10 +43,10 @@ function createTableUebersicht(altArray,kritArray) {
 	}
 	document.getElementById("combinedTable").appendChild(FirstRow);
 	
-	for (i = 0; i < kritArray.length; i++) {
+	for (i = 0; i < critArray.length; i++) {
 		var row = document.createElement("tr");
 		var cell2 = document.createElement("td");
-		textnode2=document.createTextNode(kritArray[i]);
+		textnode2=document.createTextNode(critArray[i]);
 
 		cell2.appendChild(textnode2);
 		row.appendChild(cell2);
@@ -54,13 +54,11 @@ function createTableUebersicht(altArray,kritArray) {
 		document.getElementById("combinedTable").appendChild(row);
 	} 
 }
-
-function outFunc(tooltipId) {
-	var tooltip = document.getElementById(tooltipId);
-	tooltip.innerHTML = "Link kopieren";
-}
   
-  
+  /**
+ * used to clear a table
+ * @param {DOMElement} table element
+ */
 	  
 function clearTable(table) {
 	while(table.childNodes.length > 0) {

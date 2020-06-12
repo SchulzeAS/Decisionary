@@ -1,13 +1,17 @@
 const altId = "alt";
-const kritId = "krit";
+const critId = "crit";
 const baseUrl = "http://example.dev";
 
 currentView = 0;
 var schritte = [ "step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share" ];
 var schritteNav = [ "navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare" ];
 
-var altCounter = 2;
-var kritCounter = 2;
+var minAlternatives = 2;
+var altCounter = minAlternatives;
+
+var minCriteria = 1;
+var critCounter = minCriteria;
+
 var alternativesContainer = "alternativesContainer"
 var criteriasContainer = "criteriasContainer"
 
