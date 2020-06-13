@@ -19,7 +19,7 @@ function specificViewChanges(curView) {
 	document.getElementById("navNext").style.visibility="visible";
 
 	switch (curView) {
-		case 0: // current view is "Step1Topic", we are at the beginning
+		case 0: // current view is "Thema", we are at the beginning
 			document.getElementById("navBack").style.visibility="hidden";
 			break;
 		case 1:	// current view is "Alternativen"
@@ -32,11 +32,11 @@ function specificViewChanges(curView) {
 				addInput("Crit");
 			}
 			break;
-		case 3:	// current view is"Uebersicht"
+		case 3:	// current view is "Uebersicht"
 			nxtBtnText = "finish";
-			Uebersicht();
+			overview();
 			break;
-		case 4:	// current view is"Link teilen" aka we are done
+		case 4:	// current view is "Link teilen" aka we are done
 			document.getElementById("navBack").style.visibility="hidden";
 			document.getElementById("navNext").style.visibility="hidden";
 			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id + "/" + "vote";

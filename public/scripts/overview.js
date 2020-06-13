@@ -1,31 +1,28 @@
  /**
  * base function called to create the overview of all inputs up to now
  */
-function Uebersicht() {
+function overview() {
 	var nameSpan = document.getElementById("nameSpan");
 	var descriptionSpan = document.getElementById("descriptionSpan");
 	
 	clearTable(document.getElementById("combinedTable"));
 	
-	nameSpan.innerHTML = document.getElementById("NameInput").value;
-	descriptionSpan.innerHTML = document.getElementById("DescriptionInput").value;
-	
-	var alternatives = getInputsValue("alternativeInputs");
-	var criteria = getInputsValue("criteriaInputs");
+	nameSpan.innerHTML = currentPoll.title;
+	descriptionSpan.innerHTML = currentPoll.description;
 
-	createTableUebersicht(alternatives,criteria);
+	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.getAllCriterias());
 }
 
  /**
-  * fills the uebersicht table with alternatives and criteria
+  * fills the overview table with alternatives and criteria
   * @param {array} altArray collection of alternatives
   * @param {array} critArray collection of criterias
   */
-function createTableUebersicht(altArray,critArray) {
+function createTableOverview(altArray, critArray) {
 	var FirstRow = document.createElement("tr");
 	
 	var cell = document.createElement("td");
-	var textnode=document.createTextNode("");
+	var textnode = document.createTextNode("");
 	cell.appendChild(textnode);
 	FirstRow.appendChild(cell);
 	
@@ -57,17 +54,4 @@ function clearTable(table) {
 	while(table.childNodes.length > 0) {
 		table.removeChild(table.lastChild);
 	}
-}
-  
-function getInputsValue(inputfield) {
-	var inputArray = document.getElementsByClassName(inputfield);
-	var values = [inputArray.length];
-
-	for (i = 0; i < inputArray.length; i++) {
-		if(inputArray[i].value != "") {
-			values[i] = inputArray[i].value;
-		}
-	} 
-	
-	return values;
 }

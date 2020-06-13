@@ -37,6 +37,16 @@ class Poll {
 		return this.alternatives;
 	}
 	/**
+	 * returns a string array containing all alternatives
+	 */
+	getAllAlternatives() {
+		var array = new Array();
+		this.alternatives.forEach(element => {
+			array.push(element);
+		});
+		return array;
+	}
+	/**
 	 * adds a new criteria to the array of criterias
 	 * @param {string} criteriaName Name of the criteria
 	 */
@@ -53,6 +63,16 @@ class Poll {
 			this.criterias.splice(index, 1);
 		}
 		return this.criterias;
+	}
+	/**
+	 * returns a string array containing all criterias
+	 */
+	getAllCriterias() {
+		var array = new Array();
+		this.criterias.forEach(element => {
+			array.push(element.name);
+		});
+		return array;
 	}
 	/**
 	 * moves the criteria at given index one position to the front
