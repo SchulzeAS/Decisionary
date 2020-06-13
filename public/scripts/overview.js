@@ -1,7 +1,6 @@
  /**
  * base function called to create the overview of all inputs up to now
  */
-
 function Uebersicht() {
 	var nameSpan = document.getElementById("nameSpan");
 	var descriptionSpan = document.getElementById("descriptionSpan");
@@ -18,10 +17,10 @@ function Uebersicht() {
 }
 
  /**
- * fills the uebersicht table with alternatives and criteria
- * @param {array,array} arrays containing the alternatives and criteria
- */
-
+  * fills the uebersicht table with alternatives and criteria
+  * @param {array} altArray collection of alternatives
+  * @param {array} critArray collection of criterias
+  */
 function createTableUebersicht(altArray,critArray) {
 	var FirstRow = document.createElement("tr");
 	
@@ -50,11 +49,10 @@ function createTableUebersicht(altArray,critArray) {
 	} 
 }
   
-  /**
+/**
  * used to clear a table
  * @param {DOMElement} table element
  */
-	  
 function clearTable(table) {
 	while(table.childNodes.length > 0) {
 		table.removeChild(table.lastChild);
