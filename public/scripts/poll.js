@@ -17,7 +17,7 @@ class Poll {
 	 * @param {string} alternative Name of the alternative
 	 */
 	addAlternative(alternative) {
-		this.alternatives[this.alternatives.length] = alternative;
+		this.alternatives.push(alternative);
 		this.criterias.forEach(e => {
 			e.values[e.values.length] = "";
 		});
@@ -51,7 +51,7 @@ class Poll {
 	 * @param {string} criteriaName Name of the criteria
 	 */
 	addCriteria(criteriaName) {
-		this.criterias[this.criterias.length] = new Criteria(criteriaName, this.alternatives.length);
+		this.criterias.push(new Criteria(criteriaName, this.alternatives.length));
 		return this.criterias;
 	}
 	/**
