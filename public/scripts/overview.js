@@ -1,3 +1,7 @@
+ /**
+ * base function called to create the overview of all inputs up to now
+ */
+
 function Uebersicht() {
 	var nameSpan = document.getElementById("nameSpan");
 	var descriptionSpan = document.getElementById("descriptionSpan");
@@ -13,13 +17,18 @@ function Uebersicht() {
 	createTableUebersicht(alternatives,criteria);
 }
 
+ /**
+ * fills the uebersicht table with alternatives and criteria
+ * @param {array,array} arrays containing the alternatives and criteria
+ */
+
 function createTableUebersicht(altArray,critArray) {
 	var FirstRow = document.createElement("tr");
 	
-				var cell = document.createElement("td");
-		var textnode=document.createTextNode("");
-		cell.appendChild(textnode);
-		FirstRow.appendChild(cell);
+	var cell = document.createElement("td");
+	var textnode=document.createTextNode("");
+	cell.appendChild(textnode);
+	FirstRow.appendChild(cell);
 	
 	for (i = 0; i < altArray.length; i++) {
 		var cell = document.createElement("td");

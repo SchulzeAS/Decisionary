@@ -97,7 +97,10 @@ h1 {
 	left: 20px;
 	visibility: hidden;
 }
-
+.removeBtn{
+	position:relative;
+	float:right;
+}
 .Steps {
   position: absolute;
   visibility: hidden;
