@@ -66,30 +66,30 @@ function createInput(type) {
 	var newInput = document.createElement('input');
 	var newInputDeleteBtn = document.createElement('button');
 	newInputDeleteBtn.innerHTML = "X";
-	var displayIndex;
+	var index;
 	
 	if(type == "Alt") {
-		displayIndex = ++altCounter
-		tempString = "Alternative " + displayIndex + " " ;
+		index = altCounter++;
+		tempString = "Alternative";
 		newInput.className = "AlternativeInputs";
 		newInputDiv.className = "Alternative";
-		newInputDiv.id = "alt" + displayIndex;
+		newInputDiv.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function() { 
 			removeSpecificInput(newInputDiv.id);
-			currentPoll.removeAlternative(displayIndex - 1);
+			currentPoll.removeAlternative(index);
 		};
 	}
 	if (type == "Crit") {
-		displayIndex = ++critCounter;
-		tempString = "Kriterium " + displayIndex + " " ;
+		index = critCounter++;
+		tempString = "Kriterium";
 		newInput.className = "CriteriaInputs";
 		newInputDiv.className = "Criteria";
-		newInputDiv.id = "crit" + displayIndex;
+		newInputDiv.id = "crit" + index;
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function() { 
 			removeSpecificInput(newInputDiv.id);
-			currentPoll.removeCriteria(displayIndex - 1);
+			currentPoll.removeCriteria(index);
 		};
 	}
 	newInputDeleteBtn.className = "removeBtn";
@@ -113,11 +113,11 @@ function onUpdateInput(e) {
 	var parent = e.target.parentElement.parentElement;
 	var idx;
 	if (parent.className == "Alternative") {
-		idx = parent.id.replace(altId, "") - 1;
+		idx = parent.id.replace(altId, "");
 		currentPoll.alternatives[idx] = input;
 	} 
 	if (parent.className == "Criteria") {
-		idx = parent.id.replace(critId, "") - 1;
+		idx = parent.id.replace(critId, "");
 		currentPoll.criterias[idx].name = input;
 	}
 }
