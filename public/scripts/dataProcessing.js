@@ -9,8 +9,8 @@ function modifyData(viewIndex) {
 			var description = document.getElementById('DescriptionInput').value;
 			if (!currentPoll) {
 				currentPoll = new Poll(
-					createUuid(), 
-					name, 
+					createUuid(),
+					name,
 					description
 				);
 			} else {
@@ -29,13 +29,13 @@ function modifyData(viewIndex) {
  * @param {string} tooltipId identifier of the tooltip
  */
 function copyLink(inputFieldId, tooltipId) {
-    var copyText = document.getElementById(inputFieldId);
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+	var copyText = document.getElementById(inputFieldId);
+	copyText.select();
+	copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-    document.execCommand("copy");
-    var tooltip = document.getElementById(tooltipId);
-    tooltip.innerHTML = "Kopiert: " + copyText.value;
+	document.execCommand("copy");
+	var tooltip = document.getElementById(tooltipId);
+	tooltip.innerHTML = "Kopiert: " + copyText.value;
 }
 
 /**

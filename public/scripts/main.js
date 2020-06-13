@@ -3,8 +3,8 @@ const critId = "crit";
 const baseUrl = "http://example.dev";
 
 currentView = 0;
-var schritte = [ "step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share" ];
-var schritteNav = [ "navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare" ];
+var schritte = ["step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share"];
+var schritteNav = ["navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare"];
 
 var minAlternatives = 2;
 var maxAlternatives = 15;

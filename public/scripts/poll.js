@@ -5,10 +5,10 @@ class Poll {
 	 * @param {string} title Title of the poll
 	 * @param {string} description Description of the poll 
 	 */
-    constructor(id, title, description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
+	constructor(id, title, description) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
 		this.alternatives = new Array();
 		this.criterias = new Array();
 	}
@@ -100,8 +100,8 @@ class Poll {
 	 * @param {int} index2 Index of the second criteria
 	 */
 	swapCriterias(index1, index2) {
-		if (index1 >= 0 && index1 < this.criterias.length - 1 && 
-			index2 > 0 && index2 < this.criterias.length && 
+		if (index1 >= 0 && index1 < this.criterias.length - 1 &&
+			index2 > 0 && index2 < this.criterias.length &&
 			index1 < index2) {
 			var tmp = this.criterias[index1];
 			this.criterias[index1] = this.criterias[index2];
