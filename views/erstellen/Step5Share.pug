@@ -2,13 +2,14 @@ block layout-content
 	div.Message
 		div.Title
 			h1 Teilen
-			h2 Teilnehmen Link: 	
-				input(readonly value="example.org" id="InputTeilnehmen")
-				div.tooltip
-					button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')") 
-						span.tooltiptext#copyTooltipTeilnehmen Link kopieren
-			h2 Ergebnisse Link: 	
-				input(readonly value="example.org/example" id="InputAuswerten")
-				div.tooltip
-					button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')")
-						span.tooltiptext#copyTooltipAuswerten Link kopieren
+			div.LinkContainer
+				h2 Teilnehmen Link: 	
+					input(readonly value="example.org" id="InputTeilnehmen" class="linkInput")
+					div.tooltip
+						button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')") 
+							span.tooltiptext#copyTooltipTeilnehmen Link kopieren
+				h2 Ergebnisse Link: 	
+					input(readonly value="example.org/example" id="InputAuswerten" class="linkInput")
+					div.tooltip
+						button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')")
+							span.tooltiptext#copyTooltipAuswerten Link kopieren

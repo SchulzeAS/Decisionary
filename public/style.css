@@ -42,15 +42,19 @@ h2,
 h3 {
   font-family: var(--header-font);
   text-transform: uppercase;
-
   padding: 0;
   margin: 0;
-
   color: var(--secondary-font);
 }
 
+
+
 h1 {
-  font-size: 40px;
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 30px;
 }
 
 #creationContainer {
@@ -66,6 +70,7 @@ h1 {
 	position: relative;
 	height: 40px;
 	width:auto;
+    font-size:18px;
 }
 
 #navigatorTop{
@@ -81,7 +86,10 @@ h1 {
 }
 
 input{
+	position:relative;
 	margin-left:15px;
+	height:25px;
+	bottom:6px;
 }
 
 #root {
@@ -122,6 +130,7 @@ input{
   visibility: hidden;
   z-index: 0;
   padding: 10px;
+  font-size:20px;
 
 }
 
@@ -160,6 +169,7 @@ input{
 
 .inputContainer{
 	clear:both;
+	margin-top:40px;
 }
 
 .removeBtn{
@@ -235,4 +245,24 @@ input{
 
 .inputDiv{
 	clear:both;
+}
+
+.NameInputH3{
+	margin-top:20px;
+}
+.DescriptionInputH3{
+	margin-top:20px;
+}
+
+.LinkContainer{
+	margin-top:40px;
+}
+
+.LinkContainer h2{
+	margin-top:10px;
+}
+
+.linkInput{
+	size:90;
+	width:400px;
 }
