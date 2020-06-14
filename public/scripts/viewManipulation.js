@@ -43,7 +43,6 @@ function specificViewChanges(curView) {
 		default:
 			break;
 	}
-	console.log("still updating");
 	document.getElementById("navBack").style.backgroundImage = "url('backBtn.png')";
 	document.getElementById("navNext").style.backgroundImage = "url('nextBtn.png')";
 }

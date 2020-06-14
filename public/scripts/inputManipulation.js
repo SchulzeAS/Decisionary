@@ -24,8 +24,10 @@ function addInput(type) {
  * @param {string} div Id to be removed
  */
 function removeSpecificInput(divId) {
+	
 	var divToBeRemoved = document.getElementById(divId);
 	if (divId.includes(altId) && altCounter > minAlternatives) {
+		
 		var index = divId.replace(altId, '');
 		altCounter--;
 		divToBeRemoved.remove();
@@ -38,8 +40,10 @@ function removeSpecificInput(divId) {
 				element.id = altId + (elementIndex - 1);
 			}
 		}
+		updateSpanNumbers("AlternativeSpanNumber");
 	}
 	if (divId.includes(critId) && critCounter > minCriterias) {
+		
 		var index = divId.replace(critId, '');
 		critCounter--;
 		divToBeRemoved.remove();
@@ -52,6 +56,19 @@ function removeSpecificInput(divId) {
 				element.id = critId + (elementIndex - 1);
 			}
 		}
+		updateSpanNumbers("CriteriaSpanNumber");
+	}
+}
+
+/**
+ * updates numbering after removing an input
+ * @param {String} name of the span class
+ */
+function updateSpanNumbers(span){
+	var spans = document.getElementsByClassName(span);
+	
+	for (let i = 0; i < spans.length; i++) {
+		spans[i].innerHTML = i+1;
 	}
 }
 
@@ -63,6 +80,7 @@ function createInput(type) {
 
 	var newInputDiv = document.createElement('div');
 	var newInputH3 = document.createElement('h3');
+	var newSpanNumber = document.createElement('span');
 	var newInput = document.createElement('input');
 	var newInputDeleteBtn = document.createElement('button');
 	
@@ -73,6 +91,7 @@ function createInput(type) {
 		tempString = "Alternative";
 		newInput.className = "AlternativeInputs";
 		newInputDiv.className = "Alternative";
+		newSpanNumber.className = "AlternativeSpanNumber";
 		newInputDiv.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
@@ -85,6 +104,7 @@ function createInput(type) {
 		tempString = "Kriterium";
 		newInput.className = "CriteriaInputs";
 		newInputDiv.className = "Criteria";
+		newSpanNumber.className = "CriteriaSpanNumber";
 		newInputDiv.id = "crit" + index;
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function () {
@@ -94,9 +114,12 @@ function createInput(type) {
 	}
 	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
 	newInputH3.className +="inputH3";
+	newSpanNumber.className +=" SpanNumber";
 
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
+	newSpanNumber.innerHTML = (index+1);
+	newInputH3.appendChild(newSpanNumber);
 	newInputH3.appendChild(newInput);
 	newInputDiv.appendChild(newInputH3);
 	if (newInputDiv.className == "Criteria" && critCounter > minCriterias || newInputDiv.className == "Alternative" && altCounter > minAlternatives) {
