@@ -116,11 +116,11 @@ function onUpdateInput(e) {
 	var input = e.target.value;
 	var parent = e.target.parentElement.parentElement;
 	var idx;
-	if (parent.className == "Alternative") {
+	if (parent.className.includes("Alternative")) {
 		idx = parent.id.replace(altId, "");
 		currentPoll.alternatives[idx] = input;
 	}
-	if (parent.className == "Criteria") {
+	if (parent.className.includes("Criteria")) {
 		idx = parent.id.replace(critId, "");
 		currentPoll.criterias[idx].name = input;
 	}
