@@ -65,7 +65,7 @@ function createInput(type) {
 	var newInputH3 = document.createElement('h3');
 	var newInput = document.createElement('input');
 	var newInputDeleteBtn = document.createElement('button');
-	newInputDeleteBtn.innerHTML = "X";
+	
 	var index;
 
 	if (type == "Alt") {
@@ -92,14 +92,18 @@ function createInput(type) {
 			currentPoll.removeCriteria(index);
 		};
 	}
-	newInputDeleteBtn.className = "removeBtn";
+	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
+	newInputH3.className +="inputH3";
+
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
 	newInputH3.appendChild(newInput);
-	if (newInputDiv.className == "Criteria" && critCounter > minCriterias || newInputDiv.className == "Alternative" && altCounter > minAlternatives) {
-		newInputH3.appendChild(newInputDeleteBtn);
-	}
 	newInputDiv.appendChild(newInputH3);
+	if (newInputDiv.className == "Criteria" && critCounter > minCriterias || newInputDiv.className == "Alternative" && altCounter > minAlternatives) {
+		newInputDiv.appendChild(newInputDeleteBtn);
+	}
+	newInputDiv.className += " inputDiv";
+	
 
 	return newInputDiv;
 }

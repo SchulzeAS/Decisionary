@@ -97,10 +97,7 @@ h1 {
 	left: 20px;
 	visibility: hidden;
 }
-.removeBtn{
-	position:relative;
-	float:right;
-}
+
 .Steps {
   position: absolute;
   visibility: hidden;
@@ -126,9 +123,28 @@ h1 {
 	visibility: visible;
 }
 
-.plusMinusButtons {
-	position: absolute;
-	left: 300px;
+.plusMinusButtons{
+	border-radius: 10%;
+	background-size: contain;
+	height:30px;
+	width:30px;
+	background-color:transparent;
+}
+
+.plusButtons {
+	position:relative;
+	float:left;
+	background-image: url(addInputIcon.png);
+}
+
+.inputContainer{
+	clear:both;
+}
+
+.removeBtn{
+	background-image: url(removeInputIcon.png);
+	position:relative;
+	float:left;
 }
 
 .copyButton {
@@ -190,4 +206,12 @@ h1 {
 #combinedTable{
 	position:absolute;
 	top:40px;
+}
+.inputH3{
+	position:relative;
+	float:left;
+}
+
+.inputDiv{
+	clear:both;
 }
