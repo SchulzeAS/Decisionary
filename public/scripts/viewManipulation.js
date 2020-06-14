@@ -12,8 +12,6 @@ function hideView(view) {
  * @param {int} curView index of the current view
  */
 function specificViewChanges(curView) {
-	nxtBtnText = "next";
-	backBtnText = "back";
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
 
@@ -32,8 +30,9 @@ function specificViewChanges(curView) {
 			}
 			break;
 		case 3:	// current view is "Uebersicht"
-			nxtBtnText = "finish";
+			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
 			overview();
+			return;
 			break;
 		case 4:	// current view is "Link teilen" aka we are done
 			document.getElementById("navBack").style.visibility = "hidden";
@@ -44,9 +43,9 @@ function specificViewChanges(curView) {
 		default:
 			break;
 	}
-
-	document.getElementById("navBack").innerHTML = backBtnText;
-	document.getElementById("navNext").innerHTML = nxtBtnText;
+	console.log("still updating");
+	document.getElementById("navBack").style.backgroundImage = "url('backBtn.png')";
+	document.getElementById("navNext").style.backgroundImage = "url('nextBtn.png')";
 }
 
 /**
