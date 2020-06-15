@@ -6,6 +6,7 @@
   --logo-font: "Share Tech Mono", monospace;
   --header-font: "Raleway", sans-serif;
   --core-font: "Merriweather Sans", sans-serif;
+  --greyed-input: #f3f3f3;
 
   --primary-font: #ffffff;
   --secondary-font: #2a3747;
@@ -37,9 +38,7 @@ body {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-h1,
-h2,
-h3 {
+h1,h2,h3,h4 {
   font-family: var(--header-font);
   text-transform: uppercase;
   padding: 0;
@@ -92,6 +91,18 @@ input{
 	height:25px;
 	bottom:0px;
 	font-size:20px;
+}
+.inputH3 input::placeholder{
+	color:black;
+	opacity:0.2;
+}
+.inputH3 input{
+	width:300px;
+}
+
+button:hover{
+	cursor:pointer;
+	background-color:#f3f3f3;
 }
 
 #root {
@@ -172,7 +183,7 @@ input{
 
 .plusButtons {
 	position:relative;
-	left:0px;
+	right:0px;
 	background-image: url(addInputIcon.png);
 	top:10px;
 }
@@ -263,14 +274,26 @@ input{
 
 .NameInputH3{
 	margin-top:20px;
+	font-size:40px;
 }
+
+.NameInputH3 input{
+	height:40px;
+	bottom:5px;
+	width:300px;
+}
+
 .DescriptionInputH3{
 	margin-top:20px;
 }
 
+#.DescriptionInput{
+	width:400px;
+}
+
 .LinkContainer{
 	margin-top:40px;
-	overflow:hidden;
+
 }
 
 .LinkContainer h2{
@@ -280,6 +303,10 @@ input{
 .linkInput{
 	width:500px;
 
+}
+
+#resultLink{
+	margin-top:100px;
 }
 
 .SpanNumber{

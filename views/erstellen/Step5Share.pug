@@ -3,13 +3,17 @@ block layout-content
 		div.Title
 			h1 Teilen
 			div.LinkContainer
-				h2 Teilnehmen Link: 	
-					input(readonly value="example.org" id="InputTeilnehmen" class="linkInput")
-					div.tooltip
-						button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')") 
-							span.tooltiptext#copyTooltipTeilnehmen Link kopieren
-				h2 Ergebnisse Link: 	
-					input(readonly value="example.org/example" id="InputAuswerten" class="linkInput")
-					div.tooltip
-						button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')")
-							span.tooltiptext#copyTooltipAuswerten Link kopieren
+				h4 Schicke deinen Freunden diesen Link um an deiner Umfrage teilzunehmen
+				div#participateLink
+					h2 Teilnehmen Link: 	
+						input(readonly value="example.org" id="InputTeilnehmen" class="linkInput")
+						div.tooltip
+							button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')") 
+								span.tooltiptext#copyTooltipTeilnehmen Link kopieren
+				div#resultLink
+					h4 Unter diesem Link sind die Ergebnisse der Umfrage zu sehen
+					h2 Ergebnisse Link: 	
+						input(readonly value="example.org/example" id="InputAuswerten" class="linkInput")
+						div.tooltip
+							button.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')")
+								span.tooltiptext#copyTooltipAuswerten Link kopieren

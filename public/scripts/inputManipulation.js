@@ -88,6 +88,9 @@ function createInput(type) {
 
 	if (type == "Alt") {
 		index = altCounter++;
+		if(index == 0){
+			newInput.placeholder = "erste Alternative";
+		}
 		tempString = "Alternative";
 		newInput.className = "AlternativeInputs";
 		newInputDiv.className = "Alternative";
@@ -115,6 +118,10 @@ function createInput(type) {
 	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
 	newInputH3.className +="inputH3";
 	newSpanNumber.className +=" SpanNumber";
+	newInput.addEventListener("focus", activeInput); 
+	newInput.addEventListener("mouseleave", unactiveInput); 
+	newInput.addEventListener("mouseenter", activeInput);
+
 
 	newInput.addEventListener("input", onUpdateInput);
 	newInputH3.innerHTML = tempString;
