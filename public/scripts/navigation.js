@@ -4,7 +4,7 @@
 function next() {
 	hideView(schritte[currentView]);
 	disableNavElement(schritteNav[currentView]);
-	modifyData(currentView);
+	modifyData(currentView); // was macht diese Funktion hier?
 	if (currentView < schritte.length - 1) {
 		currentView += 1;
 	} else {

@@ -1,7 +1,10 @@
 block navigator
-	div#navTopic.navElement Thema
-	div#navAlternatives.navElement Alternativen
-	div#navCriterias.navElement Kriterien
-	div#navOverview.navElement Übersicht
+	div#navTopic.navElement(onClick="clickToChangeView(0)") Thema
+		img(src="pencil.png").pencil
+	div#navAlternatives.navElement(onClick="clickToChangeView(1)") Alternativen
+		img(src="pencil.png").pencil
+	div#navCriterias.navElement(onClick="clickToChangeView(2)") Kriterien
+		img(src="pencil.png").pencil
+	div#navOverview.navElement(onClick="clickToChangeView(3)") Übersicht
 	div#navShare.navElement Teilen
 

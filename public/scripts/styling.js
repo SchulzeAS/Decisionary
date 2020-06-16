@@ -1,7 +1,6 @@
 
 
 var inputs = document.getElementsByTagName('input');
-console.log(inputs);
 for(var i = 0; i < inputs.length; i++) {
     if(inputs[i].type.toLowerCase() == 'text') {
         //alert(inputs[i].value);
@@ -11,12 +10,13 @@ for(var i = 0; i < inputs.length; i++) {
 		
     }
 }
-
+/**
+ * highlights the active input
+ * @param {DOMElement} the element to highlight
+ */
 function activeInput(e){
 	
 	var inputs = document.getElementsByTagName('input');
-	console.log("calling onlick: " + e);
-	console.log(e);
 	for(var i = 0; i < inputs.length; i++) {
 		if(inputs[i].type.toLowerCase() == 'text') {
 			//alert(inputs[i].value);
@@ -26,7 +26,10 @@ function activeInput(e){
 	e.target.style.backgroundColor = "#f3f3f3";
 }
 
+/**
+ * removes highlighting from currently active element
+ * @param {DOMElement} the element remove highlighting from
+ */
 function unactiveInput(e){
-	console.log("mouse left");
 	e.target.style.backgroundColor = "white";
 }
