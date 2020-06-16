@@ -1,3 +1,5 @@
+var originalBtnPos; // save the original position of the add input button
+
 /**
  * adds a new input
  * @param {string} type name of the input type
@@ -58,6 +60,14 @@ function removeSpecificInput(divId) {
 		}
 		updateSpanNumbers("CriteriaSpanNumber");
 	}
+
+	if (critCounter < maxCriterias) {
+		showBtn(document.getElementById("addCriteriaButton"));
+	}
+	if (altCounter < maxAlternatives) {
+		showBtn(document.getElementById("addAlternativeButton"));
+	}
+
 }
 
 /**
@@ -101,6 +111,9 @@ function createInput(type) {
 			removeSpecificInput(newInputDiv.id);
 			currentPoll.removeAlternative(index);
 		};
+		if (altCounter >= maxAlternatives) {
+			hideBtn(document.getElementById("addAlternativeButton"));
+		}
 	}
 	if (type == "Crit") {
 		index = critCounter++;
@@ -114,6 +127,9 @@ function createInput(type) {
 			removeSpecificInput(newInputDiv.id);
 			currentPoll.removeCriteria(index);
 		};
+		if (critCounter >= maxCriterias) {
+			hideBtn(document.getElementById("addCriteriaButton"));
+        }
 	}
 	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
 	newInputH3.className +="inputH3";
@@ -136,6 +152,30 @@ function createInput(type) {
 	
 
 	return newInputDiv;
+}
+
+/**
+ * hides an object
+ * @param {DOMElement} Element to hide
+ */
+function hideBtn(Btn) {
+	//Btn.style.visibility = "hidden";
+	// the button can not be hidden using the visibilty property because of using views
+	// it caused the button to be still visible even in other views/steps after showing it again
+	//move the button out of the render area to make it unclickable
+	Btn.style.opacity = 0;
+	originalBtnPos = Btn.style.left;
+	Btn.style.left="-500px";
+
+}
+/**
+ * shows a hidden object
+ * @param {DOMElement} Element to show
+ */
+function showBtn(Btn) {
+	//Btn.style.visibility = "visible";
+	Btn.style.opacity = 1;
+	Btn.style.left = originalBtnPos;
 }
 
 /**
