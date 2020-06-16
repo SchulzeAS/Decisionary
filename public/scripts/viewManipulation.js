@@ -107,7 +107,6 @@ function clickToChangeView(view){
  * sets a boolean that allows nav elements on the top to be clicked to change views
  */
 function makeNavClickable(){
-	console.log("making clickable");
 	clickViewBool = true;
 }
  
@@ -120,7 +119,7 @@ function makeNavUnclickable(){
 	for (var i = 0; i < schritteNav.length-1; i++) {
 		$("#"+schritteNav[i]).mouseenter(function() {
 			$(this).css("cursor", "auto");
-			$(this).css("backgroundColor",navDisabledColor);
+			$(this).css("backgroundColor", navDisabledColor);
 		})
 	}
 }
@@ -130,7 +129,9 @@ function addMouseHover(){
 		$("#"+schritteNav[i]).mouseenter(function() {
 			$(this).css("cursor", "pointer").css("backgroundColor",navActiveColor);
 		}).mouseleave(function() {
-			$(this).css("backgroundColor",navDisabledColor);
+			$(this).css("backgroundColor", navDisabledColor);
+			console.log(currentView);
+			$("#" + schritteNav[currentView]).css("backgroundColor", navActiveColor);
 		});
 	}
 }
