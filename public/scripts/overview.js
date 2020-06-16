@@ -55,3 +55,7 @@ function clearTable(table) {
 		table.removeChild(table.lastChild);
 	}
 }
+
+function hideHint(id) {
+	$("#" + id).css("visibility","hidden");
+}
