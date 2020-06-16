@@ -1,0 +1,58 @@
+.NameInputH3 {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+    .NameInputH3 input {
+        height: 40px;
+        bottom: 5px;
+        width: 300px;
+    }
+
+.DescriptionInputH3 {
+    margin-top: 20px;
+}
+
+.DescriptionInput {
+    width: 400px;
+}
+.linkInput {
+    width: 500px;
+}
+.LinkContainer {
+    margin-top: 40px;
+}
+
+.LinkContainer h2 {
+    margin-top: 10px;
+}
+.inputH3 {
+    position: relative;
+    float: left;
+}
+
+.inputDiv {
+    clear: both;
+}
+.inputContainer {
+    clear: both;
+    margin-top: 40px;
+}
+
+
+input {
+    position: relative;
+    margin-left: 15px;
+    height: 25px;
+    bottom: 0px;
+    font-size: 20px;
+}
+
+.inputH3 input::placeholder {
+    color: black;
+    opacity: 0.2;
+}
+
+.inputH3 input {
+    width: 300px;
+}

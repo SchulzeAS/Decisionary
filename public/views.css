@@ -1,0 +1,52 @@
+
+
+.Steps {
+    position: absolute;
+    visibility: hidden;
+    z-index: 0;
+    padding: 10px;
+    font-size: 20px;
+}
+.stepsContainer {
+    position: relative;
+    width: auto;
+    min-height: 500px;
+    height: 800px;
+    max-height: 800px;
+    font-family: var(--core-font);
+    background: white;
+    padding: 30px;
+    border-bottom: var(--ui-shawdow-border);
+    box-shadow: var(--ui-shawdow);
+}
+
+#step1Topic {
+    z-index: 1;
+    visibility: visible;
+}
+
+#step1Topic textarea {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+
+#overviewTables {
+    position: relative;
+    top: 40px;
+}
+
+#combinedTable {
+    position: absolute;
+    top: 40px;
+}
+
+
+
+#resultLink {
+    margin-top: 100px;
+}
+
+.SpanNumber {
+    margin-left: 10px;
+}

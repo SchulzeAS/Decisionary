@@ -1,0 +1,27 @@
+.navigator {
+    position: relative;
+    height: 40px;
+    width: auto;
+    font-size: 18px;
+}
+
+#navigatorTop {
+    overflow: hidden;
+}
+
+.navElement {
+    position: relative;
+    width: 20%;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+}
+.pencil {
+    width: 20px;
+    position: relative;
+    float: right;
+    bottom: 5px;
+    right: 20px;
+    visibility: hidden;
+}
