@@ -26,6 +26,10 @@
     z-index: 1;
     visibility: visible;
 }
+#step1Name {
+    z-index: 1;
+    visibility: visible;
+}
 
 #step1Topic textarea {
     margin-top: 10px;

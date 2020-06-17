@@ -7,7 +7,7 @@ var clickViewBool = false;
 var schritte = ["step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share"];
 var schritteNav = ["navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare"];
 var schritteNavTeilnehmen = ["navName", "navCriteriaOrder", "navRating", "navOverview"];
-var schritteTeilnehmen = ["Step1Name", "Step2CriteriaOrder", "step3Criterias", "step4Overview", "step5Share"];
+var schritteTeilnehmen = ["step1Name", "step2CriteriaOrder", "step3Rating", "step4Overview"];
 
 var minAlternatives = 2;
 var maxAlternatives = 15;
@@ -24,7 +24,7 @@ var navActiveColor = "rgb(0, 255, 154)";
 var navDisabledColor = "rgb(60, 179, 113)";
 
 
-var navActiveTeilnehmenColor = "rgb(100, 55, 154)";
-var navDisabledTeilnehmenColor = "rgb(10, 79, 113)";
+var navActiveTeilnehmenColor = "rgb(189,236,232)";
+var navDisabledTeilnehmenColor = "rgb(124,246,232)";
 
 var currentPoll;

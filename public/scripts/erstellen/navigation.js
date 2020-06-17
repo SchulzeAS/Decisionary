@@ -2,8 +2,6 @@
  * move to the next view
  */
 function next() {
-	console.log(schritte);
-	console.log(currentView);
 	hideView(schritte[currentView]);
 
 

@@ -11,12 +11,19 @@
 
 .navElement {
     position: relative;
-    width: 20%;
     padding: 10px;
     float: left;
     text-align: center;
     font-weight: bold;
 }
+
+.navTeilnehmen {
+    width: 25%;
+}
+.nevErstellen {
+    width: 20%;
+}
+
 .pencil {
     width: 20px;
     position: relative;
