@@ -2,7 +2,11 @@
  * move to the next view
  */
 function next() {
+	console.log(schritte);
+	console.log(currentView);
 	hideView(schritte[currentView]);
+
+
 	disableNavElement(schritteNav[currentView]);
 	modifyData(currentView); // was macht diese Funktion hier?
 	if (currentView < schritte.length - 1) {

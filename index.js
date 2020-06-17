@@ -35,6 +35,10 @@ app.get("/", (req, res) => {
   res.render("erstellen/index");
 });
 
+app.get("/teilnehmen", (req, res) => {
+    res.render("teilnehmen/index");
+});
+
 /*app.get("/user", (req, res) => {
   res.render("user", { title: "Profile", userProfile: { nickname: "User1" } });
 });
