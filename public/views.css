@@ -6,8 +6,8 @@
     z-index: 0;
     padding: 10px;
     font-size: 20px;
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
 }
 .stepsContainer {
     position: relative;
@@ -43,8 +43,12 @@
     top: 40px;
 }
 
-
-
+.inputContainer {
+    position: relative;
+}
+.inputAndBtnDiv {
+    display: inline-block;
+}
 #resultLink {
     margin-top: 100px;
 }

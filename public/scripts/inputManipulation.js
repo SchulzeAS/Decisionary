@@ -8,10 +8,12 @@ function addInput(type) {
 	if (type == "Alt" || type == "Crit") {
 		if (type == "Alt" && altCounter < maxAlternatives) {
 			document.getElementById(alternativesContainer).appendChild(createInput(type));
+			//$("#" + alternativesContainer).prev().after(createInput(type));
 			currentPoll.addAlternative("");
 		}
 		if (type == "Crit" && critCounter < maxCriterias) {
 			document.getElementById(criteriasContainer).appendChild(createInput(type))
+			//$("#" + criteriasContainer).prev().after(createInput(type));
 			currentPoll.addCriteria("");
 		}
 	}
@@ -145,9 +147,11 @@ function createInput(type) {
 	newInputH3.appendChild(newSpanNumber);
 	newInputH3.appendChild(newInput);
 	newInputDiv.appendChild(newInputH3);
-	if (newInputDiv.className == "Criteria" && critCounter > minCriterias || newInputDiv.className == "Alternative" && altCounter > minAlternatives) {
-		newInputDiv.appendChild(newInputDeleteBtn);
-	}
+	if (newInputDiv.className == "Criteria" && critCounter <= minCriterias || newInputDiv.className == "Alternative" && altCounter <= minAlternatives) {
+		newInputDeleteBtn.onclick = function () {console.log("ddummy btn") };
+		newInputDeleteBtn.className += " dummy";
+	} 
+	newInputDiv.appendChild(newInputDeleteBtn);
 	newInputDiv.className += " inputDiv";
 	
 

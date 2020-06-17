@@ -32,7 +32,7 @@
 }
 
 .inputDiv {
-    clear: both;
+    clear: left;
 }
 .inputContainer {
     clear: both;

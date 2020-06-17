@@ -18,17 +18,19 @@
 }
 
 .plusButtons {
-    position: relative;
-    right: 0px;
     background-image: url(addInputIcon.png);
-    top: 10px;
+    
 }
 
 .plusButtonsDiv {
     position: relative;
-    float: right;
-}
+    float:right;
+    margin-top:10px;
 
+}
+.dummy{
+    visibility:hidden;
+}
 
 .plusMinusButtons {
     border-radius: 10%;
