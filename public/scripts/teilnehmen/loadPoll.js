@@ -21,7 +21,6 @@ function loadPoll(poll) {
     loadCriterias(poll.getAllCriterias(), "critOrder");
     prepareAlternatives(poll.alternatives);
     maxCurrentAlternatives = poll.alternatives.length;
-    console.log(maxCurrentAlternatives);
 }
 
 /**
@@ -30,7 +29,6 @@ function loadPoll(poll) {
  * @param {string} divId id to append to
  */
 function loadCriterias(critArray, divId) {
-    console.log(divId);
     for (i = 0; i < critArray.length; i++) {
         var newSpan = document.createElement('span');
         newSpan.className = "critSpan";
@@ -45,7 +43,6 @@ function loadCriterias(critArray, divId) {
  * @param {array} altArray array of Alternatives
  */
 function prepareAlternatives(altArray) {
-    console.log(altArray);
     document.getElementById("currentAlternativeSpan").innerHTML = altArray[0];
     document.getElementById("curAlt").innerHTML = "1";
     document.getElementById("totalCount").innerHTML = " / " + altArray.length;

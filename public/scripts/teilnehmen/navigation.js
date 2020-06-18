@@ -16,12 +16,10 @@ function next() {
 		document.getElementById(schritteTeilnehmen[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNavTeilnehmen[currentView]).style.backgroundColor = navActiveTeilnehmenColor;
 		specificViewChanges(currentView);
-		console.log(currentView);
 		if (currentView == 2) { // reached the alternative ratings view where we will "fake" move next, but stay at current view
 			alternativeRatingViewFlag = true;
         }
 	} else {
-		console.log("debug in nav.js " +currentAlternative+ " of "+currentPoll.alternatives.length-1);
 		if (validateAllInputsAlternative()) {
 			if (currentAlternative >= currentPoll.alternatives.length-1) {
 				alternativeRatingViewFlag = false;

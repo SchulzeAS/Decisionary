@@ -12,7 +12,7 @@ for(var i = 0; i < inputs.length; i++) {
 }
 /**
  * highlights the active input
- * @param {DOMElement} the element to highlight
+ * @param {DOMElement} e element to highlight
  */
 function activeInput(e){
 	
@@ -28,7 +28,7 @@ function activeInput(e){
 
 /**
  * removes highlighting from currently active element
- * @param {DOMElement} the element remove highlighting from
+ * @param {DOMElement} e element to remove highlighting from
  */
 function unactiveInput(e){
 	e.target.style.backgroundColor = "white";

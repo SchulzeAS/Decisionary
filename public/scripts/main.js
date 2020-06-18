@@ -29,4 +29,7 @@ var navDisabledColor = "rgb(60, 179, 113)"; // und hier
 var navActiveTeilnehmenColor = "rgb(189,236,232)";
 var navDisabledTeilnehmenColor = "rgb(124,246,232)";
 
+var activeRadioColor = navActiveTeilnehmenColor; // kann aber auch was immer sein, nur temporear
+var passiveRadioColor = "white";
+
 var currentPoll;
