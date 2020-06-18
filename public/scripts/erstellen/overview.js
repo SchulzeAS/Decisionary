@@ -42,6 +42,12 @@ function createTableOverview(altArray, critArray) {
 		cell2.appendChild(textnode2);
 		row.appendChild(cell2);
 
+		for (j = 0; j < altArray.length; j++) {
+			var cellT = document.createElement("td");
+			row.appendChild(cellT);
+		}
+
+
 		document.getElementById("combinedTable").appendChild(row);
 	}
 }

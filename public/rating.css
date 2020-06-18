@@ -8,14 +8,14 @@
     margin-right: auto;
 }
 
-#ratingContainer{
-    height:100%;
+#ratingContainer {
+    height: 100%;
 }
 
 #altCounter {
     position: absolute;
     top: 670px;
-    left:350px;
+    left: 350px;
     margin: 20px;
     margin-bottom: 40px;
     width: 80px;
@@ -25,14 +25,14 @@
     background-color: transparent;
 }
 
-#alternativeRatingTable{
-    position:relative;
-    top:60px;
+#alternativeRatingTable {
+    position: relative;
+    top: 60px;
 }
 
- #alternativeRatingTable .ratingTd {
+#alternativeRatingTable .ratingTd {
     width: 25%;
-    text-align:center;
+    text-align: center;
 }
 
 #alternativeRatingTable label {
@@ -41,12 +41,17 @@
     border: 1px solid black;
 }
 
+#alternativeRatingTable input {
+    display: inline-block;
+    width: 100%;
+}
+
 #alternativeRatingTable .critTd {
-    padding-right:40px;
+    padding-right: 40px;
 }
 
 input[type="radio"]:checked {
-    background-color: red;
+background-color: red;
 }
 
 input[type="radio"]:checked:after {

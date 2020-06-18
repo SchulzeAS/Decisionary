@@ -22,8 +22,8 @@ var critCounter = 0;
 var alternativesContainer = "alternativesContainer"
 var criteriasContainer = "criteriasContainer"
 
-var navActiveColor = "rgb(0, 255, 154)";
-var navDisabledColor = "rgb(60, 179, 113)";
+var navActiveColor = "rgb(0, 255, 154)"; // Michelle hier
+var navDisabledColor = "rgb(60, 179, 113)"; // und hier
 
 
 var navActiveTeilnehmenColor = "rgb(189,236,232)";

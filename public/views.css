@@ -9,6 +9,7 @@
     width: 100%;
     height: auto;
 }
+
 .stepsContainer {
     position: relative;
     width: auto;
@@ -26,6 +27,7 @@
     z-index: 1;
     visibility: visible;
 }
+
 #step1Name {
     z-index: 1;
     visibility: visible;
@@ -47,12 +49,18 @@
     top: 40px;
 }
 
+#combinedTable td {
+    border-left: 1px solid black;
+}
+
 .inputContainer {
     position: relative;
 }
+
 .inputAndBtnDiv {
     display: inline-block;
 }
+
 #resultLink {
     margin-top: 100px;
 }
@@ -72,24 +80,28 @@
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
 }
+
 .hideHint:hover {
     cursor: pointer;
     background-color: rgba(200, 200, 200,0.2);
 }
+
 #overviewHint span {
     position: relative;
     float: left;
-    
 }
+
 #overviewHint h4 {
     position: relative;
     float: left;
-    clear:both;
-    color:red;
+    clear: both;
+    color: red;
 }
+
 #overviewHintFirstLine {
     display: flex;
 }
+
 #overviewHintSecondLine {
     display: flex;
 }
@@ -102,13 +114,14 @@
     border-radius: 10%;
     background-size: contain;
     background-color: transparent;
-    width:30px;
-    height:30px;
+    width: 30px;
+    height: 30px;
 }
 
-#teilnehmerNameH2{
-    margin-top:40px;
+#teilnehmerNameH2 {
+    margin-top: 40px;
 }
-#beschreibungSpan{
-    margin-top:20px;
+
+#beschreibungSpan {
+    margin-top: 20px;
 }

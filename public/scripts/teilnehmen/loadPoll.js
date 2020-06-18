@@ -9,7 +9,7 @@ currentPoll = tempPoll;
 currentAltArray = currentPoll.alternatives;
 
 loadPoll(currentPoll);
-
+maxCurrentAlternatives = 0;
 
 /**
  * intiliazes the poll, filling in all the needed data to participate
@@ -20,12 +20,14 @@ function loadPoll(poll) {
     document.getElementById("BeschreibungSpan").innerHTML = poll.description;
     loadCriterias(poll.getAllCriterias(), "critOrder");
     prepareAlternatives(poll.alternatives);
+    maxCurrentAlternatives = poll.alternatives.length;
+    console.log(maxCurrentAlternatives);
 }
 
 /**
  * appends each criteria to the criteria ordering view
- * @param {array} an array of criterias
- * @param {string} div id to append to
+ * @param {array} critArray array of criterias
+ * @param {string} divId id to append to
  */
 function loadCriterias(critArray, divId) {
     console.log(divId);
@@ -33,18 +35,18 @@ function loadCriterias(critArray, divId) {
         var newSpan = document.createElement('span');
         newSpan.className = "critSpan";
         newSpan.innerHTML = critArray[i];
-        
+
         document.getElementById(divId).appendChild(newSpan);
     }
 }
 
 /**
- * appends each criteria to the criteria ordering view
- * @param {array} an array of criterias
- * @param {string} div id to append to
+ * preparing function first called when initializing alternative rating scheme
+ * @param {array} altArray array of Alternatives
  */
 function prepareAlternatives(altArray) {
     console.log(altArray);
     document.getElementById("currentAlternativeSpan").innerHTML = altArray[0];
-    document.getElementById("altCounter").innerHTML = "1 /" + altArray.length;
+    document.getElementById("curAlt").innerHTML = "1";
+    document.getElementById("totalCount").innerHTML = " / " + altArray.length;
 }
