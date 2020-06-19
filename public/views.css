@@ -79,6 +79,11 @@
     font-size: 17px;
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
 }
 
 .hideHint:hover {

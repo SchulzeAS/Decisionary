@@ -31,5 +31,6 @@ var navDisabledTeilnehmenColor = "rgb(124,246,232)";
 
 var activeRadioColor = navActiveTeilnehmenColor; // kann aber auch was immer sein, nur temporear
 var passiveRadioColor = "white";
+var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRadioColor
 
 var currentPoll;

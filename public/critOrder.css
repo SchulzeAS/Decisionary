@@ -10,10 +10,16 @@
     margin: 10px;
     border: 1px solid black;
     padding: 10px;
-    width:200%;
+    width: 200%;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; user-select:none;
+    -o-user-select:none;
 }
 
 .critSpan:hover {
     cursor:move;
     background-color:grey;
 }
+
+

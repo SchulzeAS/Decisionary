@@ -38,6 +38,12 @@ function createTableRating(critArray, ratingNames, tableId) {
             newInput.onchange= function () {
                 radioColoring();
             };
+            newLabel.onmouseenter = function () {
+                ratingLabelHoverIn(this);
+            };
+            newLabel.onmouseleave = function () {
+                ratingLabelHoverOut(this, this.childNodes[0].checked);
+            };
 
             newLabel.appendChild(newInput);
 
@@ -135,6 +141,15 @@ function radioChangeState(thisRadio, parent) {
         parent.style.backgroundColor = activeRadioColor;
     }
     passiveRadioColoring();
+}
+
+function ratingLabelHoverIn(elem) {
+    elem.style.backgroundColor = hoverRadioColor // - irgendein wert, ein wenig transparenters;
+}
+
+function ratingLabelHoverOut(elem,state) {
+    if (state == true) elem.style.backgroundColor = activeRadioColor;
+    if (state == false) elem.style.backgroundColor = passiveRadioColor;
 }
 
 function radioColoring() {

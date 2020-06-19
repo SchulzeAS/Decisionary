@@ -55,11 +55,17 @@ input[type="radio"]:hover {
 .radioLabel input[type="radio"] {
     opacity: 0;
 }
-.radioLabel i{
+.radioLabel i {
     margin: 0px;
     position: relative;
     bottom: 15px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
 }
 .radioLabel:hover {
     cursor: pointer;
 }
+
