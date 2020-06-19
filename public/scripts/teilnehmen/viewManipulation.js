@@ -21,6 +21,8 @@ function specificViewChanges(curView) {
 		case 0: // current view is "name", we are at the beginning
 			document.getElementById("navBack").style.visibility = "hidden";
 			document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
+			currentAlternative = 0; // reset alternative rating step
+			updateAlternativeHUD();
 			return;
 			break;
 		case 1:	// current view is "Kriterien Reihenfolge"
