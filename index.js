@@ -41,6 +41,10 @@ app.get("/teilnehmen", (req, res) => {
     res.render("teilnehmen/index");
 });
 
+app.get("/test", (req, res) => {
+    res.render("dragdropPrototype");
+});
+
 /*app.get("/user", (req, res) => {
   res.render("user", { title: "Profile", userProfile: { nickname: "User1" } });
 });

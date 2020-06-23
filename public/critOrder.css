@@ -17,9 +17,18 @@
     -o-user-select:none;
 }
 
-.critSpan:hover {
-    cursor:move;
-    background-color:grey;
+.critSpan:hover, sortable-ghost {
+    cursor: move;
+    background-color: grey;
+}
+.critSpanNumber{
+    padding-right:5px;
 }
 
+.verticalMove {
+    position: relative;
+    float: right;
+    width: 25px;
+    height: 25px;
+}
 

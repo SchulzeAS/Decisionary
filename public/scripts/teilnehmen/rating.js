@@ -57,6 +57,7 @@ function createTableRating(critArray, ratingNames, tableId) {
             row.appendChild(cell);
         }
         document.getElementById(tableId).appendChild(row);
+        
     }
 }
 

@@ -29,6 +29,12 @@
     top: 60px;
 }
 
+#alternativeRatingTable tr {
+    height:10px;
+    
+    width:10px;
+}
+
 #alternativeRatingTable .ratingTd {
     width: 25%;
     text-align: center;
@@ -58,7 +64,7 @@ input[type="radio"]:hover {
 .radioLabel i {
     margin: 0px;
     position: relative;
-    bottom: 15px;
+    bottom: 10px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
