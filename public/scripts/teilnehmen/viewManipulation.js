@@ -33,6 +33,7 @@ function specificViewChanges(curView) {
 			break;
 		case 3:	// current view is "Uebersicht"
 			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
+			overview();
 			return;
 			break;
 		default:

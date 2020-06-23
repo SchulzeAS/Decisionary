@@ -1,7 +1,3 @@
-var sortable;
-
-
-
 
 /**
  * appends each criteria to the criteria ordering view
@@ -45,13 +41,8 @@ function loadCriterias(critArray, divId)
             //direction: 'vertical', // Direction of Sortable (will be detected automatically if not given)
             onEnd: function (/**Event*/evt) {
                 var itemEl = evt.item;  // dragged HTMLElement
-                /*console.log(evt.to);    // target list
-                console.log(itemEl);    // target list
-                console.log(evt.from);  // previous list
-                console.log(evt.oldIndex);  // element's old index within old parent
-                console.log(evt.newIndex);  // element's new index within new parent */
-                itemEl.draggable = true;
-                console.log("------ ended sorting -------");
+                itemEl.draggable = true; // work on this
+
                 rearrangedCrits();
             },
         });
@@ -76,41 +67,42 @@ function rearrangedCrits()
     critInside = document.getElementsByClassName("critSpanInside");
     var newCritOrderArrayString = new Array(currentPoll.criterias.length);
     for (var h = 0; h < critInside.length; h++) {
-        //console.log(critInside[h].innerHTML);
         var t = critInside[h].innerHTML;
-        //console.log("'" + t+ "' was position in old poll: " + findOldIndex(t));
-        console.log(critInside[h].innerHTML);
-        newCritOrderArrayString[h] = critInside[h].innerHTML;
-        //var x = currentPoll.criterias.name.indexOf(critInside[i].innerHTML) //= (i + 1) + ".";
+        newCritOrderArrayString[h] = t;
     }
-    console.log(newCritOrderArrayString);
+
 
     for (var j = 0; j < newCritOrderArrayString.length; j++)
     {
         var t = newCritOrderArrayString[j];
-        console.log("/   " + j + " " + t + "\/");
+
         var oldIndex = findOldIndex(t, copyPoll);
-        console.log("'" + t + "' was position in old poll: " + oldIndex);
-        console.log("copy poll name old " + copyPoll.criterias[oldIndex].name);
+
         currentPoll.criterias[j] = copyPoll.criterias[oldIndex];
 
     }
-    console.log(currentPoll.criterias);
     afterCritOrder();
 
 }
 
-function afterCritOrder() {
+/**
+ * called after criteria in the poll has been updated after rearanging
+ * */
+function afterCritOrder()
+{
     document.getElementById("alternativeRatingTable").innerHTML = "";
     createTableRating(currentPoll.getAllCriterias(), ratingNames, "alternativeRatingTable");
     updateAlternativeHUD();
 }
-
-function findOldIndex(text,oldPoll)
+/**
+ * find the old position of a criteria in the poll object
+ * 
+ * @param {any} text the criteria to look for
+ * @param {any} oldPoll copy of current poll to do the searching in
+ */
+function findOldIndex(text, oldPoll)
 {
-    console.log("looking for: " + text);
     for (var i = 0; i < oldPoll.criterias.length; i++) {
-        console.log(i + "| " + oldPoll.criterias[i].name);
         if (oldPoll.criterias[i].name == text) {
             return i;
         }

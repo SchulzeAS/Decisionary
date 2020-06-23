@@ -1,0 +1,25 @@
+.rateTd {
+    text-align: center;
+}
+
+#teilnehmenTable {
+    border-collapse: collapse;
+    position:relative;
+    top:50px;
+}
+
+#teilnehmenTable th {
+    border: 1px solid black;
+}
+
+#teilnehmenTable td {
+    border: 1px solid black;
+}
+
+.alternativeTd{
+    padding-left:10px;
+    padding-right:10px;
+}
+.critTdTable {
+    padding-right: 10px;
+}

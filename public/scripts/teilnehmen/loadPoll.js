@@ -1,9 +1,11 @@
 ﻿//Niklas: ich erstelle mir hier ein Dummy Poll Object um schonmal das layout machen zu können
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
-tempPoll.alternatives = ["Doener", "Brot", "Salat"];
+tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
 tempPoll.addCriteria("Verfügbarkeit");
 tempPoll.addCriteria("Geschmack");
+tempPoll.addCriteria("Laune");
+tempPoll.addCriteria("Laktose Index");
 
 currentPoll = tempPoll;
 currentAltArray = currentPoll.alternatives;
