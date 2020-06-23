@@ -24,3 +24,8 @@
 .critTdTable {
     padding-right: 10px;
 }
+
+#resultSpan{
+    position:relative;
+    top:100px;
+}
