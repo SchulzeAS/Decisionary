@@ -12,6 +12,7 @@ var inputRatingClassName = "ratingRadioInput";
 function createTableRating(critArray, ratingNames, tableId) {
     for (i = 0; i < critArray.length; i++) {
         var row = document.createElement("tr");
+        row.className = "ratingRowClass";
         var cellCritName = document.createElement("td");
         cellCritName.className = "critTd"
         var textnode = document.createTextNode(critArray[i]);
@@ -97,13 +98,41 @@ function loadRatings() {
  * check if all alternatives/criteria have been rated before moving to the next one
  */
 function validateAllInputsAlternative() {
-    return true;
+    rateH = document.getElementById("rateHint");
+    hideHints(rateH);
+
+
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i < rLabels.length; i++) {
+        //rLabels[0].style.outline = "inital";
+        rLabels[i].style.color = "black";
+    }
+    res = true;
+    for (i = 0; i < currentPoll.criterias.length; i++) {
+        //console.log(i+"|"+currentPoll.criterias[i].values[currentAlternative]);
+        if (currentPoll.criterias[i].values[currentAlternative] == null) {
+            //console.log("not empty: " + currentPoll.criterias[i].values[currentAlternative]);
+            res = false;
+            showHints(rateH);
+        }
+    }
+    return res;
 }
 /**
  * instructions to do when not all rated
  */
 function unvalidatedViewAlternative() {
-    console.log("not all information filled in");
+    ratingRows = document.getElementsByClassName("ratingRowClass");
+    for (i = 0; i < currentPoll.criterias.length; i++) {
+        if (currentPoll.criterias[i].values[currentAlternative] == null) {
+            //ratingRows[i].style.backgroundColor = "red";
+            for (j = 1; j < 4; j++) {
+                //ratingRows[i].childNodes[j].childNodes[0].style.outline = "1px solid red";
+                ratingRows[i].childNodes[j].childNodes[0].style.color = " red";
+            }
+        }
+    }
+    
 }
 
 /**

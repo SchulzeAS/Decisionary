@@ -1,5 +1,5 @@
-document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
-
+﻿document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
+var orderHintFlag = false;
 /**
  * hides a view
  * @param {int} view index of the view to hide
@@ -23,10 +23,12 @@ function specificViewChanges(curView) {
 			document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
 			currentAlternative = 0; // reset alternative rating step
 			updateAlternativeHUD();
+			alternativeRatingViewFlag = false;
 			return;
 			break;
 		case 1:	// current view is "Kriterien Reihenfolge"
-
+			if (!orderHintFlag) showHints(document.getElementById("orderHint"));
+			alternativeRatingViewFlag = false;
 			break;
 		case 2: // current view is "Bewerten"
 			alternativeRatingViewFlag = true;
@@ -37,6 +39,7 @@ function specificViewChanges(curView) {
 			addPencil();
 			makeNavClickable();
 			addMouseHover();
+			alternativeRatingViewFlag = false;
 			return;
 			break;
 		default:
