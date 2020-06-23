@@ -1,7 +1,8 @@
-#critOrder{
-    position:relative;
-    margin-top:20px;
-    display:inline-block;
+#critOrder {
+    border-collapse: collapse;
+    position: relative;
+    margin-top: 20px;
+    display: inline-block;
 }
 .critSpan {
     position: relative;
@@ -30,5 +31,10 @@
     float: right;
     width: 25px;
     height: 25px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
 }
 

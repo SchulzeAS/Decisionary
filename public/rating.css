@@ -27,23 +27,23 @@
 #alternativeRatingTable {
     position: relative;
     top: 60px;
+    border-collapse: collapse;
 }
 
 #alternativeRatingTable tr {
-    height:10px;
-    
-    width:10px;
+    height: 10px;
+    width: 10px;
 }
 
 #alternativeRatingTable .ratingTd {
     width: 25%;
     text-align: center;
+    border: 1px solid black;
 }
 
 #alternativeRatingTable label {
     display: inline-block;
     width: 100%;
-    border: 1px solid black;
 }
 
 #alternativeRatingTable input {

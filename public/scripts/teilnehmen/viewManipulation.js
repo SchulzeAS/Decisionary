@@ -29,11 +29,14 @@ function specificViewChanges(curView) {
 
 			break;
 		case 2: // current view is "Bewerten"
-
+			alternativeRatingViewFlag = true;
 			break;
 		case 3:	// current view is "Uebersicht"
 			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
 			overview();
+			addPencil();
+			makeNavClickable();
+			addMouseHover();
 			return;
 			break;
 		default:
@@ -83,7 +86,6 @@ function clickToChangeView(view){
 	if(clickViewBool == true){
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
-		modifyData(currentView); // was macht diese Funktion hier?
 		currentView = view;
 		
 		document.getElementById(schritteTeilnehmen[currentView]).style.visibility = "visible";
@@ -116,12 +118,12 @@ function makeNavUnclickable(){
 }
 
 function addMouseHover(){
-	for (var i = 0; i < schritteNavTeilnehmen.length-1; i++) {
+	for (var i = 0; i < schritteNavTeilnehmen.length; i++) {
 		$("#" + schritteNavTeilnehmen[i]).mouseenter(function() {
 			$(this).css("cursor", "pointer").css("backgroundColor", navActiveTeilnehmenColor);
 		}).mouseleave(function() {
 			$(this).css("backgroundColor", navDisabledTeilnehmenColor);
-			console.log(currentView);
+			//console.log(currentView);
 			$("#" + schritteNavTeilnehmen[currentView]).css("backgroundColor", navActiveTeilnehmenColor);
 		});
 	}
