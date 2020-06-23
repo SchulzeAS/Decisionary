@@ -125,7 +125,7 @@ class Poll {
 			var ref = "";
 			for (let j = 0; j < row.length; j++) 
 			{
-				if (row[j].length == 1 && (row[j].toUpperCase() == "A" || row[j].toUpperCase() == "B" || row[j].toUpperCase() == "X")) 
+				if (row[j].length == 1 && (row[j].toUpperCase() == ratingNames[0] || row[j].toUpperCase() == ratingNames[1] || row[j].toUpperCase() == ratingNames[2])) 
 				{
 					if (ref.length < 1 || row[j] < ref) 
 					{
