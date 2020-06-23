@@ -9,11 +9,26 @@ function addInput(type) {
 		if (type == "Alt" && altCounter < maxAlternatives) {
 			document.getElementById(alternativesContainer).appendChild(createInput(type));
 			//$("#" + alternativesContainer).prev().after(createInput(type));
+			c = document.getElementById(alternativesContainer).childNodes
+			if (altCounter > minAlternatives) {
+				c[c.length - 1].childNodes[0].childNodes[2].focus();
+			} else {
+				c[0].childNodes[0].childNodes[2].focus();
+            }
+
 			currentPoll.addAlternative("");
 		}
 		if (type == "Crit" && critCounter < maxCriterias) {
 			document.getElementById(criteriasContainer).appendChild(createInput(type))
 			//$("#" + criteriasContainer).prev().after(createInput(type));
+
+			c = document.getElementById(criteriasContainer).childNodes
+			if (critCounter > minCriterias) {
+				c[c.length - 1].childNodes[0].childNodes[2].focus();
+			} else {
+				c[0].childNodes[0].childNodes[2].focus();
+			}
+
 			currentPoll.addCriteria("");
 		}
 	}
