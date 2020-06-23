@@ -108,4 +108,59 @@ class Poll {
 			this.criterias[index2] = tmp;
 		}
 	}
+	/**
+	 * returns the name of the best alternative, based on the criteria ratings
+	 */
+	evaluate() 
+	{
+		var valueMatrix = [this.alternatives.slice()];
+		for (let i = 0; i < this.criterias.length; i++) 
+		{
+			const element = this.criterias[i];
+			valueMatrix.push(element.values.slice());
+		}
+		for (let valueIdx = 1; valueIdx < valueMatrix.length; valueIdx++) 
+		{
+			const row = valueMatrix[valueIdx];
+			var ref = "";
+			for (let j = 0; j < row.length; j++) 
+			{
+				if (row[j].length == 1 && (row[j].toUpperCase() == "A" || row[j].toUpperCase() == "B" || row[j].toUpperCase() == "X")) 
+				{
+					if (ref.length < 1 || row[j] < ref) 
+					{
+						ref = row[j].toUpperCase();
+					}
+				}
+			}
+
+			if (ref.length == 0) 
+			{
+				continue;
+			}
+
+			for (let j = row.length - 1; j >= 0; j--) 
+			{
+				if (row[j].length == 0 || row[j] > ref)
+				{
+					valueMatrix.forEach(element => {
+						element.splice(j, 1);
+					});
+				}			
+			}
+
+			if (valueMatrix.length == 1) 
+			{
+				return valueMatrix[0][0];
+			}
+		}
+		if (valueMatrix.length > 0) 
+		{
+			return valueMatrix[0][0];
+		}
+		else
+		{
+			return "";
+		}
+	}
 }
