@@ -19,7 +19,7 @@ npm install
 
 ## Dokumentation der Skripte
 
-Der Code ist mittels [JSDoc](https://jsdoc.app/) dokumentiert. Um JSDoc zu installieren muss lediglich folgender Befehl ausgefährt werde.
+Der Code ist mittels [JSDoc](https://jsdoc.app/) dokumentiert. Um JSDoc zu installieren muss lediglich folgender Befehl ausgeführt werde.
 ```
 npm install -g jsdoc
 ```
