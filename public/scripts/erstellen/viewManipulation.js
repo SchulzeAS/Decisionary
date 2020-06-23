@@ -38,6 +38,7 @@ function specificViewChanges(curView) {
 			return;
 			break;
 		case 4:	// current view is "Link teilen" aka we are done
+			
 			document.getElementById("navBack").style.visibility = "hidden";
 			document.getElementById("navNext").style.visibility = "hidden";
 			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id + "/" + "vote";

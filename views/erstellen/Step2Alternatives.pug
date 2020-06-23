@@ -1,6 +1,11 @@
-block layout-content 
+﻿block layout-content 
 	h1 Alternativen
 	div.inputAndBtnDiv
 		div#alternativesContainer.inputContainer
 		div#alternativeButtons.plusButtonsDiv
 			button#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")')
+	div.hint#altHint
+		h4 Infotext
+		span 
+			span.HintFirstLine Bitte füllen Sie alle Felder aus
+		button.hideHint(onClick="hideHint('altHint')") 

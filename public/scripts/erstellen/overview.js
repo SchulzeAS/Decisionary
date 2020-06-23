@@ -5,10 +5,12 @@ function overview() {
 	var nameSpan = document.getElementById("nameSpan");
 	var descriptionSpan = document.getElementById("descriptionSpan");
 
+	showHints(document.getElementById("overviewHint"));
+
 	clearTable(document.getElementById("combinedTable"));
 
 	nameSpan.innerHTML = currentPoll.title;
-	descriptionSpan.innerHTML = currentPoll.description;
+	descriptionSpan.innerHTML = currentPoll.description == "" ? " no description entered": currentPoll.description;
 
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.getAllCriterias());
 }
@@ -48,6 +50,7 @@ function createTableOverview(altArray, critArray) {
 		}
 
 
+
 		document.getElementById("combinedTable").appendChild(row);
 	}
 }
@@ -60,8 +63,4 @@ function clearTable(table) {
 	while (table.childNodes.length > 0) {
 		table.removeChild(table.lastChild);
 	}
-}
-
-function hideHint(id) {
-	$("#" + id).css("visibility","hidden");
 }

@@ -1,4 +1,4 @@
-block layout-content 
+﻿block layout-content 
 	div.Message
 		div.Title
 			h1 Umfrage erstellen
@@ -6,4 +6,9 @@ block layout-content
 				input#NameInput
 			h3.DescriptionInputH3 Beschreibung
 			textarea(rows=8,cols=42)#DescriptionInput
+	div.hint#startHint
+		h4 Infotext
+		span 
+			span.HintFirstLine Bitte geben Sie einen Namen für die Umfrage ein
+		button.hideHint(onClick="hideHint('startHint')") 	
 			

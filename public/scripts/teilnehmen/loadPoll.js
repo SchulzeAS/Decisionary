@@ -6,6 +6,16 @@ tempPoll.addCriteria("Verfügbarkeit");
 tempPoll.addCriteria("Geschmack");
 tempPoll.addCriteria("Laune");
 tempPoll.addCriteria("Laktose Index");
+tempPoll.addCriteria("Laktose Index2");
+tempPoll.addCriteria("Laktose Index3");
+tempPoll.addCriteria("Laktose Index4");
+tempPoll.addCriteria("Laktose Index5");
+tempPoll.addCriteria("Laktose Index6");
+tempPoll.addCriteria("Laktose Index7");
+tempPoll.addCriteria("Laktose Index8");
+tempPoll.addCriteria("Sojahaftigkeit");
+tempPoll.addCriteria("Mehrwertsteuer");
+tempPoll.addCriteria("die Nummer 15");
 
 currentPoll = tempPoll;
 currentAltArray = currentPoll.alternatives;
