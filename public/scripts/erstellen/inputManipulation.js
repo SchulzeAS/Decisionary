@@ -50,6 +50,7 @@ function removeSpecificInput(divId) {
 		var index = divId.replace(altId, '');
 		altCounter--;
 		divToBeRemoved.remove();
+		currentPoll.removeAlternative(index);
 		var container = document.getElementById('alternativesContainer');
 		for (let i = 0; i < container.childElementCount; i++) {
 			// change id of remaining inputs to new position
@@ -66,6 +67,7 @@ function removeSpecificInput(divId) {
 		var index = divId.replace(critId, '');
 		critCounter--;
 		divToBeRemoved.remove();
+		currentPoll.removeCriteria(index);
 		var container = document.getElementById('criteriasContainer');
 		for (let i = 0; i < container.childElementCount; i++) {
 			// change id of remaining inputs to new position
@@ -126,7 +128,6 @@ function createInput(type) {
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
 			removeSpecificInput(newInputDiv.id);
-			currentPoll.removeAlternative(index);
 		};
 		if (altCounter >= maxAlternatives) {
 			hideBtn(document.getElementById("addAlternativeButton"));
@@ -142,7 +143,6 @@ function createInput(type) {
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function () {
 			removeSpecificInput(newInputDiv.id);
-			currentPoll.removeCriteria(index);
 		};
 		if (critCounter >= maxCriterias) {
 			hideBtn(document.getElementById("addCriteriaButton"));
