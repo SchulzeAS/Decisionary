@@ -182,7 +182,7 @@ class Poll
 
             if (valueMatrix.length == 1)
             {
-                return { decidingIndex: valueIdx, bestAlternatives: valueMatrix[0] };
+                return { decidingIndex: valueIdx - 1, bestAlternatives: valueMatrix[0] };
             }
         }
         if (valueMatrix.length > 0)
