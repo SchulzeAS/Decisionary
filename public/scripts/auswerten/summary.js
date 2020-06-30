@@ -1,4 +1,3 @@
-var Chart = require("chart.js");
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var myChart = new Chart(ctx, {
     type: "bar",
