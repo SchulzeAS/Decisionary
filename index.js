@@ -41,6 +41,10 @@ app.get("/teilnehmen", (req, res) => {
     res.render("teilnehmen/index");
 });
 
+app.get("/auswertung", (req, res) => {
+    res.render("auswerten/index");
+});
+
 app.get("/test", (req, res) => {
     res.render("dragdropPrototype");
 });
