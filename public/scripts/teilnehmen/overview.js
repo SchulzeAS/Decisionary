@@ -11,7 +11,7 @@ function overview() {
 	//descriptionSpan.innerHTML = currentPoll.description;
 
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.criterias, "teilnehmenTable");
-	document.getElementById("result").innerHTML = currentPoll.evaluate();
+	document.getElementById("result").innerHTML = currentPoll.evaluate().bestAlternatives.join(", ");
 }
 
 /**
