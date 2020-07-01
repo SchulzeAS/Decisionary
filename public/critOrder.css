@@ -19,12 +19,13 @@
     -webkit-user-select: none; 
     -ms-user-select:none; user-select:none;
     -o-user-select:none;
+    background-color:white;
 }
 
-.critSpan:hover, sortable-ghost {
-    cursor: move;
-    background-color: grey;
-}
+    .critSpan:hover, sortable-ghost {
+        cursor: move;
+        background-color: #bfbfbf;
+    }
 .critSpanNumber{
     padding-right:5px;
 }

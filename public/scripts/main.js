@@ -22,12 +22,12 @@ var critCounter = 0;
 var alternativesContainer = "alternativesContainer"
 var criteriasContainer = "criteriasContainer"
 
-var navActiveColor = "rgb(0, 255, 154)"; // Michelle hier
-var navDisabledColor = "rgb(60, 179, 113)"; // und hier
+var navActiveColor = "#A0C940"; // Michelle hier
+var navDisabledColor = "#708F28"; // und hier
 
 
-var navActiveTeilnehmenColor = "rgb(189,236,232)";
-var navDisabledTeilnehmenColor = "rgb(124,246,232)";
+var navActiveTeilnehmenColor = "#8fefec";
+var navDisabledTeilnehmenColor = "#1abbb6";
 
 var activeRadioColor = navActiveTeilnehmenColor; // kann aber auch was immer sein, nur temporear
 var passiveRadioColor = "white";

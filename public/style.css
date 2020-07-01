@@ -14,18 +14,21 @@
 	}
 }
 
-:root {
-  --logo-font: "Share Tech Mono", monospace;
-  --header-font: "Raleway", sans-serif;
-  --core-font: "Merriweather Sans", sans-serif;
-  --greyed-input: #f3f3f3;
+@font-face {
+    font-family: 'Sofia'; /*a name to be used later*/
+    src: url('Sofia_Pro_Light.otf'); /*URL to font*/
+}
 
-  --primary-font: #ffffff;
-  --secondary-font: #2a3747;
-  --ui-shawdow: 0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    0 4px 5px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.08);
-  fill: rgba(0, 0, 0, 0.54);
-  --ui-shawdow-border: 1px solid rgba(0, 0, 0, 0.14);
+:root {
+    --header-font: Manrope;
+    --small-font: Amiko;
+    /*Be Vietnam,Arial, Helvetica, sans-serif;*/
+    --greyed-input: #f3f3f3;
+    --primary-font: #ffffff;
+    --secondary-font: #2a3747;
+    --ui-shawdow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 5px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.08);
+    fill: rgba(0, 0, 0, 0.54);
+    --ui-shawdow-border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 * {
@@ -37,26 +40,24 @@
 html,
 body,
 #root {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+    
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    margin: 0;
+    padding: 0;
+    font-family: var(--header-font);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-h1,h2,h3,h4 {
-  font-family: var(--header-font);
-  text-transform: uppercase;
-  padding: 0;
-  margin: 0;
-  color: var(--secondary-font);
+h1, h2, h3, h4 {
+    font-family: var(--header-font);
+    padding: 0;
+    margin: 0;
+    color: var(--secondary-font);
 }
 
 h1 {
@@ -68,17 +69,19 @@ h3 {
 }
 
 #creationContainer {
-	position: absolute;
-	top: 10%;
-	left: 10%;
-	width:80%;
-	margin-left: auto ;
-	margin-right: auto ;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--small-font);
 }
 #root {
-  position:absolute;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
 }

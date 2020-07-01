@@ -3,6 +3,7 @@
     height: 40px;
     width: auto;
     font-size: 18px;
+    height: 50px;
 }
 
 #navigatorTop {
@@ -12,14 +13,17 @@
 .navElement {
     position: relative;
     padding: 10px;
+    padding-top:13px;
     float: left;
     text-align: center;
+    font-size:auto;
     font-weight: bold;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
+    color:black;
 }
 
 .navTeilnehmen {

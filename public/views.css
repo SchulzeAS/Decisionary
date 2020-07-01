@@ -8,6 +8,7 @@
     font-size: 20px;
     width: 100%;
     height: auto;
+   
 }
 
 .stepsContainer {
@@ -16,11 +17,11 @@
     min-height: 500px;
     height: 800px;
     max-height: 800px;
-    font-family: var(--core-font);
     background: white;
     padding: 30px;
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
+    background-color: #FEF9C7;
 }
 
 #step1Topic {
@@ -99,7 +100,7 @@
     top: 10px;
     right: 50px;
     width: 170px;
-    background-color: rgba(226, 226, 226,0.5);
+    background-color: rgba(226, 226, 226,0.7);
     padding: 10px;
     font-size: 17px;
     border-bottom: var(--ui-shawdow-border);
@@ -113,7 +114,7 @@
 
 .hideHint:hover {
     cursor: pointer;
-    background-color: rgba(200, 200, 200,0.2);
+    background-color: #F5F5F5;
 }
 
 .hint span {
@@ -125,7 +126,7 @@
     position: relative;
     float: left;
     clear: both;
-    color: red;
+    color: #Fa6D0F;
 }
 
 .HintFirstLine {
