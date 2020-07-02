@@ -10,9 +10,7 @@ function next() {
 		disableNavElement(schritteNavTeilnehmen[currentView]);
 		if (currentView < schritteTeilnehmen.length - 1) {
 			currentView += 1;
-		} else {
-			currentView = 0;
-		}
+		} 
 		document.getElementById(schritteTeilnehmen[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNavTeilnehmen[currentView]).style.backgroundColor = navActiveTeilnehmenColor;
 		specificViewChanges(currentView);
@@ -65,6 +63,7 @@ function back() {
 }
 
 function assertView() {
+    
 	switch (currentView)
 	{
 		case 0: // current view is "Name", we are at the beginning

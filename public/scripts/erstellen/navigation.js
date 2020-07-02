@@ -1,4 +1,4 @@
-﻿/**
+/**
  * move to the next view
  */
 function next() {
@@ -41,6 +41,7 @@ function back()
  * */
 function assertView()
 {
+
 	switch (currentView)
 	{
 		case 0: // current view is "Thema", we are at the beginning

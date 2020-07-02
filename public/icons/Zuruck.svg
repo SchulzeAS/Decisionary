@@ -8,15 +8,15 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="Weiter_grun.svg"
-   id="svg1053"
+   sodipodi:docname="Zuruck.svg"
+   id="svg1131"
    version="1.1"
    height="320.832"
-   width="611.90137"
-   viewBox="0 0 458.92603 240.624"
+   width="611.90002"
+   viewBox="0 0 458.92502 240.624"
    style="isolation:isolate">
   <metadata
-     id="metadata1057">
+     id="metadata1135">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -27,7 +27,7 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:current-layer="svg1053"
+     inkscape:current-layer="svg1131"
      inkscape:window-maximized="0"
      inkscape:window-y="0"
      inkscape:window-x="0"
@@ -35,7 +35,7 @@
      inkscape:cx="210.56399"
      inkscape:zoom="0.83276367"
      showgrid="false"
-     id="namedview1055"
+     id="namedview1133"
      inkscape:window-height="480"
      inkscape:window-width="705"
      inkscape:pageshadow="2"
@@ -47,35 +47,35 @@
      bordercolor="#666666"
      pagecolor="#ffffff" />
   <defs
-     id="defs1041">
+     id="defs1119">
     <clipPath
        id="a">
       <path
-         id="path1038"
+         id="path1116"
          d="M 0,0 H 1024 V 768 H 0 Z" />
     </clipPath>
   </defs>
   <g
      transform="translate(-354.077,-419.737)"
-     id="g1051"
+     id="g1129"
      clip-path="url(#a)">
     <path
-       id="path1043"
-       d="M 604.494,660.361 604.738,419.737 813.003,540.26 Z"
-       fill="#a0c940" />
+       id="path1121"
+       d="M 562.585,419.737 562.342,660.361 354.077,539.839 Z"
+       fill="#fa6d0f" />
     <path
-       id="path1045"
-       d="m 354.077,474.689 h 340 v 130 h -340 z"
-       fill="#a0c940" />
+       id="path1123"
+       d="m 813.002,605.409 h -340 v -130 h 340 z"
+       fill="#fa6d0f" />
     <path
-       id="path1047"
-       d="m 354.077,474.689 h 340 v 130 h -340 z"
-       fill="#a0c940" />
+       id="path1125"
+       d="m 813.002,605.409 h -340 v -130 h 340 z"
+       fill="#fa6d0f" />
     <text
-       id="text1049"
+       id="text1127"
        font-size="72px"
        font-weight="400"
        font-family="Amiko"
-       transform="translate(433.48,562.792)">Weiter</text>
+       transform="translate(489.72,562.792)">Zurück</text>
   </g>
 </svg>

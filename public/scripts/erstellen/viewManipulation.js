@@ -30,7 +30,8 @@ function specificViewChanges(curView) {
 			}
 			break;
 		case 3:	// current view is "Uebersicht"
-			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
+            document.getElementById("navNext").src = 'icons/senden_orange.svg';
+            document.getElementById("navNext").style.borderRadius = "10px";
 			overview();
 			addPencil();
 			makeNavClickable();
@@ -48,9 +49,10 @@ function specificViewChanges(curView) {
 			break;
 		default:
 			break;
-	}
-	document.getElementById("navBack").style.backgroundImage = "url('backBtn.png')";
-	document.getElementById("navNext").style.backgroundImage = "url('nextBtn.png')";
+    }
+    document.getElementById("navNext").style.borderRadius = "0px";
+    document.getElementById("navBack").src = 'icons/Zuruck.svg';
+    document.getElementById("navNext").src = 'icons/Weiter_grun.svg';
 }
 
 /**

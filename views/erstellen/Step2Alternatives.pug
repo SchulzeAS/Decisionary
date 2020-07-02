@@ -4,9 +4,9 @@ block layout-content
     div.inputAndBtnDiv
         div#alternativesContainer.inputContainer
         div#alternativeButtons.plusButtonsDiv
-            button#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")')
+            img#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")' src='icons/Plus.svg')
     div.hint#altHint
         h4 Infotext
         span 
             span.HintFirstLine Bitte füllen Sie alle Felder aus
-        button.hideHint(onClick="hideHint('altHint')") 
+        img.hideHint(onClick="hideHint('altHint')" src='icons/Kreuz.svg') 

@@ -1,4 +1,9 @@
-﻿document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
+
+
+
+
+document.getElementById("navNext").src = 'icons/teilnehmen_blau.svg';
+document.getElementById("navNext").style.borderRadius = "10px";
 var orderHintFlag = false;
 /**
  * hides a view
@@ -20,7 +25,7 @@ function specificViewChanges(curView) {
 	switch (curView) {
 		case 0: // current view is "name", we are at the beginning
 			document.getElementById("navBack").style.visibility = "hidden";
-			document.getElementById("navNext").style.backgroundImage = "url('teilnehmen.png')";
+            document.getElementById("navNext").src = 'icons/teilnehmen_blau.svg';
 			currentAlternative = 0; // reset alternative rating step
 			updateAlternativeHUD();
 			alternativeRatingViewFlag = false;
@@ -34,7 +39,8 @@ function specificViewChanges(curView) {
 			alternativeRatingViewFlag = true;
 			break;
 		case 3:	// current view is "Uebersicht"
-			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
+            document.getElementById("navNext").src = 'icons/senden_orange.svg';
+            document.getElementById("navNext").style.borderRadius = "10px";
 			overview();
 			addPencil();
 			makeNavClickable();
@@ -44,9 +50,10 @@ function specificViewChanges(curView) {
 			break;
 		default:
 			break;
-	}
-	document.getElementById("navBack").style.backgroundImage = "url('backBtn.png')";
-	document.getElementById("navNext").style.backgroundImage = "url('nextBtn.png')";
+    }
+    document.getElementById("navNext").style.borderRadius = "0px";
+    document.getElementById("navBack").src = 'icons/Zuruck.svg';
+    document.getElementById("navNext").src = 'icons/Weiter_grun.svg';
 }
 
 /**
@@ -62,7 +69,8 @@ function disableNavElement(nav) {
  * adds a pencil to the first three nav Elements
  * to show the user that he can click the nav element to jump to view
  */
-function addPencil(){
+function addPencil() {
+    console.log("pencils");
 	pencils = document.getElementsByClassName("pencil");
 	
 	for (var i = 0; i < pencils.length; i++) {

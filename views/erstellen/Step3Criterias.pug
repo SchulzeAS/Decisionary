@@ -4,9 +4,9 @@ block layout-content
 	div.inputAndBtnDiv
 		div#criteriasContainer.inputContainer
 		div#criteriasButtons.plusButtonsDiv
-			button#addCriteriaButton.plusButtons.plusMinusButtons(onclick='addInput("Crit")')
+			img#addCriteriaButton.plusButtons.plusMinusButtons(onclick='addInput("Crit")' src='icons/Plus.svg')
 	div.hint#critHint
 		h4 Infotext
 		span 
 			span.HintFirstLine Bitte füllen Sie alle Felder aus
-		button.hideHint(onClick="hideHint('critHint')") 
+		img.hideHint(onClick="hideHint('critHint')" src='icons/Kreuz.svg') 

@@ -3,11 +3,11 @@
     font-size: 40px;
 }
 
-    .NameInputH3 input {
-        height: 40px;
-        bottom: 5px;
-        width: 300px;
-    }
+.NameInputH3 input {
+    height: 40px;
+    bottom: 5px;
+    width: 300px;
+}
 
 .DescriptionInputH3 {
     margin-top: 20px;
@@ -18,6 +18,7 @@
 }
 .linkInput {
     width: 500px;
+    bottom:4px;
 }
 .LinkContainer {
     margin-top: 40px;

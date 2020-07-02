@@ -111,7 +111,8 @@ function createInput(type) {
 	var newInputH3 = document.createElement('h3');
 	var newSpanNumber = document.createElement('span');
 	var newInput = document.createElement('input');
-	var newInputDeleteBtn = document.createElement('button');
+    var newInputDeleteBtn = document.createElement('img');
+    newInputDeleteBtn.src = "icons/Minus.svg";
 	
 	var index;
 
@@ -127,6 +128,7 @@ function createInput(type) {
 		newInputDiv.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
+        
 			removeSpecificInput(newInputDiv.id);
 		};
 		if (altCounter >= maxAlternatives) {

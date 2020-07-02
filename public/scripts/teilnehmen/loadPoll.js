@@ -55,16 +55,6 @@ function prepareAlternatives(altArray)
 function fillWelcomeAltTable(tableName, alts) {
     WelcomeAltTable = document.getElementById(tableName);
 
-    var firstRow = document.createElement("tr");
-    //firstRow
-    var cell = document.createElement("td");
-    var h3 = document.createElement("h3");
-    h3.innerHTML = "Alternativen die zur Auswahl stehen:";
-    h3.id = "firstAltRowWelcome";
-    cell.appendChild(h3);
-    firstRow.appendChild(cell);
-    WelcomeAltTable.appendChild(firstRow);
-
     for (i = 0; i < alts.length; i++) {
         var row = document.createElement("tr");
         var cell2 = document.createElement("td");

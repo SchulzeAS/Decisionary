@@ -22,6 +22,7 @@
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
     background-color: #FEF9C7;
+    /*background-color: #F5F5F5;*/
 }
 
 #step1Topic {
@@ -140,14 +141,14 @@
 
 .hideHint {
     position: absolute;
-    top: 10px;
-    right: 5px;
-    background-image: url("hideHint.png");
+    top: 8px;
+    right: 8px;
+    background-size: 30px 30px;
     border-radius: 10%;
-    background-size: contain;
+    background-size: initial;
     background-color: transparent;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 #teilnehmerNameH2 {
