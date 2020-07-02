@@ -70,7 +70,6 @@ function disableNavElement(nav) {
  * to show the user that he can click the nav element to jump to view
  */
 function addPencil() {
-    console.log("pencils");
 	pencils = document.getElementsByClassName("pencil");
 	
 	for (var i = 0; i < pencils.length; i++) {

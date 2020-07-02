@@ -13,7 +13,7 @@ function loadCriterias(critArray, divId)
         var newSpanNumber = document.createElement('span');
         var newSpanImage = document.createElement('img');
 
-        newSpanImage.src = "verticalMove.png";
+        newSpanImage.src = "icons/Pfeil.svg";
         newSpanImage.className = "verticalMove";
 
         newSpanNumber.innerHTML = (i + 1) + ".";

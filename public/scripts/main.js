@@ -9,7 +9,8 @@ var schritteNav = ["navTopic", "navAlternatives", "navCriterias", "navOverview",
 var schritteNavTeilnehmen = ["navName", "navCriteriaOrder", "navRating", "navOverview"];
 var schritteTeilnehmen = ["step1Name", "step2CriteriaOrder", "step3Rating", "step4Overview"];
 
-var ratingNames = ["A", "B", "X"];
+//var ratingNames = ["A", "B", "X"];
+var ratingNames = ["Exzellent", "Gerade noch", "Überhaupt nicht"];
 
 var minAlternatives = 2;
 var maxAlternatives = 15;

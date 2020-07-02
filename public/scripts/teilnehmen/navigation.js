@@ -4,7 +4,7 @@ var alternativeRatingViewFlag = false;
  * move to the next view
  */
 function next() {
-	
+    
 	if (!alternativeRatingViewFlag && assertView()) {
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
@@ -17,7 +17,8 @@ function next() {
 		if (currentView == 2) { // reached the alternative ratings view where we will "fake" move next, but stay at current view
 			alternativeRatingViewFlag = true;
         }
-	} else {
+    } else {
+        currentAlternativeAssertClicked == false;
 		//console.log("inside alternatives and they are:" + validateAllInputsAlternative());
 		if (validateAllInputsAlternative()) {
 			if (currentAlternative >= currentPoll.alternatives.length-1) {

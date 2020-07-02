@@ -48,8 +48,7 @@ function loadPoll(poll)
 function prepareAlternatives(altArray)
 {
     document.getElementById("currentAlternativeSpan").innerHTML = altArray[0];
-    document.getElementById("curAlt").innerHTML = "1";
-    document.getElementById("totalCount").innerHTML = " / " + altArray.length;
+    document.getElementById("curAlt").innerHTML = "1 / " + currentPoll.alternatives.length;
 }
 
 function fillWelcomeAltTable(tableName, alts) {
