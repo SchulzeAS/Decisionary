@@ -42,3 +42,12 @@
     -o-user-select: none;
 }
 
+#WelcomeAltTable {
+    position:relative;
+    top:70px;
+    text-align:center;
+}
+
+#WelcomeAltTable #firstAltRowWelcome {
+    margin-bottom:10px;    
+}
