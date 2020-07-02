@@ -49,6 +49,7 @@ function prepareAlternatives(altArray)
 {
     document.getElementById("currentAlternativeSpan").innerHTML = altArray[0];
     document.getElementById("curAlt").innerHTML = "1 / " + currentPoll.alternatives.length;
+    document.getElementById("curAlt").style.visibility = "hidden";
 }
 
 function fillWelcomeAltTable(tableName, alts) {

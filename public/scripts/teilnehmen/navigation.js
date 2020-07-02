@@ -15,14 +15,14 @@ function next() {
 		document.getElementById(schritteNavTeilnehmen[currentView]).style.backgroundColor = navActiveTeilnehmenColor;
 		specificViewChanges(currentView);
 		if (currentView == 2) { // reached the alternative ratings view where we will "fake" move next, but stay at current view
-			alternativeRatingViewFlag = true;
+            alternativeRatingViewFlag = true;
         }
     } else {
         currentAlternativeAssertClicked == false;
 		//console.log("inside alternatives and they are:" + validateAllInputsAlternative());
 		if (validateAllInputsAlternative()) {
-			if (currentAlternative >= currentPoll.alternatives.length-1) {
-				alternativeRatingViewFlag = false;
+			if (currentAlternative >= currentPoll.alternatives.length-1) { // leaving rating view
+                alternativeRatingViewFlag = false;
 				next();
 			} else {
 				nextAlternative();
@@ -49,13 +49,13 @@ function back() {
 		document.getElementById(schritteNavTeilnehmen[currentView]).style.backgroundColor = navActiveTeilnehmenColor;
 		specificViewChanges(currentView);
 		if (currentView >= 2) { // reached the alternative ratings view where we will "fake" move next, but stay at current view
-			alternativeRatingViewFlag = true;
+            alternativeRatingViewFlag = true;
 		}
 	} else {
 		rateHint = document.getElementById("rateHint");
 		hideHints(rateHint);
 		if (currentAlternative <= 0) {
-			alternativeRatingViewFlag = false;
+            alternativeRatingViewFlag = false;
 			back();
 		} else {
 			backAlternative();

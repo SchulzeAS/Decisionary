@@ -19,6 +19,7 @@ function hideView(view) {
  * @param {int} curView index of the current view
  */
 function specificViewChanges(curView) {
+    document.getElementById("curAlt").style.visibility = "hidden";
     passiveNavHover();
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
@@ -27,7 +28,6 @@ function specificViewChanges(curView) {
 		case 0: // current view is "name", we are at the beginning
 			document.getElementById("navBack").style.visibility = "hidden";
             document.getElementById("navNext").src = 'icons/teilnehmen_blau.svg';
-			currentAlternative = 0; // reset alternative rating step
 			updateAlternativeHUD();
 			alternativeRatingViewFlag = false;
 			return;
@@ -37,7 +37,8 @@ function specificViewChanges(curView) {
 			alternativeRatingViewFlag = false;
 			break;
 		case 2: // current view is "Bewerten"
-			alternativeRatingViewFlag = true;
+            alternativeRatingViewFlag = true;
+            document.getElementById("curAlt").style.visibility = "visible";
 			break;
 		case 3:	// current view is "Uebersicht"
             document.getElementById("navNext").src = 'icons/senden_orange.svg';
