@@ -1,9 +1,13 @@
 block navigator
-	div#navName.navElement(onClick="clickToChangeView(0)").navTeilnehmen Name
-		img(src="icons/Stift.svg").pencil
-	div#navCriteriaOrder.navElement(onClick="clickToChangeView(1)").navTeilnehmen Kriterienreihenfolge
-		img(src="icons/Stift.svg").pencil
-	div#navRating.navElement(onClick="clickToChangeView(2)").navTeilnehmen Bewertung
-		img(src="icons/Stift.svg").pencil
-	div#navOverview.navElement(onClick="clickToChangeView(3)").navTeilnehmen Übersicht
+    div#navName.navElement(onClick="clickToChangeView(0)").navTeilnehmen 
+        span Name
+        img(src="icons/Stift.svg").pencil
+    div#navCriteriaOrder.navElement(onClick="clickToChangeView(1)").navTeilnehmen 
+        span.navSpanNoDrop Kriterienreihenfolge
+        img(src="icons/Stift.svg").pencil
+    div#navRating.navElement(onClick="clickToChangeView(2)").navTeilnehmen 
+        span.navSpanNoDrop Bewertung
+        img(src="icons/Stift.svg").pencil
+    div#navOverview.navElement(onClick="clickToChangeView(3)").navTeilnehmen 
+        span.navSpanNoDrop Übersicht
 

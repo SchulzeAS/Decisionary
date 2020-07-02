@@ -25,6 +25,10 @@
     color:black;
 }
 
+.navSpanNoDrop {
+    cursor: no-drop;
+}
+
 .navTeilnehmen {
     width: 25%;
 }

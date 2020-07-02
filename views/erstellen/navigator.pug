@@ -1,10 +1,15 @@
 block navigator
-	div#navTopic.navElement(onClick="clickToChangeView(0)").nevErstellen Thema
-		img(src="icons/Stift.svg").pencil
-	div#navAlternatives.navElement(onClick="clickToChangeView(1)").nevErstellen Alternativen
-		img(src="icons/Stift.svg").pencil
-	div#navCriterias.navElement(onClick="clickToChangeView(2)").nevErstellen Kriterien
-		img(src="icons/Stift.svg").pencil
-	div#navOverview.navElement(onClick="clickToChangeView(3)").nevErstellen Übersicht
-	div#navShare.navElement.nevErstellen Teilen
+    div#navTopic.navElement(onClick="clickToChangeView(0)").nevErstellen 
+        span Thema
+        img(src="icons/Stift.svg").pencil
+    div#navAlternatives.navElement(onClick="clickToChangeView(1)").nevErstellen 
+        span.navSpanNoDrop Alternativen
+        img(src="icons/Stift.svg").pencil
+    div#navCriterias.navElement(onClick="clickToChangeView(2)").nevErstellen 
+        span.navSpanNoDrop Kriterien
+        img(src="icons/Stift.svg").pencil
+    div#navOverview.navElement(onClick="clickToChangeView(3)").nevErstellen 
+        span.navSpanNoDrop Übersicht
+    div#navShare.navElement.nevErstellen 
+        span.navSpanNoDrop Teilen
 
