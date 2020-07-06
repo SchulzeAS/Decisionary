@@ -29,6 +29,7 @@ var navDisabledColor = "#708F28"; // und hier
 
 var navActiveTeilnehmenColor = "#8fefec";
 var navDisabledTeilnehmenColor = "#1abbb6";
+var lighterNavActiveTeilnehmenColor = "rgba(143, 239, 236,0.3)";
 
 var activeRadioColor = navActiveTeilnehmenColor; // kann aber auch was immer sein, nur temporear
 var passiveRadioColor = "white";

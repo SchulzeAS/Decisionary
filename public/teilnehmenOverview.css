@@ -7,6 +7,7 @@
     position:relative;
     top:30px;
     background-color:white;
+    padding-bottom:10px;
     
 }
 
@@ -42,5 +43,10 @@
 
 #resultSpan{
     position:relative;
-    top:45px;
+    top:20px;
+}
+
+#decisiveIndexSpan {
+    position: relative;
+    top: 20px;
 }

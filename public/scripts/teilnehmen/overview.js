@@ -1,3 +1,4 @@
+
 /**
 * base function called to create the overview of all inputs up to now
 */
@@ -11,9 +12,19 @@ function overview() {
 	//descriptionSpan.innerHTML = currentPoll.description;
 
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.criterias, "teilnehmenTable");
-	let result = currentPoll.evaluate();
+    let result = currentPoll.evaluate();
+    tableBackgroundColor = document.getElementById("teilnehmenTable").childNodes[0].style.backgroundColor;
     document.getElementById("result").innerHTML = result.bestAlternatives.join(", ");
-    highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable");
+    if (result.decidingIndex >= 0) {
+        document.getElementById("decisiveIndexSpan").style.opacity = 1;
+        document.getElementById("decisiveIndex").innerHTML = currentPoll.criterias[result.decidingIndex].name;
+    } else {
+        document.getElementById("decisiveIndexSpan").style.opacity = 0;
+        document.getElementById("decisiveIndex").innerHTML = "keins, weil es keinen klaren Gewinner gibt ";
+    }
+
+    highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable", tableBackgroundColor, lighterNavActiveTeilnehmenColor);
+
 }
 
 /**
@@ -66,11 +77,21 @@ function createTableOverview(altArray, critArray,tableId) {
 }
 /**
  * highlights the decisive row
- * @param {any} index of the criteria that was decisive in the evaluation
+ * @param {int} index of the criteria that was decisive in the evaluation
+ * @param {string} tableId of the table to work on
+ * @param {string} defaultColor background color
+ * @param {string} highlightColor highlights
  */
 
-function highlightDecidingCriteria(index, tableId) {
+function highlightDecidingCriteria(index, tableId, defaultColor,highlightColor) {
+    rows = document.getElementById(tableId).childNodes;
+    for (var i = 0; i < rows.length; i++) {
+        rows[i].style.backgroundColor = defaultColor;
+    }
 
+    if (index >= 0) { // catch -1 aka undecisive
+        rows[index + 1].style.backgroundColor = highlightColor;
+    }
 }
 
 /**

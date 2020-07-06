@@ -20,7 +20,7 @@ function hideView(view) {
  */
 function specificViewChanges(curView) {
     document.getElementById("curAlt").style.visibility = "hidden";
-    passiveNavHover();
+    if (!clickViewBool) passiveNavHover();
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
 
@@ -122,7 +122,7 @@ function clickToChangeView(view){
 /**
  * sets a boolean that allows nav elements on the top to be clicked to change views
  */
-function makeNavClickable(){
+function makeNavClickable() {
     clickViewBool = true;
     $(".navSpanNoDrop").css("cursor", "pointer");
 }

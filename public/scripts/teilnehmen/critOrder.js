@@ -91,7 +91,7 @@ function rearrangedCrits()
 function afterCritOrder()
 {
     document.getElementById("alternativeRatingTable").innerHTML = "";
-    createTableRating(currentPoll.getAllCriterias(), ratingNames, "alternativeRatingTable");
+    createTableRating(currentPoll.getAllCriterias(), ratingNamesWords, "alternativeRatingTable", lighterNavActiveTeilnehmenColor);
     updateAlternativeHUD();
 }
 /**
