@@ -12,7 +12,7 @@ function hideView(view) {
  * @param {int} curView index of the current view
  */
 function specificViewChanges(curView) {
-    passiveNavHover();
+    if(!clickViewBool) passiveNavHover();
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
 
@@ -113,6 +113,8 @@ function clickToChangeView(view){
 function makeNavClickable(){
     clickViewBool = true;
     $(".navSpanNoDrop").css("cursor", "pointer");
+    document.getElementById(schritteNav[(schritteNav.length-1)]).style.cursor = "default";
+    document.getElementById(schritteNav[(schritteNav.length-1)]).childNodes[1].style.cursor = "auto";
 }
 
 
@@ -133,7 +135,7 @@ function passiveNavHover() {
  */
 function makeNavUnclickable(){
 	clickViewBool = false;
-	for (var i = 0; i < schritteNav.length-1; i++) {
+	for (var i = 0; i < schritteNav.length; i++) {
 		$("#"+schritteNav[i]).mouseenter(function() {
 			$(this).css("cursor", "auto");
 			$(this).css("backgroundColor", navDisabledColor);
@@ -144,10 +146,10 @@ function makeNavUnclickable(){
 function addMouseHover(){
 	for (var i = 0; i < schritteNav.length-1; i++) {
 		$("#"+schritteNav[i]).mouseenter(function() {
-			$(this).css("cursor", "pointer").css("backgroundColor",navActiveColor);
+            $(this).css("cursor", "pointer").css("backgroundColor", navActiveColor);
 		}).mouseleave(function() {
 			$(this).css("backgroundColor", navDisabledColor);
-			console.log(currentView);
+			
 			$("#" + schritteNav[currentView]).css("backgroundColor", navActiveColor);
 		});
 	}
