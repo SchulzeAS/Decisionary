@@ -15,7 +15,7 @@ data.addParticipant("Jonas");
 data.addParticipant("Christopher");
 data.addParticipant("Caroline");
 data.addParticipant("Martha");
-
+fillWelcomeAltTable("participantsTable", data.participants);
 var myChart = new Chart(ctx, {
     type: "bar",
     data: {
