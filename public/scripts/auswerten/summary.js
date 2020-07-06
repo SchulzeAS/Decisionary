@@ -1,11 +1,28 @@
 var ctx = document.getElementById("summaryChart").getContext("2d");
+var data = new SummaryData();
+data.addVote("Döner", 3);
+data.addVote("Brot", 0);
+data.addVote("Salat", 1);
+data.addVote("Käseschnitzel", 6);
+data.addVote("Yoghurt", 2);
+data.addParticipant("Michelle");
+data.addParticipant("Jana");
+data.addParticipant("Lukas");
+data.addParticipant("Adrian");
+data.addParticipant("Niklas");
+data.addParticipant("Pauline");
+data.addParticipant("Jonas");
+data.addParticipant("Christopher");
+data.addParticipant("Caroline");
+data.addParticipant("Martha");
+
 var myChart = new Chart(ctx, {
     type: "bar",
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: data.getLabels(),
         datasets: [{
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
+            label: "Anzahl an abgegebenen Stimmen",
+            data: data.getAmounts(),
             backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
