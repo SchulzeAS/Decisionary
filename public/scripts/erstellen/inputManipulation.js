@@ -51,7 +51,6 @@ function addInput(type) {
  * @param {string} div Id to be removed
  */
 function removeSpecificInput(divId) {
-    alert(divId);
 	var divToBeRemoved = document.getElementById(divId);
 	if (divId.includes(altId) && altCounter > minAlternatives) {
 		
@@ -59,10 +58,10 @@ function removeSpecificInput(divId) {
 		altCounter--;
 		divToBeRemoved.remove();
 		currentPoll.removeAlternative(index);
-		var container = document.getElementById('alternativesContainer');
-		for (let i = 0; i < container.childElementCount; i++) {
+        var container = document.getElementById('alternativesContainer').childNodes[0].childNodes;
+		for (let i = 0; i < (container.length-1); i++) {
 			// change id of remaining inputs to new position
-			const element = container.children[i];
+			const element = container[i];
 			var elementIndex = element.id.replace(altId, '');
 			if (elementIndex > index) {
 				element.id = altId + (elementIndex - 1);
@@ -76,10 +75,10 @@ function removeSpecificInput(divId) {
 		critCounter--;
 		divToBeRemoved.remove();
 		currentPoll.removeCriteria(index);
-		var container = document.getElementById('criteriasContainer');
-		for (let i = 0; i < container.childElementCount; i++) {
+        var container = document.getElementById('criteriasContainer').childNodes[0].childNodes;
+        for (let i = 0; i < (container.length - 1); i++) {
 			// change id of remaining inputs to new position
-			const element = container.children[i];
+			const element = container[i];
 			var elementIndex = element.id.replace(critId, '');
 			if (elementIndex > index) {
 				element.id = critId + (elementIndex - 1);

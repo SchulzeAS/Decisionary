@@ -9,9 +9,16 @@ function overview() {
 
 	clearTable(document.getElementById("combinedTable"));
 
-	nameSpan.innerHTML = currentPoll.title;
-	descriptionSpan.innerHTML = currentPoll.description == "" ? " no description entered": currentPoll.description;
+    nameSpan.innerHTML = currentPoll.title;
+    if (currentPoll.description == "") {
+        descriptionSpan.innerHTML = " keine Beschreibung angegeben";
+        descriptionSpan.style.fontStyle = "italic";
+    }
+    else {
+        descriptionSpan.innerHTML = currentPoll.description;
+        descriptionSpan.style.fontStyle = "normal";
 
+    }
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.getAllCriterias());
 }
 
