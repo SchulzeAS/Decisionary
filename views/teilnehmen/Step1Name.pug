@@ -1,16 +1,18 @@
 block layout-content 
-	div.Message
-		div.Title
-			h1 Thema:	
-				span#ThemaSpan
-			h3#beschreibungSpan Beschreibung:
-				span#BeschreibungSpan
-			h2#teilnehmerNameH2 Name :
-				input#TeilnehmerNameInput
-	div.hint#nameHint
-		h4 Infotext
-		span 
-			span.HintFirstLine Bitte geben Sie ihren Namen ein
-		button.hideHint(onClick="hideHintALT('nameHint')") 
+    h1 Thema:	
+        span#ThemaSpan
+    h3#beschreibungSpan Beschreibung:
+        span#BeschreibungSpan
+    h2#teilnehmerNameH2 Name :
+        input#TeilnehmerNameInput
+    br
+    br
+    h4 Alternativen die zur Auswahl stehen:
+    table#WelcomeAltTable
+    div.hint#nameHint
+        h4 Infotext
+        span 
+            span.HintFirstLine Bitte geben Sie ihren Namen ein
+        img.hideHint(onClick="hideHintALT('nameHint')" src='icons/kreuz.svg') 
 
-			
+            

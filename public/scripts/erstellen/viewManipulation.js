@@ -12,6 +12,7 @@ function hideView(view) {
  * @param {int} curView index of the current view
  */
 function specificViewChanges(curView) {
+    passiveNavHover();
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
 
@@ -30,7 +31,8 @@ function specificViewChanges(curView) {
 			}
 			break;
 		case 3:	// current view is "Uebersicht"
-			document.getElementById("navNext").style.backgroundImage = "url('finishedBtn.png')";
+            document.getElementById("navNext").src = 'icons/senden_orange.svg';
+            document.getElementById("navNext").style.borderRadius = "10px";
 			overview();
 			addPencil();
 			makeNavClickable();
@@ -48,9 +50,10 @@ function specificViewChanges(curView) {
 			break;
 		default:
 			break;
-	}
-	document.getElementById("navBack").style.backgroundImage = "url('backBtn.png')";
-	document.getElementById("navNext").style.backgroundImage = "url('nextBtn.png')";
+    }
+    document.getElementById("navNext").style.borderRadius = "0px";
+    document.getElementById("navBack").src = 'icons/Zuruck.svg';
+    document.getElementById("navNext").src = 'icons/Weiter_grun.svg';
 }
 
 /**
@@ -58,7 +61,7 @@ function specificViewChanges(curView) {
  * @param {string} nav identifier of the navigation element
  */
 function disableNavElement(nav) {
-	document.getElementById(nav).style.backgroundColor = navDisabledColor;
+    document.getElementById(nav).style.backgroundColor = navDisabledColor;
 }
 
 
@@ -108,9 +111,22 @@ function clickToChangeView(view){
  * sets a boolean that allows nav elements on the top to be clicked to change views
  */
 function makeNavClickable(){
-	clickViewBool = true;
+    clickViewBool = true;
+    $(".navSpanNoDrop").css("cursor", "pointer");
 }
- 
+
+
+/**
+ * if user hovers over disabled nav element show the no drop cursor
+ * but if he hovers over current nav element do nothing
+ * */
+function passiveNavHover() {
+    for (var i = 0; i < schritteNav.length; i++) {
+        document.getElementById(schritteNav[i]).childNodes[1].className = "navSpanNoDrop";
+    }
+    document.getElementById(schritteNav[currentView]).childNodes[1].className = "";
+}
+
  
 /**
  * add on click events for the nav elements

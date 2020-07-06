@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="Stift.svg"
+   id="svg755"
+   version="1.1"
+   height="344.39557"
+   width="194.50941"
+   viewBox="0 0 145.88206 258.29668"
+   style="isolation:isolate">
+  <metadata
+     id="metadata759">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg755"
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:cy="285.91138"
+     inkscape:cx="336.0367"
+     inkscape:zoom="0.83276367"
+     showgrid="false"
+     id="namedview757"
+     inkscape:window-height="480"
+     inkscape:window-width="705"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs743">
+    <clipPath
+       id="a">
+      <path
+         id="path740"
+         d="M 0,0 H 1024 V 768 H 0 Z" />
+    </clipPath>
+  </defs>
+  <g
+     transform="translate(-259.97247,-169.56647)"
+     id="g753"
+     stroke-miterlimit="3"
+     stroke-linecap="square"
+     stroke="#000000"
+     clip-path="url(#a)">
+    <path
+       id="path745"
+       vector-effect="non-scaling-stroke"
+       fill="#ffffff"
+       d="m 338.117,197.312 54.158,25.826 -77.479,162.472 -54.157,-25.827 z m -76.226,229.542 -0.407,-21.779 -0.845,-45.292 54.157,25.827 z" />
+    <path
+       id="path747"
+       d="m 351.865,214.947 -68.87,144.419 m 86.923,-135.811 -68.87,144.42"
+       vector-effect="non-scaling-stroke" />
+    <path
+       id="path749"
+       vector-effect="non-scaling-stroke"
+       fill="#ffffff"
+       d="m 342.422,188.286 54.157,25.826 -4.304,9.026 -54.158,-25.826 z" />
+    <path
+       id="path751"
+       vector-effect="non-scaling-stroke"
+       d="m 351.03,170.233 54.158,25.826 -8.609,18.053 -54.157,-25.826 z m -89.557,234.264 18.053,8.609 -17.635,13.748 z" />
+  </g>
+</svg>

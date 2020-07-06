@@ -1,8 +1,6 @@
 #currentAlternativeSpan {
     position: relative;
-    top: 30px;
-    left: 40%;
-    margin-top: 90px;
+    margin-top: 20px;
     width: 10%;
     margin-left: auto;
     margin-right: auto;
@@ -11,17 +9,14 @@
     height: 100%;
 }
 
-#altCounter {
+#curAlt {
     position: absolute;
-    top: 670px;
-    left: 350px;
-    margin: 20px;
-    margin-bottom: 40px;
-    width: 80px;
-    height: 40px;
-    border-radius: 10%;
-    background-size: contain;
-    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0px;
+    margin-bottom: 50px;
+    left: 51%;
+    visibility = hidden;
 }
 
 #alternativeRatingTable {
@@ -39,6 +34,7 @@
     width: 25%;
     text-align: center;
     border: 1px solid black;
+    background-color: white;
 }
 
 #alternativeRatingTable label {
@@ -52,7 +48,8 @@
 }
 
 #alternativeRatingTable .critTd {
-    padding-right: 40px;
+    padding-right: 10px;
+    text-align:right;
 }
 
 input[type="radio"]:hover {

@@ -1,25 +1,23 @@
 #navNext {
     position: absolute;
     right: 20px;
-    background-image: url(nextBtn.png);
 }
 
 #navBack {
     position: absolute;
     left: 20px;
     visibility: hidden;
-    background-image: url(backBtn.png);
 }
 
 .removeBtn {
-    background-image: url(removeInputIcon.png);
+    
     position: relative;
     float: left;
     top: 7px;
 }
 
 .plusButtons {
-    background-image: url(addInputIcon.png);
+   
 }
 
 .plusButtonsDiv {
@@ -43,58 +41,57 @@
 
 
 .copyButton {
-    background-image: url(clipboard.png);
     border-radius: 10%;
     background-size: contain;
     width: 25px;
     height: 25px;
     position: relative;
-    bottom: 8px;
-    left: 5px;
+    top:19px;
 }
 
-    .copyButton:hover {
-        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-    }
+.copyButton:hover {
+    
+}
 
 .tooltip {
     position: relative;
     display: inline-block;
 }
 
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 140px;
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 150%;
-        left: 50%;
-        margin-left: -75px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 70%;
+    left: 70%;
+    font-size:small;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
 
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
 
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-    }
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 
 button:hover {
     cursor: pointer;
@@ -111,4 +108,21 @@ button:hover {
     border-radius: 10%;
     background-size: contain;
     background-color: transparent;
+}
+
+.linkTable td{
+    vertical-align: bottom;
+}
+
+.linkTable table, td, th {
+    
+}
+
+.linkTable td {
+    height:50%;
+}
+
+.linkTable{
+    table-layout: fixed;
+    border-collapse: collapse;
 }

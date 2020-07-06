@@ -1,4 +1,4 @@
-﻿//Niklas: ich erstelle mir hier ein Dummy Poll Object um schonmal das layout machen zu können
+//Niklas: ich erstelle mir hier ein Dummy Poll Object um schonmal das layout machen zu können
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
@@ -35,6 +35,7 @@ function loadPoll(poll)
     loadCriterias(poll.getAllCriterias(), "critOrder");
     prepareAlternatives(poll.alternatives);
     maxCurrentAlternatives = poll.alternatives.length;
+    fillWelcomeAltTable("WelcomeAltTable", poll.alternatives)
 }
 
 
@@ -47,7 +48,21 @@ function loadPoll(poll)
 function prepareAlternatives(altArray)
 {
     document.getElementById("currentAlternativeSpan").innerHTML = altArray[0];
-    document.getElementById("curAlt").innerHTML = "1";
-    document.getElementById("totalCount").innerHTML = " / " + altArray.length;
+    document.getElementById("curAlt").innerHTML = "1 / " + currentPoll.alternatives.length;
+    document.getElementById("curAlt").style.visibility = "hidden";
 }
 
+function fillWelcomeAltTable(tableName, alts) {
+    WelcomeAltTable = document.getElementById(tableName);
+
+    for (i = 0; i < alts.length; i++) {
+        var row = document.createElement("tr");
+        var cell2 = document.createElement("td");
+        textnode2 = document.createTextNode(alts[i]);
+
+        cell2.appendChild(textnode2);
+        row.appendChild(cell2);
+        WelcomeAltTable.appendChild(row);
+    }
+
+}

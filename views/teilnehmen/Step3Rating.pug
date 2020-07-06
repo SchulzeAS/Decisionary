@@ -1,15 +1,12 @@
 block layout-content 
-	h1 Bewerten
-	div#ratingContainer
-		span#currentAlternativeSpan
-		table#alternativeRatingTable
-		span#altCounter
-			span#curAlt
-			span#totalCount
-	div.hint#rateHint
-		h4 Infotext
-		span 
-			span.HintFirstLine Bitte bewerten sie alle Alternativen
-		button.hideHint(onClick="hideHintALT('rateHint')") 
-	
-			
+    h1 Bewerten
+    div#ratingContainer
+        h3#currentAlternativeSpan
+        table#alternativeRatingTable 
+    div.hint#rateHint
+        h4 Infotext
+        span 
+            span.HintFirstLine Bitte bewerten sie alle Alternativen
+        img.hideHint(onClick="hideHintALT('rateHint')" src='icons/kreuz.svg') 
+    
+            

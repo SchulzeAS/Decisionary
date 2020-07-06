@@ -1,6 +1,6 @@
 .navigator {
     position: relative;
-    height: 40px;
+    height: 47px;
     width: auto;
     font-size: 18px;
 }
@@ -12,14 +12,21 @@
 .navElement {
     position: relative;
     padding: 10px;
+    padding-top:13px;
     float: left;
     text-align: center;
+    font-size:auto;
     font-weight: bold;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
+    color:black;
+}
+
+.navSpanNoDrop {
+    cursor: no-drop;
 }
 
 .navTeilnehmen {
@@ -34,7 +41,7 @@
     width: 20px;
     position: relative;
     float: right;
-    bottom: 5px;
+    bottom: 8px;
     right: 20px;
     visibility: hidden;
 }

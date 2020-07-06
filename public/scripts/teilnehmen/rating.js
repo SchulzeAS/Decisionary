@@ -2,6 +2,7 @@
 createTableRating(currentPoll.getAllCriterias(), ratingNames, "alternativeRatingTable");
 var currentAlternative = 0;
 var inputRatingClassName = "ratingRadioInput";
+var currentAlternativeAssertClicked = false;
 
 /**
  * creates the table to rate each alternative
@@ -69,6 +70,9 @@ function createTableRating(critArray, ratingNames, tableId) {
  */
 function rateAlternative(critNumber, rating) {
     currentPoll.criterias[critNumber].values[currentAlternative] = ratingNames[rating];
+    if (currentAlternativeAssertClicked == true) {
+        recolorAfterRatingIfMarked();
+    }
 }
 
 /**
@@ -92,6 +96,20 @@ function loadRatings() {
             $('input[name=' + i + ']')[rateNumber].checked = true; // excuse my jquery here but it's the easiest way to check a specific radio btn
             }
     }
+}
+
+/**
+ * if the inputs have been marked as still to rate, then update the coloring after each click
+ * reverting the color of already rated inputs
+ * */
+function recolorAfterRatingIfMarked() {
+    rateH = document.getElementById("rateHint");
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i < rLabels.length; i++) {
+        //rLabels[0].style.outline = "inital";
+        rLabels[i].style.color = "black";
+    }
+    unvalidatedViewAlternative();
 }
 
 /**
@@ -122,6 +140,7 @@ function validateAllInputsAlternative() {
  * instructions to do when not all rated
  */
 function unvalidatedViewAlternative() {
+    currentAlternativeAssertClicked = true;
     ratingRows = document.getElementsByClassName("ratingRowClass");
     for (i = 0; i < currentPoll.criterias.length; i++) {
         if (currentPoll.criterias[i].values[currentAlternative] == null) {
@@ -141,12 +160,13 @@ function unvalidatedViewAlternative() {
 function nextAlternative() {
     currentAlternative++;
     updateAlternativeHUD();
+    currentAlternativeAssertClicked = false;
 }
 /**
  * updates the alternative name and number
  */
 function updateAlternativeHUD() {
-    document.getElementById("curAlt").innerHTML = currentAlternative + 1;
+    document.getElementById("curAlt").innerHTML = (currentAlternative + 1) + " / " + currentPoll.alternatives.length;
     document.getElementById("currentAlternativeSpan").innerHTML = currentPoll.getAllAlternatives()[currentAlternative];
     clearRatings();
     loadRatings();
