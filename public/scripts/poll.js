@@ -180,12 +180,12 @@ class Poll
                 }
             }
 
-            if (valueMatrix.length == 1)
+            if (valueMatrix[0].length == 1)
             {
                 return { decidingIndex: valueIdx - 1, bestAlternatives: valueMatrix[0] };
             }
         }
-        if (valueMatrix.length > 0)
+        if (valueMatrix[0].length > 0)
         {
             return { decidingIndex: -1, bestAlternatives: valueMatrix[0] };
         }
