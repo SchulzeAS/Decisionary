@@ -1,5 +1,5 @@
 
-createTableRating(currentPoll.getAllCriterias(), ratingNames, "alternativeRatingTable");
+createTableRating(currentPoll.getAllCriterias(), ratingNamesWords, "alternativeRatingTable");
 var currentAlternative = 0;
 var inputRatingClassName = "ratingRadioInput";
 var currentAlternativeAssertClicked = false;
@@ -10,7 +10,7 @@ var currentAlternativeAssertClicked = false;
  * @param {array} ratingNames containing he simplified names for our ABX-Algorithm
  * @param {string} tableId of the table to append to
  */
-function createTableRating(critArray, ratingNames, tableId) {
+function createTableRating(critArray, ratingNamesWords, tableId) {
     for (i = 0; i < critArray.length; i++) {
         var row = document.createElement("tr");
         row.className = "ratingRowClass";
@@ -20,7 +20,7 @@ function createTableRating(critArray, ratingNames, tableId) {
         cellCritName.appendChild(textnode);
         row.appendChild(cellCritName);
 
-        for (j = 0; j < ratingNames.length; j++) {
+        for (j = 0; j < ratingNamesWords.length; j++) {
             var cell = document.createElement("td");
             cell.className = "ratingTd";
             newLabel = document.createElement('label');
@@ -51,7 +51,7 @@ function createTableRating(critArray, ratingNames, tableId) {
 
             newDescriptor = document.createElement('i');
 
-            newDescriptor.innerHTML = ratingNames[j]
+            newDescriptor.innerHTML = ratingNamesWords[j]
             newLabel.appendChild(newDescriptor);
 
             cell.appendChild(newLabel);

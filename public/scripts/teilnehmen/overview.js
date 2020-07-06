@@ -12,7 +12,8 @@ function overview() {
 
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.criterias, "teilnehmenTable");
 	let result = currentPoll.evaluate();
-	document.getElementById("result").innerHTML = result.bestAlternatives.join(", ");
+    document.getElementById("result").innerHTML = result.bestAlternatives.join(", ");
+    highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable");
 }
 
 /**
@@ -51,7 +52,8 @@ function createTableOverview(altArray, critArray,tableId) {
 		for (j = 0; j < altArray.length; j++) {
 			var cellALT = document.createElement("td");
 
-			textnodeALT = document.createTextNode(critArray[i].values[j]);
+            convertedRating = ratingNamesWords[ratingNames.indexOf(critArray[i].values[j])];
+            textnodeALT = document.createTextNode(convertedRating);
 			cellALT.className = "rateTd";
 
 			cellALT.appendChild(textnodeALT);
@@ -61,6 +63,14 @@ function createTableOverview(altArray, critArray,tableId) {
 
 		document.getElementById(tableId).appendChild(row);
 	}
+}
+/**
+ * highlights the decisive row
+ * @param {any} index of the criteria that was decisive in the evaluation
+ */
+
+function highlightDecidingCriteria(index, tableId) {
+
 }
 
 /**
@@ -76,3 +86,5 @@ function clearTable(table) {
 function hideHint(id) {
 	$("#" + id).css("visibility", "hidden");
 }
+
+
