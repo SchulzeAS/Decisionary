@@ -11,19 +11,25 @@
 
 .removeBtn {
     
-    position: relative;
+   /* position: relative;
     float: left;
-    top: 7px;
+    top: 7px;*/
 }
 
 .plusButtons {
    
 }
 
+.inputContainer tr{
+    font-size:30px;
+    /*font-weight:bold;*/
+    font-weight:600;
+}
+
 .plusButtonsDiv {
-    position: relative;
+    /* position: relative;
     float: right;
-    margin-top: 10px;
+    margin-top: 10px;*/
 }
 
 .dummy {

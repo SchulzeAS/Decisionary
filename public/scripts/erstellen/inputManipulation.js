@@ -6,27 +6,35 @@ var originalBtnPos; // save the original position of the add input button
  */
 function addInput(type) {
 	if (type == "Alt" || type == "Crit") {
-		if (type == "Alt" && altCounter < maxAlternatives) {
-			document.getElementById(alternativesContainer).appendChild(createInput(type));
+        if (type == "Alt" && altCounter < maxAlternatives) {
+            toPrepend = createInput(type);
+            //document.getElementById(alternativesContainer).lastChild.prepend(toPrepend);
+            //document.getElementById("lastAltRow").parentNode.prepend(toPrepend);
+            e = document.getElementById("lastAltRow").parentNode;
+            e.insertBefore(toPrepend, e.lastChild);
+
+            //document.getElementById(alternativesContainer).appendChild(createInput(type));
 			//$("#" + alternativesContainer).prev().after(createInput(type));
-			c = document.getElementById(alternativesContainer).childNodes
+            console.log("added row");
+            c = document.getElementById(alternativesContainer).childNodes[0].childNodes;
 			if (altCounter > minAlternatives) {
-				c[c.length - 1].childNodes[0].childNodes[2].focus();
+				c[c.length - 2].childNodes[1].childNodes[0].focus();
 			} else {
-				c[0].childNodes[0].childNodes[2].focus();
+                c[0].childNodes[1].childNodes[0].focus();
             }
 
 			currentPoll.addAlternative("");
 		}
-		if (type == "Crit" && critCounter < maxCriterias) {
-			document.getElementById(criteriasContainer).appendChild(createInput(type))
-			//$("#" + criteriasContainer).prev().after(createInput(type));
+        if (type == "Crit" && critCounter < maxCriterias) {
+            toPrepend = createInput(type);
+            e = document.getElementById("lastCritRow").parentNode;
+            e.insertBefore(toPrepend, e.lastChild);
 
-			c = document.getElementById(criteriasContainer).childNodes
-			if (critCounter > minCriterias) {
-				c[c.length - 1].childNodes[0].childNodes[2].focus();
+            c = document.getElementById(criteriasContainer).childNodes[0].childNodes;
+			if (critCounter > minCriterias) { // very specific element to focus
+                c[c.length - 2].childNodes[1].childNodes[0].focus();
 			} else {
-				c[0].childNodes[0].childNodes[2].focus();
+                c[0].childNodes[1].childNodes[0].focus();
 			}
 
 			currentPoll.addCriteria("");
@@ -43,7 +51,7 @@ function addInput(type) {
  * @param {string} div Id to be removed
  */
 function removeSpecificInput(divId) {
-	
+    alert(divId);
 	var divToBeRemoved = document.getElementById(divId);
 	if (divId.includes(altId) && altCounter > minAlternatives) {
 		
@@ -107,10 +115,13 @@ function updateSpanNumbers(span){
  */
 function createInput(type) {
 
-	var newInputDiv = document.createElement('div');
-	var newInputH3 = document.createElement('h3');
-	var newSpanNumber = document.createElement('span');
-	var newInput = document.createElement('input');
+	var newInputRow = document.createElement('tr');
+	var typeTextTd = document.createElement('td');
+	var typeTextSpan = document.createElement('span');
+    var newSpanNumber = document.createElement('span');
+    var inputTd = document.createElement('td');
+    var newInput = document.createElement('input');
+    var buttonTd = document.createElement('td');
     var newInputDeleteBtn = document.createElement('img');
     newInputDeleteBtn.src = "icons/Minus.svg";
 	
@@ -123,13 +134,12 @@ function createInput(type) {
 		}
 		tempString = "Alternative";
 		newInput.className = "AlternativeInputs";
-		newInputDiv.className = "Alternative";
+		newInputRow.className = "Alternative";
 		newSpanNumber.className = "AlternativeSpanNumber";
-		newInputDiv.id = "alt" + index;
+		newInputRow.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
-        
-			removeSpecificInput(newInputDiv.id);
+			removeSpecificInput(newInputRow.id);
 		};
 		if (altCounter >= maxAlternatives) {
 			hideBtn(document.getElementById("addAlternativeButton"));
@@ -139,40 +149,51 @@ function createInput(type) {
 		index = critCounter++;
 		tempString = "Kriterium";
 		newInput.className = "CriteriaInputs";
-		newInputDiv.className = "Criteria";
+		newInputRow.className = "Criteria";
 		newSpanNumber.className = "CriteriaSpanNumber";
-		newInputDiv.id = "crit" + index;
+		newInputRow.id = "crit" + index;
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function () {
-			removeSpecificInput(newInputDiv.id);
+			removeSpecificInput(newInputRow.id);
 		};
 		if (critCounter >= maxCriterias) {
 			hideBtn(document.getElementById("addCriteriaButton"));
         }
-	}
+    }
+
 	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
-	newInputH3.className +="inputH3";
-	newSpanNumber.className +=" SpanNumber";
+	typeTextSpan.className +="inputH3";
+    newSpanNumber.className += " SpanNumber";
+
 	newInput.addEventListener("focus", activeInput); 
 	newInput.addEventListener("mouseleave", unactiveInput); 
 	newInput.addEventListener("mouseenter", activeInput);
 
 
 	newInput.addEventListener("input", onUpdateInput);
-	newInputH3.innerHTML = tempString;
+	typeTextSpan.innerHTML = tempString;
 	newSpanNumber.innerHTML = (index+1);
-	newInputH3.appendChild(newSpanNumber);
-	newInputH3.appendChild(newInput);
-	newInputDiv.appendChild(newInputH3);
-	if (newInputDiv.className == "Criteria" && critCounter <= minCriterias || newInputDiv.className == "Alternative" && altCounter <= minAlternatives) {
-		newInputDeleteBtn.onclick = function () {console.log("ddummy btn") };
-		newInputDeleteBtn.className += " dummy";
-	} 
-	newInputDiv.appendChild(newInputDeleteBtn);
-	newInputDiv.className += " inputDiv";
+	//typeTextTd.appendChild(newSpanNumber);
+    //typeTextTd.appendChild(newInput);
+
+    typeTextTd.appendChild(typeTextSpan);
+    typeTextTd.appendChild(newSpanNumber);
+    newInputRow.appendChild(typeTextTd);
+
+    inputTd.appendChild(newInput);
+    newInputRow.appendChild(inputTd);
+
+    if (newInputRow.className == "Criteria" && critCounter > minCriterias || newInputRow.className == "Alternative" && altCounter > minAlternatives) {
+        buttonTd.appendChild(newInputDeleteBtn);
+    }
+    else {
+        buttonTd.innerHTML = "";
+    }
+    newInputRow.appendChild(buttonTd);
+	newInputRow.className += " inputDiv";
 	
 
-	return newInputDiv;
+	return newInputRow;
 }
 
 /**

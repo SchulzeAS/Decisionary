@@ -2,9 +2,13 @@ block layout-content
 	h1 Kriterien
 	span Kriterien sind die Entscheidungsfaktoren für Alternativen
 	div.inputAndBtnDiv
-		div#criteriasContainer.inputContainer
-		div#criteriasButtons.plusButtonsDiv
-			img#addCriteriaButton.plusButtons.plusMinusButtons(onclick='addInput("Crit")' src='icons/Plus.svg')
+		table#criteriasContainer.inputContainer
+			tr#lastCritRow
+				td
+				td
+				td
+					div#criteriasButtons.plusButtonsDiv
+						img#addCriteriaButton.plusButtons.plusMinusButtons(onclick='addInput("Crit")' src='icons/Plus.svg')
 	div.hint#critHint
 		h4 Infotext
 		span 

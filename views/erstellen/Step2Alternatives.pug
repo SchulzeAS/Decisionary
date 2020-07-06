@@ -2,9 +2,13 @@ block layout-content
     h1 Alternativen
     span Alternativen sind die Optionen die zur Auswahl stehen
     div.inputAndBtnDiv
-        div#alternativesContainer.inputContainer
-        div#alternativeButtons.plusButtonsDiv
-            img#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")' src='icons/Plus.svg')
+        table#alternativesContainer.inputContainer
+            tr#lastAltRow
+                td 
+                td 
+                td
+                    div#alternativeButtons.plusButtonsDiv
+                        img#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")' src='icons/Plus.svg')
     div.hint#altHint
         h4 Infotext
         span 
