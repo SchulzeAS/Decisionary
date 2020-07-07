@@ -30,6 +30,7 @@
 .inputH3 {
     position: relative;
     float: left;
+    padding:0px;
 }
 
 .inputDiv {
@@ -37,9 +38,11 @@
 }
 .inputContainer {
     clear: both;
-    margin-top: 40px;
+    margin-top: 0px;
 }
-
+.typeTextTd {
+    padding-top: 5px;
+}
 
 input {
     position: relative;
@@ -54,6 +57,7 @@ input {
     opacity: 0.2;
 }
 
-.inputH3 input {
+.inputContainer input {
     width: 300px;
+    margin-left: 5px;
 }

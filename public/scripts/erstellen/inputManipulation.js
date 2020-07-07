@@ -116,7 +116,7 @@ function createInput(type) {
 
 	var newInputRow = document.createElement('tr');
 	var typeTextTd = document.createElement('td');
-	var typeTextSpan = document.createElement('span');
+	var typeTextSpan = document.createElement('div');
     var newSpanNumber = document.createElement('span');
     var inputTd = document.createElement('td');
     var newInput = document.createElement('input');
@@ -163,6 +163,8 @@ function createInput(type) {
 	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
 	typeTextSpan.className +="inputH3";
     newSpanNumber.className += " SpanNumber";
+    inputTd.className = "inputTd";
+    typeTextTd.className = "typeTextTd";
 
 	newInput.addEventListener("focus", activeInput); 
 	newInput.addEventListener("mouseleave", unactiveInput); 

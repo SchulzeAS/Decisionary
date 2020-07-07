@@ -20,11 +20,27 @@
    
 }
 
-.inputContainer tr{
-    font-size:28px;
+.inputContainer tr {
+    font-size: 26px;
     /*font-weight:bold;*/
-    font-weight:550;
+    font-weight: 500;
+    padding: 0px;
 }
+
+.inputContainer {
+    
+}
+
+.inputContainer td,tr,th {
+    vertical-align: top;
+    padding:0px;
+}
+
+.inputContainer, th, td {
+    /*border: 1px solid black;*/
+}
+
+
 
 .plusButtonsDiv {
     /* position: relative;
@@ -41,8 +57,8 @@
     background-size: contain;
     height: 25px;
     width: 25px;
-    margin-left: 5px;
     background-color: transparent;
+    margin-top:5px;
 }
 
 
