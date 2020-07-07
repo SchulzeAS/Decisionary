@@ -93,7 +93,7 @@ function  removePencil(){
  * @param {int} the view to jump to
  */
 function clickToChangeView(view){
-	if(clickViewBool == true){
+    if (clickViewBool == true && assertView()){
 		hideView(schritte[currentView]);
 		disableNavElement(schritteNav[currentView]);
 		modifyData(currentView); // was macht diese Funktion hier?
