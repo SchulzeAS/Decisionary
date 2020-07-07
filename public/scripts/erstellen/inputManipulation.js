@@ -15,7 +15,6 @@ function addInput(type) {
 
             //document.getElementById(alternativesContainer).appendChild(createInput(type));
 			//$("#" + alternativesContainer).prev().after(createInput(type));
-            console.log("added row");
             c = document.getElementById(alternativesContainer).childNodes[0].childNodes;
 			if (altCounter > minAlternatives) {
 				c[c.length - 2].childNodes[1].childNodes[0].focus();
@@ -142,7 +141,6 @@ function createInput(type) {
         };
 
         newInput.addEventListener('keydown', function (event) {
-            console.log("typing m8");
             if (event.code == 'Enter') {
                 addInput("Alt");
             }
