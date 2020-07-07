@@ -176,6 +176,10 @@ function updateAlternativeHUD() {
  * move to the previous alternative rating
  */
 function backAlternative() {
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i < rLabels.length; i++) {
+        rLabels[i].style.color = "black";
+    }
     currentAlternative--;
     updateAlternativeHUD();
 }
