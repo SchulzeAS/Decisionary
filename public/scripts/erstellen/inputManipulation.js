@@ -139,11 +139,20 @@ function createInput(type) {
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
 			removeSpecificInput(newInputRow.id);
-		};
+        };
+
+        newInput.addEventListener('keydown', function (event) {
+            console.log("typing m8");
+            if (event.code == 'Enter') {
+                addInput("Alt");
+            }
+        });
+
 		if (altCounter >= maxAlternatives) {
 			hideBtn(document.getElementById("addAlternativeButton"));
 		}
-	}
+    }
+
 	if (type == "Crit") {
 		index = critCounter++;
 		tempString = "Kriterium";
@@ -154,7 +163,15 @@ function createInput(type) {
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function () {
 			removeSpecificInput(newInputRow.id);
-		};
+        };
+
+        newInput.addEventListener('keydown', function (event) {
+            console.log("typing m8");
+            if (event.code == 'Enter') {
+                addInput("Crit");
+            }
+        });
+
 		if (critCounter >= maxCriterias) {
 			hideBtn(document.getElementById("addCriteriaButton"));
         }

@@ -42,13 +42,18 @@
 
 
 #overviewTables {
+    overflow-x: auto;
     position: relative;
-    top: 40px;
+    top: 5px;
+    left: 100px;
+    overflow: auto;
+    width: 80%;
+    height: 500px;
+    white-space: nowrap;
 }
 
 #combinedTable {
     position: absolute;
-    top: 40px;
     border-collapse: collapse;
 }
 
@@ -58,7 +63,6 @@
 
 #combinedTable td:first-child {
     border-left: 1px solid black;
-    padding-top: 5px;
     padding-left: 7px;
     padding-right: 5px;
 }
@@ -157,4 +161,13 @@
 
 #beschreibungSpan {
     margin-top: 20px;
+}
+
+.fakeH3Span {
+     font-size: 1.17em;
+    -webkit-margin-before: 1__qem;
+     -webkit-margin-after: 1em;
+     -webkit-margin-start: 0;
+     -webkit-margin-end: 0;
+    font-weight: bold;
 }
