@@ -3,11 +3,11 @@
 /**
  * Required External Modules
  */
- 
+
 const express = require("express");
 const path = require("path");
 
- 
+
 
 /**
  * App Variables
@@ -37,6 +37,9 @@ app.get("/", (req, res) => {
   res.render("erstellen/index");
 });
 
+// A route for adding a new word with a score
+app.get('/add/:poll', savePoll);
+
 app.get("/teilnehmen", (req, res) => {
     res.render("teilnehmen/index");
 });
@@ -60,7 +63,15 @@ app.get("/logout", (req, res) => {
 /**
  * Server Activation
  */
- 
+
  app.listen(port,'0.0.0.0', () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
+
+/**
+ * function for handling post requests.
+ */
+ function savePoll(req, res) {
+   console.log(req);
+
+}

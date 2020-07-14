@@ -4,19 +4,20 @@ var alternativeRatingViewFlag = false;
  * move to the next view
  */
 function next() {
-    
+
 	if (!alternativeRatingViewFlag && assertView()) {
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
 		if (currentView < schritteTeilnehmen.length - 1) {
 			currentView += 1;
-		} 
+		}
 		document.getElementById(schritteTeilnehmen[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNavTeilnehmen[currentView]).style.backgroundColor = navActiveTeilnehmenColor;
 		specificViewChanges(currentView);
+
 		if (currentView == 2) { // reached the alternative ratings view where we will "fake" move next, but stay at current view
             alternativeRatingViewFlag = true;
-        }
+
     } else {
         currentAlternativeAssertClicked == false;
 		//console.log("inside alternatives and they are:" + validateAllInputsAlternative());
@@ -31,6 +32,7 @@ function next() {
 			unvalidatedViewAlternative(); // not all criterias rated
         }
     }
+
 }
 
 /**
@@ -64,7 +66,7 @@ function back() {
 }
 
 function assertView() {
-    
+
 	switch (currentView)
 	{
 		case 0: // current view is "Name", we are at the beginning
