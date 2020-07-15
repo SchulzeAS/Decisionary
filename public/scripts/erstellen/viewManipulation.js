@@ -40,10 +40,10 @@ function specificViewChanges(curView) {
 			return;
 			break;
 		case 4:	// current view is "Link teilen" aka we are done
-			
+
 			document.getElementById("navBack").style.visibility = "hidden";
 			document.getElementById("navNext").style.visibility = "hidden";
-			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id + "/" + "vote";
+			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id;
 			document.getElementById("InputAuswerten").value = baseUrl + "/" + currentPoll.id + "/" + "result";
 			makeNavUnclickable();
 			removePencil()
@@ -71,7 +71,7 @@ function disableNavElement(nav) {
  */
 function addPencil(){
 	pencils = document.getElementsByClassName("pencil");
-	
+
 	for (var i = 0; i < pencils.length; i++) {
 		pencils[i].style.visibility="visible";
 	}
@@ -82,7 +82,7 @@ function addPencil(){
  */
 function  removePencil(){
 	pencils = document.getElementsByClassName("pencil");
-	
+
 	for (var i = 0; i < pencils.length; i++) {
 		pencils[i].style.visibility="hidden";
 	}
@@ -98,10 +98,10 @@ function clickToChangeView(view){
 		disableNavElement(schritteNav[currentView]);
 		modifyData(currentView); // was macht diese Funktion hier?
 		currentView = view;
-		
+
 		document.getElementById(schritte[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
-		
+
 		specificViewChanges(view);
 	}
 }
@@ -129,7 +129,7 @@ function passiveNavHover() {
     document.getElementById(schritteNav[currentView]).childNodes[1].className = "";
 }
 
- 
+
 /**
  * add on click events for the nav elements
  */
@@ -149,7 +149,7 @@ function addMouseHover(){
             $(this).css("cursor", "pointer").css("backgroundColor", navActiveColor);
 		}).mouseleave(function() {
 			$(this).css("backgroundColor", navDisabledColor);
-			
+
 			$("#" + schritteNav[currentView]).css("backgroundColor", navActiveColor);
 		});
 	}

@@ -1,6 +1,6 @@
 const altId = "alt";
 const critId = "crit";
-const baseUrl = "http://example.dev";
+const baseUrl = "http://decisionary.ddns.net";
 
 var currentView = 0;
 var clickViewBool = false;
