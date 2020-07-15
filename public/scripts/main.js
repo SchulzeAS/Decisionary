@@ -10,7 +10,7 @@ var schritteNavTeilnehmen = ["navName", "navCriteriaOrder", "navRating", "navOve
 var schritteTeilnehmen = ["step1Name", "step2CriteriaOrder", "step3Rating", "step4Overview"];
 
 var ratingNames = ["A", "B", "X"];
-var ratingNamesWords = ["Exzellent", "Gerade noch", "Überhaupt nicht"]; // has to have the same amount of elements as ratingNames!
+var ratingNamesWords = ["Sehr gut", "Gut genug", "Überhaupt nicht"]; // has to have the same amount of elements as ratingNames!
 
 var minAlternatives = 2;
 var maxAlternatives = 15;
