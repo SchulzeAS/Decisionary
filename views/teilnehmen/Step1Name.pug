@@ -1,5 +1,5 @@
-block layout-content 
-    h1 Thema:	
+block layout-content
+    h1 Thema:
         span#ThemaSpan
     h3#beschreibungSpan Beschreibung:
         span#BeschreibungSpan
@@ -11,8 +11,7 @@ block layout-content
     table#WelcomeAltTable
     div.hint#nameHint
         h4 Infotext
-        span 
+        span
             span.HintFirstLine Bitte geben Sie ihren Namen ein
-        img.hideHint(onClick="hideHintALT('nameHint')" src='icons/kreuz.svg') 
-
-            
+        img.hideHint(onClick="hideHintALT('nameHint')" src='icons/kreuz.svg')
+    span#eidi(style="visibility:none") #{uuid}

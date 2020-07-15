@@ -5,6 +5,24 @@ tempPoll.addCriteria("Preis");
 tempPoll.addCriteria("Verfügbarkeit");
 tempPoll.addCriteria("Geschmack");
 tempPoll.addCriteria("Laune");
+
+
+jayson = document.getElementById("eidi").innerHTML;
+if(jayson == ""){
+
+} else {
+console.log(JSON.parse(jayson));
+parsed = JSON.parse(jayson);
+
+loadedPolll = new Poll(parsed.id, parsed.title, parsed.description);
+loadedPolll.alternatives = parsed.alternatives;
+parsed.criterias.forEach(element => {
+
+  loadedPolll.addCriteria(element.name);
+});
+}
+
+
 /*tempPoll.addCriteria("Laktose Index");
 tempPoll.addCriteria("Laktose Index2");
 tempPoll.addCriteria("Laktose Index3");
@@ -17,8 +35,10 @@ tempPoll.addCriteria("Sojahaftigkeit");
 tempPoll.addCriteria("Mehrwertsteuer");
 tempPoll.addCriteria("die Nummer 15");
 */
-
+if(jayson == ""){
 currentPoll = tempPoll;
+} else {
+currentPoll = loadedPolll;}
 currentAltArray = currentPoll.alternatives;
 
 loadPoll(currentPoll);

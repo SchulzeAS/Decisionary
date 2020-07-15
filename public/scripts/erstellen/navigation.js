@@ -17,8 +17,19 @@ function next() {
 		document.getElementById(schritte[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
 		specificViewChanges(currentView);
+		if (currentView == 4)  {
+				console.log("triggered!");
+					$.get("http://localhost:8000/add/"+ JSON.stringify(currentPoll),
+					function(data, status){
+    			alert("Data: " + data + "\nStatus: " + status);});
+				}
+	/*	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET","http://localhost:8000/add/"+ JSON.stringify(currentPoll), false ); // false for synchronous request
+    xmlHttp.send( null );*/
+
 	}
 }
+
 
 /**
  * move to the previous view
@@ -54,7 +65,7 @@ function assertView()
 			if (nameInput.value == "") {
 				highlightInput(nameInput);
 				nameInput.placeholder = "Bitte einen Namen eingeben";
-				
+
 				showHints(startHint);
 				return false;
 			}
@@ -78,7 +89,7 @@ function assertView()
 
 			break;
 		case 2: // current view is "Kriterien"
-			critFlagAssert = true; 
+			critFlagAssert = true;
 			critsCheck = document.getElementsByClassName("CriteriaInputs");
 			critHint = document.getElementById("critHint");
 			hideHints(critHint);
@@ -105,5 +116,3 @@ function assertView()
 	}
 	return true;
 }
-
-
