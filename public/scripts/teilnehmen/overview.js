@@ -12,7 +12,7 @@ function overview() {
 	//descriptionSpan.innerHTML = currentPoll.description;
 
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.criterias, "teilnehmenTable");
-    let result = currentPoll.evaluate();
+    result = currentPoll.evaluate(); //let had to go because then saving votes to server will be 100x easier.
     tableBackgroundColor = document.getElementById("teilnehmenTable").childNodes[0].style.backgroundColor;
     document.getElementById("result").innerHTML = result.bestAlternatives.join(", ");
     if (result.decidingIndex >= 0) {
@@ -24,6 +24,18 @@ function overview() {
     }
 
     highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable", tableBackgroundColor, lighterNavActiveTeilnehmenColor);
+
+	//why would i do some threeway handshake shit when i can just fire and forget the data?
+	//return object to the server
+	pair = {"id" : currentPoll.id,"name" : nameInput.value, "winner" : result.bestAlternatives };
+	//again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
+	//better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
+	//change this.
+	$.get("http://localhost:8000/addvote/"+ JSON.stringify(pair),
+	function(data, status){
+
+});
+
 
 }
 
@@ -107,5 +119,3 @@ function clearTable(table) {
 function hideHint(id) {
 	$("#" + id).css("visibility", "hidden");
 }
-
-

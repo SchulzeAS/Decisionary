@@ -43,7 +43,7 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-  app.get('/add/:poll',cors(corsOptions), savePoll);
+
 
 
 app.get("/", (req, res) => {
@@ -53,14 +53,10 @@ app.get("/", (req, res) => {
 app.get("/teilnehmen", (req, res) => {
     res.render("teilnehmen/index");
 });
-app.get('/:uuid', (req, res) => {
-//*  parsed = JSON.parse(obj);
-  //*string = JSON.stringify(parsed);
-    res.render("teilnehmen/index",{uuid: fs.readFileSync(req.params.uuid + '.json',
-    (err, data) => {  if (err) throw err;  console.log(data)})
-});
-});
 
+app.get('/add/:poll',cors(corsOptions), savePoll);
+app.get('/addvote/:poll',cors(corsOptions), saveVote);
+app.get('/get/:poll',cors(corsOptions), getPoll);//implemented, but not used. Why, actually?
 
 
 
@@ -71,6 +67,20 @@ app.get("/auswertung", (req, res) => {
 
 app.get("/test", (req, res) => {
     res.render("dragdropPrototype");
+});
+
+app.get("/print/:uuid", (req, res) => {
+    temp = fs.readFileSync(req.params.uuid + "_votes.json");
+    cont = JSON.parse(temp);
+    console.log(cont);
+});
+
+app.get('/:uuid', (req, res) => {
+//*  parsed = JSON.parse(obj);
+  //*string = JSON.stringify(parsed);
+    res.render("teilnehmen/index",{uuid: fs.readFileSync(req.params.uuid + '.json',
+    (err, data) => {  if (err) throw err;  console.log(data)})
+});
 });
 
 /*app.get("/user", (req, res) => {
@@ -90,10 +100,10 @@ app.get("/logout", (req, res) => {
 });
 
 /**
- * function for handling post requests.
+ * function for handling pseudo post requests.
  */
  function savePoll(req, res) {
-   console.log("cake is a lie");
+
    //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
    poll = JSON.parse(req.params.poll);
 
@@ -101,6 +111,60 @@ app.get("/logout", (req, res) => {
      if (err) throw err;
      console.log('Replaced!');
    });
+
+
+}
+
+/**
+* function for h
+*
+*/
+function getPoll(req, res) {
+
+  //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
+  poll = JSON.parse(req.params.poll);
+
+  //get "poll_votes.json"
+
+
+
+
+//file is now existant, return innerts in res.
+console.log(res); ///WHAT THE MOTHERTRUCKING FIREFUCK ARE YOU!?
+//res.params.data = fs.readFileSync(file_path);
+//cont = votes from other people
+cont = fs.readFileSync(file_path);
+res.send(cont);
+
+
+
+}
+
+function saveVote(req, res) {
+
+  //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
+  poll = JSON.parse(req.params.poll);
+    file_path = poll.id + "_votes.json";
+  console.log(poll);
+  console.log("================");
+  console.log();
+
+  if (fs.existsSync(file_path)) {
+    //file exists and is actually JSON
+  } else {
+    format = {
+      "id" : poll.id,
+      "winner" : []
+    }
+fs.writeFileSync(file_path, JSON.stringify(format));
+}
+
+temp = fs.readFileSync(file_path);
+cont = JSON.parse(temp);
+
+cont.votes[cont.votes.length] = {"name" : poll.name, "winner" : poll.winner} ;
+
+fs.writeFileSync(file_path, JSON.stringify(cont));
 
 
 }

@@ -18,7 +18,7 @@ function next() {
 		document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
 		specificViewChanges(currentView);
 		if (currentView == 4)  {
-				console.log("triggered!");
+				//madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
 					$.get("http://localhost:8000/add/"+ JSON.stringify(currentPoll),
 					function(data, status){
     			alert("Data: " + data + "\nStatus: " + status);});

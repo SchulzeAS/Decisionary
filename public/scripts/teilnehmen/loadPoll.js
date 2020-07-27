@@ -11,7 +11,7 @@ jayson = document.getElementById("eidi").innerHTML;
 if(jayson == ""){
 
 } else {
-console.log(JSON.parse(jayson));
+
 parsed = JSON.parse(jayson);
 
 loadedPolll = new Poll(parsed.id, parsed.title, parsed.description);
