@@ -154,7 +154,7 @@ function saveVote(req, res) {
   } else {
     format = {
       "id" : poll.id,
-      "winner" : []
+      "votes" : []
     }
 fs.writeFileSync(file_path, JSON.stringify(format));
 }
@@ -166,5 +166,5 @@ cont.votes[cont.votes.length] = {"name" : poll.name, "winner" : poll.winner} ;
 
 fs.writeFileSync(file_path, JSON.stringify(cont));
 
-
+res.send();
 }
