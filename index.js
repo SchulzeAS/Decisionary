@@ -58,12 +58,17 @@ app.get('/add/:poll',cors(corsOptions), savePoll);
 app.get('/addvote/:poll',cors(corsOptions), saveVote);
 app.get('/get/:poll',cors(corsOptions), getPoll);//implemented, but not used. Why, actually?
 
-
-
+app.get('/auswertung/:uuid', (req, res) => {
+  console.log(req.params.uuid);
+    res.render("auswerten/index",{uuid: fs.readFileSync(req.params.uuid + '_votes.json',
+    (err, data) => {  if (err) throw err;  console.log(data)})
+})});
 
 app.get("/auswertung", (req, res) => {
     res.render("auswerten/index");
 });
+
+
 
 app.get("/test", (req, res) => {
     res.render("dragdropPrototype");
@@ -105,6 +110,7 @@ app.get("/logout", (req, res) => {
  function savePoll(req, res) {
 
    //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
+   console.log(req.params);
    poll = JSON.parse(req.params.poll);
 
    fs.writeFile(poll.id + '.json', JSON.stringify(poll), function (err) {
@@ -154,7 +160,8 @@ function saveVote(req, res) {
   } else {
     format = {
       "id" : poll.id,
-      "votes" : []
+      "votes" : [],
+      "criteria" : poll.criteria
     }
 fs.writeFileSync(file_path, JSON.stringify(format));
 }

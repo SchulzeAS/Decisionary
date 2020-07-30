@@ -9,6 +9,7 @@ class SummaryData
     addVote(label, amount)
     {
         this.votes.push({label: label, amount: amount});
+        
     }
 
     addParticipant(name)

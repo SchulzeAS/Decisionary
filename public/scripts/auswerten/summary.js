@@ -1,20 +1,47 @@
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
-data.addVote("Döner", 3);
-data.addVote("Brot", 0);
-data.addVote("Salat", 1);
-data.addVote("Käseschnitzel", 6);
-data.addVote("Yoghurt", 2);
-data.addParticipant("Michelle");
-data.addParticipant("Jana");
-data.addParticipant("Lukas");
-data.addParticipant("Adrian");
-data.addParticipant("Niklas");
-data.addParticipant("Pauline");
-data.addParticipant("Jonas");
-data.addParticipant("Christopher");
-data.addParticipant("Caroline");
-data.addParticipant("Martha");
+var jayson = document.getElementById("dada").innerHTML;
+
+if(jayson == ""){
+  data.addVote("Döner", 2);
+  data.addVote("Döner", 1);
+  data.addVote("Brot", 0);
+  data.addVote("Salat", 1);
+  data.addVote("Käseschnitzel", 6);
+  data.addVote("Yoghurt", 2);
+  data.addParticipant("Michelle");
+  data.addParticipant("Jana");
+  data.addParticipant("Lukas");
+  data.addParticipant("Adrian");
+  data.addParticipant("Niklas");
+  data.addParticipant("Pauline");
+  data.addParticipant("Jonas");
+  data.addParticipant("Christopher");
+  data.addParticipant("Caroline");
+  data.addParticipant("Martha");
+} else {
+var cont = JSON.parse(jayson);
+var casts = [];
+casts.fill(0);
+for (let i = 0; i < cont.votes.length; i++) {
+    data.addParticipant(cont.votes[i].name);
+  for(let j = 0; j < cont.votes[i].winner.length; j++){
+    if(typeof(casts[cont.votes[i].winner[j]]) === 'undefined'){
+      casts[cont.votes[i].winner[j]] = 0;
+    }
+    casts[cont.votes[i].winner[j]] = (casts[cont.votes[i].winner[j]]) + 1;
+
+  }
+}
+}
+console.log(casts);
+Object.keys(casts).forEach((item, i) => {
+//console.log(" Item:" + item + "   cont:" + casts[item]);
+data.addVote(item, casts[item]);
+});
+
+
+
 fillWelcomeAltTable("participantsTable", data.participants);
 var myChart = new Chart(ctx, {
     type: "bar",
