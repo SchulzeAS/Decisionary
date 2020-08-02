@@ -23,15 +23,15 @@ var critCounter = 0;
 var alternativesContainer = "alternativesContainer"
 var criteriasContainer = "criteriasContainer"
 
-var navActiveColor = "#A0C940"; // Michelle hier
-var navDisabledColor = "#708F28"; // und hier
+var navActiveColor = "#A0C940"; 
+var navDisabledColor = "#708F28"; 
 
 
 var navActiveTeilnehmenColor = "#8fefec";
 var navDisabledTeilnehmenColor = "#1abbb6";
 var lighterNavActiveTeilnehmenColor = "rgba(143, 239, 236,0.3)";
 
-var activeRadioColor = navActiveTeilnehmenColor; // kann aber auch was immer sein, nur temporear
+var activeRadioColor = navActiveTeilnehmenColor; 
 var passiveRadioColor = "white";
 var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRadioColor
 
