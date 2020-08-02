@@ -44,7 +44,7 @@ function specificViewChanges(curView) {
 			document.getElementById("navBack").style.visibility = "hidden";
 			document.getElementById("navNext").style.visibility = "hidden";
 			document.getElementById("InputTeilnehmen").value = baseUrl + "/" + currentPoll.id;
-			document.getElementById("InputAuswerten").value = baseUrl + "/" + currentPoll.id + "/" + "result";
+			document.getElementById("InputAuswerten").value = baseUrl + "/auswertung/" + currentPoll.id ;
 			makeNavUnclickable();
 			removePencil()
 			break;

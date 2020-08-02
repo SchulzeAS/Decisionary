@@ -38,10 +38,10 @@ app.use(express.static(path.join(__dirname, "public")));
 });*/
 //router for saving poll objects
 
-var corsOptions = {
-  origin: 'localhost',
+/*var corsOptions = {
+  origin: 'decisionary.ddns.net',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+}*/
 
 
 
@@ -54,9 +54,9 @@ app.get("/teilnehmen", (req, res) => {
     res.render("teilnehmen/index");
 });
 
-app.get('/add/:poll',cors(corsOptions), savePoll);
-app.get('/addvote/:poll',cors(corsOptions), saveVote);
-app.get('/get/:poll',cors(corsOptions), getPoll);//implemented, but not used. Why, actually?
+app.get('/add/:poll', savePoll);
+app.get('/addvote/:poll', saveVote);
+app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
 
 app.get('/auswertung/:uuid', (req, res) => {
   console.log(req.params.uuid);
