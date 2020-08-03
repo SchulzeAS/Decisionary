@@ -35,7 +35,8 @@ function copyLink(inputFieldId, tooltipId) {
 
 	document.execCommand("copy");
 	var tooltip = document.getElementById(tooltipId);
-	tooltip.innerHTML = "Kopiert: " + copyText.value;
+	tooltip.innerHTML = "Link Kopiert!";
+	//tooltip.innerHTML = "Kopiert: " + copyText.value;
 }
 
 /**
