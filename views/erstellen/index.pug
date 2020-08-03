@@ -2,36 +2,38 @@ extends ../layout
 
 
 block layout-content
-	div#creationContainer
-		div.navigator#navigatorTop
-			include navigator.pug
-		div.stepsContainer
-			div#step1Topic.Steps
-				include Step1Topic.pug
-			div#step2Alternatives.Steps
-				include Step2Alternatives.pug
-			div#step3Criterias.Steps
-				include Step3Criterias.pug
-			div#step4Overview.Steps
-				include Step4Overview.pug	
-			div#step5Share.Steps
-				include Step5Share.pug
-			
-			img.navButton#navBack(onclick='back()' src='icons/Zuruck.svg') 
-			img.navButton#navNext(onclick='next()' src='icons/Weiter_grun.svg') 
-	
-	script(src="scripts/criteria.js")
-	script(src="scripts/dataProcessing.js")
-	script(src="scripts/identifier.js")
-	script(src="scripts/main.js")
-	script(src="scripts/erstellen/navigation.js")
-	script(src="scripts/navigationGeneral.js")
-	script(src="scripts/erstellen/overview.js")
-	script(src="scripts/poll.js")
-	script(src="scripts/erstellen/viewManipulation.js")
-	script(src="scripts/erstellen/loadingColors.js")
-	script(src="scripts/erstellen/inputManipulation.js")
-	script(src="scripts/styling.js")
-	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+    div#creationContainer
+        div.navigator#navigatorTop
+            include navigator.pug
+        div.stepsContainer
+            div.topStepPadding
+                span.invisible --
+            div#step1Topic.Steps
+                include Step1Topic.pug
+            div#step2Alternatives.Steps
+                include Step2Alternatives.pug
+            div#step3Criterias.Steps
+                include Step3Criterias.pug
+            div#step4Overview.Steps
+                include Step4Overview.pug	
+            div#step5Share.Steps
+                include Step5Share.pug
+            
+            img.navButton#navBack(onclick='back()' src='icons/Zuruck.svg') 
+            img.navButton#navNext(onclick='next()' src='icons/Weiter_grun.svg') 
+    
+    script(src="scripts/criteria.js")
+    script(src="scripts/dataProcessing.js")
+    script(src="scripts/identifier.js")
+    script(src="scripts/main.js")
+    script(src="scripts/erstellen/navigation.js")
+    script(src="scripts/navigationGeneral.js")
+    script(src="scripts/erstellen/overview.js")
+    script(src="scripts/poll.js")
+    script(src="scripts/erstellen/viewManipulation.js")
+    script(src="scripts/erstellen/loadingColors.js")
+    script(src="scripts/erstellen/inputManipulation.js")
+    script(src="scripts/styling.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
 
 

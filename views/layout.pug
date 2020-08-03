@@ -7,6 +7,9 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     meta(name="theme-color", content="#000000")
     title Software Projekt
+    link(href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet')
+    link(rel="stylesheet" href="/w3.css")
     link(rel="stylesheet" href="/style.css")
     link(rel="stylesheet" href="/inputs.css")
     link(rel="stylesheet" href="/views.css")
@@ -16,11 +19,16 @@ html
     link(rel="stylesheet" href="/rating.css")
     link(rel="stylesheet" href="/teilnehmenOverview.css")
 
-    link(href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet')
-    link(href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet')
+
 
     
   body
     div#root
+      div.upperEmpty.zIndexBehind
       noscript <strong>We're sorry but this site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-      block layout-content
+      div.w3-row.viewContainerHeight
+        div.w3-col.l1.s2.hundredHeight.zIndexBehind
+        div.w3-col.l10.hundredHeight
+            block layout-content
+        div.w3-col.l1.s2.hundredHeight.zIndexBehind
+      div.lowerEmpty.zIndexBehind
