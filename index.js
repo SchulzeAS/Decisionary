@@ -161,7 +161,7 @@ function saveVote(req, res) {
     format = {
       "id" : poll.id,
       "votes" : [],
-      "criteria" : poll.criteria
+      "alternatives" : poll.alternatives
     }
 fs.writeFileSync(file_path, JSON.stringify(format));
 }

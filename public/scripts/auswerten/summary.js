@@ -21,8 +21,12 @@ if(jayson == ""){
   data.addParticipant("Martha");
 } else {
 var cont = JSON.parse(jayson);
+console.log(cont.alternatives);
+
 var casts = [];
-casts.fill(0);
+for (var ob in cont.alternatives){
+  casts[cont.alternatives[ob]] = 0;
+}
 for (let i = 0; i < cont.votes.length; i++) {
     data.addParticipant(cont.votes[i].name);
   for(let j = 0; j < cont.votes[i].winner.length; j++){
