@@ -1,15 +1,21 @@
 block navigator
     div#navTopic.navElement(onClick="clickToChangeView(0)").nevErstellen 
-        span Thema
-        img(src="icons/Stift.svg").pencil
+        div.navDivCenter
+            img(src="icons/Stift.svg").pencil
+            span.navSpanNoDropDUMMY Thema
     div#navAlternatives.navElement(onClick="clickToChangeView(1)").nevErstellen 
-        span.navSpanNoDrop Alternativen
-        img(src="icons/Stift.svg").pencil
+        div.navDivCenter 
+            img(src="icons/Stift.svg").pencil
+            span.navSpanNoDrop Alternativen
     div#navCriterias.navElement(onClick="clickToChangeView(2)").nevErstellen 
-        span.navSpanNoDrop Kriterien
-        img(src="icons/Stift.svg").pencil
+        div.navDivCenter
+            img(src="icons/Stift.svg").pencil
+            span.navSpanNoDrop Kriterien
     div#navOverview.navElement(onClick="clickToChangeView(3)").nevErstellen 
-        span.navSpanNoDrop Übersicht
+        div.navDivCenter
+            div.navSpanNoDropDUMMY
+                span.navSpanNoDrop(style="float:left position:relative") Übersicht
     div#navShare.navElement.nevErstellen 
-        span.navSpanNoDrop Teilen
+        div.navDivCenter
+            span.navSpanNoDrop Teilen
 

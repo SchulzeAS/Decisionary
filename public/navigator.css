@@ -27,6 +27,19 @@
 
 .navSpanNoDrop {
     cursor: no-drop;
+    position:relative;
+    float:left;
+}
+
+.navSpanNoDropDUMMY{
+    position:relative;
+    float:left;
+}
+.navDivCenter{
+    /*center navigation elements
+        but this class tag keeps getting removed by js 
+        maybe implement later
+    */
 }
 
 .navTeilnehmen {
@@ -40,8 +53,14 @@
 .pencil {
     width: 20px;
     position: relative;
-    float: right;
     bottom: 8px;
-    right: 20px;
+    float: left;
     visibility: hidden;
+}
+.pencilDummy {
+    width: 20px!important;
+    position: relative;
+    bottom: 8px;
+    float: left;
+    visibility: hidden !important;
 }
