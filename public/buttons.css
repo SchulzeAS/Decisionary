@@ -1,14 +1,14 @@
 #navNext {
     position: absolute;
     right: 20px;
-    z-index: 5;
+    z-index: 10;
 }
 
 #navBack {
     position: absolute;
     left: 20px;
     visibility: hidden;
-    z-index:5;
+    z-index:10;
 }
 
 .removeBtn {

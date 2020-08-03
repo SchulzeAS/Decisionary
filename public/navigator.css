@@ -3,6 +3,7 @@
     height: 47px;
     width: auto;
     font-size: 18px;
+
 }
 
 #navigatorTop {
@@ -12,30 +13,37 @@
 .navElement {
     position: relative;
     padding: 10px;
-    padding-top:13px;
+    padding-top: 13px;
     float: left;
     text-align: center;
-    font-size:auto;
+    font-size: auto;
     font-weight: bold;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
-    color:black;
+    color: black;
+    white-space: nowrap;
+}
+
+.navSpanDrop {
+    position: absolute;
+    left: 31px;
 }
 
 .navSpanNoDrop {
     cursor: no-drop;
-    position:relative;
-    float:left;
+    position: absolute;
+    left:31px;
+
 }
 
-.navSpanNoDropDUMMY{
-    position:relative;
-    float:left;
+.navSpanNoDropDUMMY {
+    position: absolute;
+    left: 31px;
 }
-.navDivCenter{
+.navDivCenter {
     /*center navigation elements
         but this class tag keeps getting removed by js 
         maybe implement later
@@ -67,16 +75,31 @@
 }
 
 .pencil {
-    width: 20px;
+    width: 20px !important;
     position: relative;
     bottom: 8px;
     float: left;
     visibility: hidden;
+    display: inline-block;
 }
 .pencilDummy {
-    width: 20px!important;
+    width: 20px !important;
     position: relative;
     bottom: 8px;
     float: left;
     visibility: hidden !important;
+    display: inline-block;
+}
+
+#zi1{
+    z-index:1;
+}
+#zi2 {
+    z-index: 2;
+}
+#zi3 {
+    z-index: 3;
+}
+#zi4 {
+    z-index: 4;
 }
