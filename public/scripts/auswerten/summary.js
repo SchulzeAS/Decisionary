@@ -1,7 +1,7 @@
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
 var jayson = document.getElementById("dada").innerHTML;
-
+jayson = jayson.replace(/FRAGEZEICHEN/g, "?");
 if(jayson == ""){
   data.addVote("Döner", 2);
   data.addVote("Döner", 1);

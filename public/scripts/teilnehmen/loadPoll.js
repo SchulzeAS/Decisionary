@@ -8,6 +8,7 @@ tempPoll.addCriteria("Laune");
 
 
 jayson = document.getElementById("eidi").innerHTML;
+jayson = jayson.replace(/FRAGEZEICHEN/g,"?");
 if(jayson == ""){
 
 } else {
@@ -59,7 +60,7 @@ function prepareAlternatives(altArray)
     document.getElementById("curAlt").style.visibility = "hidden";
 }
 /**
- * 
+ *
  * @param {any} tableName name of table element to append to
  * @param {any} alts alternative array from poll
  */
@@ -98,7 +99,7 @@ function fillWelcomeAltTable(tableName, alts) {
 /**
  * safely return values from array with proper bounds
  * @param {any} alts alternatives array
- * @param {int} c counter 
+ * @param {int} c counter
  */
 function altSafeguard(alts,c) {
     if (c < alts.length) return alts[c];
