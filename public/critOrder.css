@@ -50,6 +50,10 @@
     text-align: center;
 }
 
+#WelcomeAltTable td{
+    padding-left:10px;
+}
+
 #WelcomeAltTable #firstAltRowWelcome {
     margin-bottom:10px;    
 }

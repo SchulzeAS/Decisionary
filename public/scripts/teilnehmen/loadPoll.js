@@ -1,6 +1,6 @@
 //Niklas: ich erstelle mir hier ein Dummy Poll Object um schonmal das layout machen zu können
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
-tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt","Oreganobrot","Fladen","Kuchen"];
+tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
 tempPoll.addCriteria("Verfügbarkeit");
 tempPoll.addCriteria("Geschmack");
@@ -22,19 +22,6 @@ parsed.criterias.forEach(element => {
 });
 }
 
-
-/*tempPoll.addCriteria("Laktose Index");
-tempPoll.addCriteria("Laktose Index2");
-tempPoll.addCriteria("Laktose Index3");
-tempPoll.addCriteria("Laktose Index4");
-tempPoll.addCriteria("Laktose Index5");
-tempPoll.addCriteria("Laktose Index6");
-tempPoll.addCriteria("Laktose Index7");
-tempPoll.addCriteria("Laktose Index8");
-tempPoll.addCriteria("Sojahaftigkeit");
-tempPoll.addCriteria("Mehrwertsteuer");
-tempPoll.addCriteria("die Nummer 15");
-*/
 if(jayson == ""){
 currentPoll = tempPoll;
 } else {
@@ -71,18 +58,49 @@ function prepareAlternatives(altArray)
     document.getElementById("curAlt").innerHTML = "1 / " + currentPoll.alternatives.length;
     document.getElementById("curAlt").style.visibility = "hidden";
 }
-
+/**
+ * 
+ * @param {any} tableName name of table element to append to
+ * @param {any} alts alternative array from poll
+ */
 function fillWelcomeAltTable(tableName, alts) {
     WelcomeAltTable = document.getElementById(tableName);
+    if (alts.length <= 6) {
+        for (i = 0; i < alts.length; i++) {
+            var row = document.createElement("tr");
+            var cell2 = document.createElement("td");
+            textnode2 = document.createTextNode(alts[i]);
 
-    for (i = 0; i < alts.length; i++) {
-        var row = document.createElement("tr");
-        var cell2 = document.createElement("td");
-        textnode2 = document.createTextNode(alts[i]);
+            cell2.appendChild(textnode2);
+            row.appendChild(cell2);
+            WelcomeAltTable.appendChild(row);
+        }
+    } else {
+        var rounded = Math.round(alts.length / 2);
+        var c = 0;
+        for (i = 0; i < rounded; i++) {
+            var row = document.createElement("tr");
+            var cell2 = document.createElement("td");
+            textnode2 = document.createTextNode(altSafeguard(alts, c++));
+            cell2.appendChild(textnode2);
 
-        cell2.appendChild(textnode2);
-        row.appendChild(cell2);
-        WelcomeAltTable.appendChild(row);
+            var cell3 = document.createElement("td");
+            textnode3 = document.createTextNode(altSafeguard(alts, c++));
+            cell3.appendChild(textnode3);
+
+            row.appendChild(cell2);
+            row.appendChild(cell3);
+            WelcomeAltTable.appendChild(row);
+        }
     }
 
+}
+/**
+ * safely return values from array with proper bounds
+ * @param {any} alts alternatives array
+ * @param {int} c counter 
+ */
+function altSafeguard(alts,c) {
+    if (c < alts.length) return alts[c];
+    else return "";
 }
