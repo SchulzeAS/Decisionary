@@ -23,7 +23,7 @@ function specificViewChanges(curView) {
     if (!clickViewBool) passiveNavHover();
 	document.getElementById("navBack").style.visibility = "visible";
 	document.getElementById("navNext").style.visibility = "visible";
-
+    document.getElementById("navNext").onclick = next;
 	switch (curView) {
 		case 0: // current view is "name", we are at the beginning
 			document.getElementById("navBack").style.visibility = "hidden";
@@ -40,8 +40,9 @@ function specificViewChanges(curView) {
             alternativeRatingViewFlag = true;
             document.getElementById("curAlt").style.visibility = "visible";
 			break;
-		case 3:	// current view is "Uebersicht"
+        case 3:	// current view is "Uebersicht"
             document.getElementById("navNext").src = 'icons/senden_orange.svg';
+            document.getElementById("navNext").onclick = endOfTeilnehmen;
             document.getElementById("navNext").style.borderRadius = "10px";
 			overview();
 			addPencil();
@@ -56,6 +57,48 @@ function specificViewChanges(curView) {
     document.getElementById("navNext").style.borderRadius = "0px";
     document.getElementById("navBack").src = 'icons/Zuruck.svg';
     document.getElementById("navNext").src = 'icons/Weiter_grun.svg';
+}
+
+/**
+ * removes send button and clears current view to show link for the results
+ * */
+function endOfTeilnehmen() {
+    sendData();
+    document.getElementById("navNext").remove();
+    document.getElementById("navBack").remove();
+    document.getElementById("step4Overview").innerHTML = "";
+    //document.getElementById("navigatorTop").innerHTML = "Vielen Dank für Ihre Teilnahme";
+    document.getElementById("navigatorTop").innerHTML = "";
+    var endSpan = document.createElement("span");
+    endSpan.className = "endSpan";
+    endSpan.innerHTML = "Vielen Dank für Ihre Teilnahme";
+    document.getElementById("navigatorTop").appendChild(endSpan);
+   
+    console.log("called clear teilnehmen");
+    var t = endTable();
+    console.log(t);
+    document.getElementById("step4Overview").appendChild(t);
+}
+
+function endTable() {
+    var table = document.createElement("table");
+
+    var FirstRow = document.createElement("tr");
+    var cell = document.createElement("td");
+    var textnode = document.createTextNode("Ihre Ergebnisse wurden erfolgreich gespeichert");
+    cell.appendChild(textnode);
+    FirstRow.appendChild(cell); // empty first cell in first row
+    table.appendChild(FirstRow);
+
+    var SecondRow = document.createElement("tr");
+    var cell2 = document.createElement("td");
+    var link = document.createElement("a");
+    link.setAttribute('href', "/auswertung/" + currentPoll.id);
+    link.appendChild(document.createTextNode("Link zu den Ergebnissen"));
+    cell2.appendChild(link);
+    SecondRow.appendChild(cell2); // empty first cell in first row
+    table.appendChild(SecondRow);
+    return table;
 }
 
 /**

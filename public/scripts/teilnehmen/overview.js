@@ -25,19 +25,25 @@ function overview() {
 
     highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable", tableBackgroundColor, lighterNavActiveTeilnehmenColor);
 
-	//why would i do some threeway handshake shit when i can just fire and forget the data?
-	//return object to the server
+
+
+
+
+
+}
+/**
+ * send the poll data to the server
+ * */
+function sendData() {
+    //why would i do some threeway handshake shit when i can just fire and forget the data?
+    //return object to the server
     console.log(currentPoll);
-	pair = {"id" : currentPoll.id,"name" : nameInput.value, "winner" : result.bestAlternatives, "criteria" : currentPoll.criterias };
-	//again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
-	//better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
-	//change this.
-	$.get("http://decisionary.ddns.net/addvote/"+ JSON.stringify(pair),
-	function(data, status){
-
-});
-
-
+    pair = { "id": currentPoll.id, "name": nameInput.value, "winner": result.bestAlternatives, "criteria": currentPoll.criterias };
+    //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
+    //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
+    //change this.
+    $.get("http://decisionary.ddns.net/addvote/" + JSON.stringify(pair),
+        function (data, status) { });
 }
 
 /**
