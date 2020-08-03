@@ -37,8 +37,10 @@
     clear: left;
 }
 .inputContainer {
+    position: relative;
     clear: both;
     margin-top: 5px;
+    padding-bottom:10px;
 }
 .typeTextTd {
     padding-top: 5px;

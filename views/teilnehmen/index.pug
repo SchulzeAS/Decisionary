@@ -1,10 +1,11 @@
 extends ../layout
-
 block layout-content
     div#creationContainer
         div.navigator#navigatorTop
             include navigator.pug
         div.stepsContainer
+            div.topStepPadding
+                span.invisible --
             div#step1Name.Steps
                 include Step1Name.pug
             div#step2CriteriaOrder.Steps

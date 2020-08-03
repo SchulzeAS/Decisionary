@@ -1,21 +1,23 @@
 block layout-content 
-    div
-        div.Title
-            h1 Übersicht
-            div#overview
-                div#OverviewDesc Bevor Sie die Umfrage festlegen und mit anderen Leuten teilen, kontrollieren Sie nochmal die Eingaben
-                span
-                    span.fakeH3Span Name: 
-                    span#nameSpan
-                br
-                span.fakeH3Span Beschreibung: 
-                span#descriptionSpan
-                br
-                div#overviewTables
-                    table#combinedTable
-    div.hint#overviewHint
-        h4 Infotext
-        span 
-            span.HintFirstLine Sie können oben in der Navigation zu anderen Schritten springen
-        img.hideHint(onClick="hideHint('overviewHint')" src='icons/Kreuz.svg') 	
+    div.w3-row.hundredHeight
+        div.w3-col.l10.s10
+            div.innerPadding
+                h1 Übersicht
+                div#overview
+                    div#OverviewDesc Bevor Sie die Umfrage festlegen und mit anderen Leuten teilen, kontrollieren Sie nochmal die Eingaben
+                    span
+                        span.fakeH3Span Name: 
+                        span#nameSpan
+                    br
+                    span.fakeH3Span Beschreibung: 
+                    span#descriptionSpan
+                    br
+                    div#overviewTables
+                        table#combinedTable
+        div.w3-col.l2.s2.hundredHeight
+            div.hint#overviewHint
+                h4 Infotext
+                span 
+                    span.HintFirstLine Sie können oben in der Navigation zu anderen Schritten springen
+                img.hideHint(onClick="hideHint('overviewHint')" src='icons/Kreuz.svg') 	
             

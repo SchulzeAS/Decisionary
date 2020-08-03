@@ -1,12 +1,14 @@
 #navNext {
     position: absolute;
     right: 20px;
+    z-index: 5;
 }
 
 #navBack {
     position: absolute;
     left: 20px;
     visibility: hidden;
+    z-index:5;
 }
 
 .removeBtn {
@@ -27,9 +29,6 @@
     padding: 0px;
 }
 
-.inputContainer {
-    
-}
 
 .inputContainer td,tr,th {
     vertical-align: top;

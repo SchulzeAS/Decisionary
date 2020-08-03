@@ -1,17 +1,21 @@
 block layout-content
-    h1 Thema:
-        span#ThemaSpan
-    h3#beschreibungSpan Beschreibung:
-        span#BeschreibungSpan
-    h2#teilnehmerNameH2 Name :
-        input#TeilnehmerNameInput(autofocus)
-    br
-    br
-    h4 Alternativen die zur Auswahl stehen:
-    table#WelcomeAltTable
-    div.hint#nameHint
-        h4 Infotext
-        span
-            span.HintFirstLine Bitte geben Sie ihren Namen ein
-        img.hideHint(onClick="hideHintALT('nameHint')" src='icons/kreuz.svg')
+    div.w3-row.hundredHeight
+        div.w3-col.l10.s10
+            div.innerPadding
+                h1 Thema:
+                    span#ThemaSpan
+                h3#beschreibungSpan Beschreibung:
+                    span#BeschreibungSpan
+                h2#teilnehmerNameH2 Name :
+                    input#TeilnehmerNameInput(autofocus)
+                br
+                br
+                h4 Alternativen die zur Auswahl stehen:
+                table#WelcomeAltTable
+        div.w3-col.l2.s2.hundredHeight
+            div.hint#nameHint
+                h4 Infotext
+                span
+                    span.HintFirstLine Bitte geben Sie ihren Namen ein
+                img.hideHint(onClick="hideHintALT('nameHint')" src='icons/kreuz.svg')
     span#eidi(style="visibility:hidden") #{uuid}

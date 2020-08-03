@@ -82,6 +82,7 @@ function endOfTeilnehmen() {
 
 function endTable() {
     var table = document.createElement("table");
+    table.className = "innerPadding";
 
     var FirstRow = document.createElement("tr");
     var cell = document.createElement("td");

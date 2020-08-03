@@ -2,13 +2,13 @@
 
 @media only screen and (max-height: 750px) {
 	.stepsContainer {
-		min-height: 400px;
+		/*min-height: 400px;
 		height: 600px !important;
-		max-height: 600px !important;
+		max-height: 600px !important;*/
 	}
 	#creationContainer {
-		top: 5%!important;
-		left:5%!important;
+		/*top: 5%!important;
+		left:5%!important;*/
 	}
 }
 
@@ -117,4 +117,10 @@ img:hover{
 }
 .zIndexBehind{
     z-index:-5;
+}
+.innerPadding{
+    padding-left:30px;
+}
+.overflowScroll{
+    overflow:scroll;
 }
