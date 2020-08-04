@@ -1,16 +1,20 @@
 block layout-content 
-    h1 Alternativen
-    div Alternativen sind die Optionen die zur Auswahl stehen
-    div.inputAndBtnDiv
-        table#alternativesContainer.inputContainer
-            tr#lastAltRow
-                td 
-                td 
-                td
-                    div#alternativeButtons.plusButtonsDiv
-                        img#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")' src='icons/Plus.svg')
-    div.hint#altHint
-        h4 Infotext
-        span 
-            span.HintFirstLine Bitte füllen Sie alle Felder aus
-        img.hideHint(onClick="hideHint('altHint')" src='icons/Kreuz.svg') 
+    div.w3-row.hundredHeight
+        div.w3-col.l10.s10
+            div.innerPadding
+                h1 Alternativen
+                div Alternativen sind die Optionen die zur Auswahl stehen
+                div.inputAndBtnDiv
+                    table#alternativesContainer.inputContainer
+                        tr#lastAltRow
+                            td 
+                            td 
+                            td
+                                div#alternativeButtons.plusButtonsDiv
+                                    img#addAlternativeButton.plusButtons.plusMinusButtons(onclick='addInput("Alt")' src='icons/Plus.svg')
+        div.w3-col.l2.s2.hundredHeight
+            div.hint#altHint
+                h4 Infotext
+                span 
+                    span.HintFirstLine Bitte füllen Sie alle Felder aus
+                img.hideHint(onClick="hideHint('altHint')" src='icons/Kreuz.svg') 

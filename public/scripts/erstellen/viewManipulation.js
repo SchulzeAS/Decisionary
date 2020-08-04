@@ -122,12 +122,23 @@ function makeNavClickable(){
 /**
  * if user hovers over disabled nav element show the no drop cursor
  * but if he hovers over current nav element do nothing
+ * BUG POTENTIAL
  * */
 function passiveNavHover() {
+    console.log("callPassive1")
     for (var i = 0; i < schritteNav.length; i++) {
-        document.getElementById(schritteNav[i]).childNodes[1].className = "navSpanNoDrop";
+        if (document.getElementById(schritteNav[i]).childNodes.length > 1) {
+            var x = document.getElementById(schritteNav[i]).childNodes[1].childNodes;
+            if (x.length > 1)
+                x[1].className = "navSpanNoDrop";
+            else x[0].className = "navSpanNoDrop";
+        }
     }
-    document.getElementById(schritteNav[currentView]).childNodes[1].className = "";
+    console.log("left loop");
+    console.log(document.getElementById(schritteNav[currentView]).childNodes);
+    var c = document.getElementById(schritteNav[currentView]).childNodes[0].childNodes;
+    if (c.length > 1) { c[1].className = "navSpanDrop"; console.log("two!")}
+    else c[0].className = "navSpanDrop";
 }
 
 

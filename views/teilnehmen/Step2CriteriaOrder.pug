@@ -1,11 +1,15 @@
 block layout-content 
-	h1 Kriterien
-	h3 Bitte legen sie ihre Kriterienreihenfolge fest
-	div#critOrder
-	div.hint#orderHint
-		h4 Infotext
-		span 
-			span.HintFirstLine Hier können Sie die Kriterien nach Wichtigkeit per drag-and-drop anordnen
-		img.hideHint(onClick="hideHintALT('orderHint');orderHintFlag = true" src='icons/kreuz.svg') 
-	
-			
+    div.w3-row.hundredHeight
+        div.w3-col.l10.s10
+            div.innerPadding
+                h1 Kriterien
+                h3 Bitte legen sie ihre Kriterienreihenfolge fest
+                div#critOrder
+        div.w3-col.l2.s2.hundredHeight
+                div.hint#orderHint
+                    h4 Infotext
+                    span 
+                        span.HintFirstLine Hier können Sie die Kriterien nach Wichtigkeit per drag-and-drop anordnen
+                    img.hideHint(onClick="hideHintALT('orderHint');orderHintFlag = true" src='icons/kreuz.svg') 
+    
+            

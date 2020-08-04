@@ -66,7 +66,7 @@ function prepareAlternatives(altArray)
  */
 function fillWelcomeAltTable(tableName, alts) {
     WelcomeAltTable = document.getElementById(tableName);
-    if (alts.length <= 6) {
+    if (alts.length <= 4) {
         for (i = 0; i < alts.length; i++) {
             var row = document.createElement("tr");
             var cell2 = document.createElement("td");

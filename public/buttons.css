@@ -1,12 +1,14 @@
 #navNext {
     position: absolute;
     right: 20px;
+    z-index: 10;
 }
 
 #navBack {
     position: absolute;
     left: 20px;
     visibility: hidden;
+    z-index:10;
 }
 
 .removeBtn {
@@ -27,9 +29,6 @@
     padding: 0px;
 }
 
-.inputContainer {
-    
-}
 
 .inputContainer td,tr,th {
     vertical-align: top;
@@ -79,6 +78,10 @@
 .tooltip {
     position: relative;
     display: inline-block;
+    
+}
+#hotFixToolTip{
+    left:-14px;
 }
 
 .tooltip .tooltiptext {
@@ -93,7 +96,7 @@
     z-index: 1;
     bottom: 70%;
     left: 70%;
-    font-size:small;
+    font-size: small;
     margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;

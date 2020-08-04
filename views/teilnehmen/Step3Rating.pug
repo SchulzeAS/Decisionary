@@ -1,13 +1,21 @@
-block layout-content 
-    h1 Bewerten
-    span 
-    div#ratingContainer
-        h3#currentAlternativeSpan
-        table#alternativeRatingTable 
-    div.hint#rateHint
-        h4 Infotext
-        span 
-            span.HintFirstLine Bitte bewerten sie alle Alternativen
-        img.hideHint(onClick="hideHintALT('rateHint')" src='icons/kreuz.svg') 
+block layout-content
+    div.w3-row.hundredHeight
+        div.w3-col.l10.s10
+            div.innerPadding
+                h1 Bewerten
+                span 
+                div#ratingContainer
+                    div.w3-row
+                        div.w3-col.l5.s5
+                            span.invisible --
+                        div.w3-col.l7.s7
+                            h3#currentAlternativeSpan
+                    table#alternativeRatingTable 
+        div.w3-col.l2.s2.hundredHeight
+                div.hint#rateHint
+                    h4 Infotext
+                    span 
+                        span.HintFirstLine Bitte bewerten sie alle Alternativen
+                    img.hideHint(onClick="hideHintALT('rateHint')" src='icons/kreuz.svg') 
     
             

@@ -4,7 +4,6 @@
     position: absolute;
     visibility: hidden;
     z-index: 0;
-    padding: 10px;
     font-size: 20px;
     width: 100%;
     height: auto;
@@ -14,11 +13,12 @@
 .stepsContainer {
     position: relative;
     width: auto;
-    min-height: 500px;
+    /**min-height: 500px;
     height: 800px;
+    max-height: 800px;*/
+    height: 100%;
     max-height: 800px;
     background: white;
-    padding: 30px;
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
     background-color: #FEF9C7;
@@ -47,8 +47,8 @@
     top: 5px;
     left: 100px;
     overflow: auto;
-    width: 80%;
-    height: 500px;
+    width: 95%;
+    height: 200px;
     white-space: nowrap;
 }
 
@@ -83,10 +83,6 @@
     border-bottom: 1px solid black;
 }
 
-.inputContainer {
-    position: relative;
-}
-
 .inputAndBtnDiv {
     display: inline-block;
 }
@@ -100,11 +96,12 @@
 }
 
 .hint {
-    opacity:0;
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    width: 170px;
+    position: relative;
+    opacity: 0;
+    width: 90%;
+    min-width:115px;
+    height: auto;
+    overflow: auto;
     background-color: rgba(226, 226, 226,0.7);
     padding: 10px;
     font-size: 17px;
@@ -115,6 +112,11 @@
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
+    color: black;
+}
+.hintOpacBg {
+    /*background-color: rgba(226, 226, 226,0.7);*/
+
 }
 
 .hideHint:hover {
