@@ -131,9 +131,10 @@ function createInput(type) {
 			newInput.placeholder = "erste Alternative";
 		}
 		tempString = "Alternative";
-		newInput.className = "AlternativeInputs";
+        newInput.className = "AlternativeInputs";
 		newInputRow.className = "Alternative";
 		newSpanNumber.className = "AlternativeSpanNumber";
+        
 		newInputRow.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
@@ -142,7 +143,17 @@ function createInput(type) {
 
         newInput.addEventListener('keydown', function (event) {
             if (event.code == 'Enter') {
-                addInput("Alt");
+                var emptyInput = false;
+                var iHTML = document.getElementsByClassName("AlternativeInputs");
+                pos = Number(this.parentElement.parentElement.childNodes[0].childNodes[1].innerHTML) - 1;
+                for (var i = (pos + 1); i < iHTML.length; i++) {
+                    if (iHTML[i].value == "") {
+                        iHTML[i].focus();
+                        emptyInput = true;
+                        break;
+                    }
+                }
+                if (emptyInput == false)addInput("Alt");
             }
         });
 
@@ -164,9 +175,18 @@ function createInput(type) {
         };
 
         newInput.addEventListener('keydown', function (event) {
-            console.log("typing m8");
             if (event.code == 'Enter') {
-                addInput("Crit");
+                var emptyInput = false;
+                var iHTML = document.getElementsByClassName("CriteriaInputs");
+                pos = Number(this.parentElement.parentElement.childNodes[0].childNodes[1].innerHTML) - 1;
+                for (var i = (pos + 1); i < iHTML.length; i++) {
+                    if (iHTML[i].value == "") {
+                        iHTML[i].focus();
+                        emptyInput = true;
+                        break;
+                    }
+                }
+                if (emptyInput == false) addInput("Crit");
             }
         });
 
