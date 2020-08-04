@@ -78,6 +78,10 @@
 .tooltip {
     position: relative;
     display: inline-block;
+    
+}
+#hotFixToolTip{
+    left:-14px;
 }
 
 .tooltip .tooltiptext {
@@ -92,7 +96,7 @@
     z-index: 1;
     bottom: 70%;
     left: 70%;
-    font-size:small;
+    font-size: small;
     margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;

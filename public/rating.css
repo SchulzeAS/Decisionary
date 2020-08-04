@@ -1,28 +1,33 @@
 #currentAlternativeSpan {
     position: relative;
-    margin-top: 20px;
-    width: 10%;
-    margin-left: auto;
-    margin-right: auto;
+
 }
 #ratingContainer {
     height: 100%;
 }
 
-#curAlt {
+.absoulteBottom {
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
     bottom: 0px;
+    width: 100%;
     margin-bottom: 50px;
-    left: 51%;
-    visibility = hidden;
+}
+
+#curAlt {
+    
+    /*margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 50px;
+    left: 51%;*/
+    visibility: hidden;
 }
 
 #alternativeRatingTable {
     position: relative;
-    top: 60px;
+    top: 10px;
     border-collapse: collapse;
+   /* max-height:360px;*/
 }
 
 #alternativeRatingTable tr {

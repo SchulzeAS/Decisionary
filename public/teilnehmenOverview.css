@@ -4,11 +4,13 @@
 
 #teilnehmenTable {
     border-collapse: collapse;
-    position:relative;
-    top:30px;
     background-color:white;
-    padding-bottom:10px;
-    
+}
+
+.teilnhemmenScrollDiv {
+    position: relative;
+    top: 30px;
+    padding-bottom: 10px;
 }
 
 #teilnehmenTable th {

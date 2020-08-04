@@ -17,8 +17,9 @@
     width: 400px;
 }
 .linkInput {
-    width: 500px;
-    bottom:4px;
+    max-width: 580px;
+    width: 100%;
+    bottom: 4px;
 }
 .LinkContainer {
     margin-top: 40px;

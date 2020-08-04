@@ -5,23 +5,23 @@ block layout-content
             h4 Schicke deinen Freunden diesen Link um an deiner Umfrage teilzunehmen
             div#participateLink
             table.linkTable
-                tr
+                tr(style="white-space: nowrap")
                     td 
                         h2 Teilnehmen Link: 	
-                    td
-                        input(readonly value="example.org" id="InputTeilnehmen" class="linkInput")
-                    td.tooltip
+                    td(style="width:70%")
+                        input#InputTeilnehmen.linkInput(readonly value="example.org")
+                    td.tooltip#hotFixToolTip
                         img.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')" src="icons/Kopie.svg") 
                         span.tooltiptext#copyTooltipTeilnehmen Link kopieren
                 
             div#resultLink
             h4 Unter diesem Link sind die Ergebnisse der Umfrage zu sehen
             table.linkTable
-                tr
+                tr(style="white-space: nowrap")
                     td
                         h2 Ergebnisse Link: 
-                    td
+                    td(style="width:70%")
                         input#InputAuswerten.linkInput(readonly value="example.org/example")
                     td.tooltip
-                        img.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')" src="icons/Kopie.svg")
+                        img.copyButton#copyButtonAuswerten(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')" src="icons/Kopie.svg")
                         span.tooltiptext#copyTooltipAuswerten Link kopieren
