@@ -60,7 +60,7 @@ app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
 
 app.get('/auswertung/:uuid', (req, res) => {
   console.log(req.params.uuid);
-    res.render("auswerten/index",{uuid: fs.readFileSync(req.params.uuid + '_votes.json',
+    res.render("auswerten/index",{uuid: fs.readFileSync("polls/"+req.params.uuid + '_votes.json',
     (err, data) => {  if (err) throw err;  console.log(data)})
 })});
 
@@ -75,7 +75,7 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/print/:uuid", (req, res) => {
-    temp = fs.readFileSync(req.params.uuid + "_votes.json");
+    temp = fs.readFileSync("polls/" + req.params.uuid + "_votes.json");
     cont = JSON.parse(temp);
     console.log(cont);
 });
@@ -83,7 +83,7 @@ app.get("/print/:uuid", (req, res) => {
 app.get('/:uuid', (req, res) => {
 //*  parsed = JSON.parse(obj);
   //*string = JSON.stringify(parsed);
-    res.render("teilnehmen/index",{uuid: fs.readFileSync(req.params.uuid + '.json',
+    res.render("teilnehmen/index",{uuid: fs.readFileSync("polls/" + req.params.uuid + '.json',
     (err, data) => {  if (err) throw err;  console.log(data)})
 });
 });
@@ -113,7 +113,7 @@ app.get("/logout", (req, res) => {
    console.log(req.params);
    poll = JSON.parse(req.params.poll);
 
-   fs.writeFile(poll.id + '.json', JSON.stringify(poll), function (err) {
+   fs.writeFile("polls/" + poll.id + '.json', JSON.stringify(poll), function (err) {
      if (err) throw err;
      console.log('Replaced!');
    });
@@ -150,7 +150,7 @@ function saveVote(req, res) {
 
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
   poll = JSON.parse(req.params.poll);
-    file_path = poll.id + "_votes.json";
+    file_path = "polls/" + poll.id + "_votes.json";
   console.log(poll);
   console.log("================");
   console.log();
