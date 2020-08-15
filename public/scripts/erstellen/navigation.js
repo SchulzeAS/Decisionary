@@ -80,7 +80,7 @@ function assertView()
 				unHighlightInput(altsCheck[i]);
 				if (altsCheck[i].value == "") {
 					highlightInput(altsCheck[i]);
-					altsCheck[i].placeholder = "Bitte eine Alternative eingeben";
+					altsCheck[i].placeholder = "Alternative eingeben";
 					showHints(altHint);
 					altFlagAssert = false;
 				}
@@ -98,7 +98,7 @@ function assertView()
 				unHighlightInput(critsCheck[i]);
 				if (critsCheck[i].value == "") {
 					highlightInput(critsCheck[i]);
-					critsCheck[i].placeholder = "Bitte ein Kriterium eingeben";
+					critsCheck[i].placeholder = "Kriterium eingeben";
 					showHints(critHint);
 					critFlagAssert = false;
 				}
