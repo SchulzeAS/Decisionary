@@ -8,6 +8,7 @@ Browersync // aktualisiert automatisch den Browser wenn Änderungen erkannt werd
 // für frontend css entwicklung // auf Port 3000
 // startet mit "npm run ui" in neuer Konsole
 
-
+um die domain zu ändern in config.js die "baseURL" Variable ändern
+wichtig: einen leeren Order "polls" anlegen um Umfragen zu speichern
 
 http://localhost:8000/add/%7B%22id%22:%22cb36fec2-0c84-458f-a039-64a92378c884%22,%22title%22:%22Zebras%22,%22description%22:%22haben%20Zebras%20schwarze%20oder%20wei%C3%9Fe%20Streifen?%22,%22alternatives%22:[%22wei%C3%9Fe%22,%22schwarze%22],%22criterias%22:[{%22name%22:%22korrekt%22,%22values%22:[null,null]},{%22name%22:%22Lustig%22,%22values%22:[null,null]},{%22name%22:%22Kekse%22,%22values%22:[null,null]}]}
