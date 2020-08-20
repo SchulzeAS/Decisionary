@@ -2,9 +2,9 @@
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
-tempPoll.addCriteria("Verfügbarkeit");
-tempPoll.addCriteria("Geschmack");
-tempPoll.addCriteria("Laune");
+//tempPoll.addCriteria("Verfügbarkeit");
+//tempPoll.addCriteria("Geschmack");
+//tempPoll.addCriteria("Laune");
 
 
 jayson = document.getElementById("eidi").innerHTML;
@@ -44,9 +44,12 @@ function loadPoll(poll)
     prepareAlternatives(poll.alternatives);
     maxCurrentAlternatives = poll.alternatives.length;
     fillWelcomeAltTable("WelcomeAltTable", poll.alternatives)
+    if (poll.criterias.length == 1) ifOneCriteria();
 }
 
-
+function ifOneCriteria() {
+    document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen"
+}
 
 
 /**
