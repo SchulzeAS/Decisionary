@@ -52,7 +52,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: data.getLabels(),
         datasets: [{
-            label: "Anzahl an abgegebenen Gewinnern",
+            label: "Anzahl der Siege",
             data: data.getAmounts(),
             backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",

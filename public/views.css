@@ -95,11 +95,18 @@
     margin-left: 10px;
 }
 
+.logoImage{
+    padding-bottom:5px;
+}
+.logoImage:hover {
+    cursor:default;
+}
+
 .hint {
     position: relative;
     opacity: 0;
     width: 90%;
-    min-width:115px;
+    min-width: 115px;
     height: auto;
     overflow: auto;
     background-color: rgba(226, 226, 226,0.7);
