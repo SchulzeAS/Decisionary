@@ -2,7 +2,7 @@
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
-//tempPoll.addCriteria("Verfügbarkeit");
+tempPoll.addCriteria("Verfügbarkeit");
 //tempPoll.addCriteria("Geschmack");
 //tempPoll.addCriteria("Laune");
 

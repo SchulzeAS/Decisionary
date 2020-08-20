@@ -35,9 +35,10 @@
 
 }
 
-.alternativeTd{
-    padding-left:10px;
-    padding-right:10px;
+.alternativeTd {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
 }
 .critTdTable {
     padding-right: 10px;

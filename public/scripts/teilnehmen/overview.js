@@ -35,14 +35,14 @@ function overview() {
  * send the poll data to the server
  * */
 function sendData() {
-    //why would i do some threeway handshake shit when i can just fire and forget the data?
+    //Dieses Kommentar wurde zensiert von Lukas
     //return object to the server
     console.log(currentPoll);
     pair = { "id": currentPoll.id, "name": nameInput.value, "winner": result.bestAlternatives, "alternatives": currentPoll.alternatives };
     //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
     //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
     //change this.
-    $.get("http://decisionary.ddns.net/addvote/" + (JSON.stringify(pair)).replace(/\?/g,"FRAGEZEICHEN"),
+    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)).replace(/\?/g,"FRAGEZEICHEN"),
         function (data, status) { });
 }
 

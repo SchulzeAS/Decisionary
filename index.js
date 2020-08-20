@@ -44,7 +44,14 @@ app.use(express.static(path.join(__dirname, "public")));
 }*/
 
 
+app.get("/config.js", (req, res) => {
+    fs.readFile('config.js', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/javascript' });
+        res.write(data);
+        return res.end();
+    });
 
+});
 
 app.get("/", (req, res) => {
   res.render("erstellen/index");
@@ -108,7 +115,7 @@ app.get("/logout", (req, res) => {
  * function for handling pseudo post requests.
  */
  function savePoll(req, res) {
-
+   console.log("saving poll");
    //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
    console.log(req.params);
    poll = JSON.parse(req.params.poll);
@@ -136,7 +143,7 @@ function getPoll(req, res) {
 
 
 //file is now existant, return innerts in res.
-console.log(res); ///WHAT THE MOTHERTRUCKING FIREFUCK ARE YOU!?
+console.log(res); ///Dieses Kommentar wurde zensiert von Lukas
 //res.params.data = fs.readFileSync(file_path);
 //cont = votes from other people
 cont = fs.readFileSync(file_path);

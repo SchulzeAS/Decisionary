@@ -19,7 +19,7 @@ function next() {
 		specificViewChanges(currentView);
 		if (currentView == 4)  {
 				//madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-					$.get("http://decisionary.ddns.net/add/"+ (JSON.stringify(currentPoll)).replace(/\?/g,"FRAGEZEICHEN"),
+            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g,"FRAGEZEICHEN"),
 					function(data, status){
 
 				});
