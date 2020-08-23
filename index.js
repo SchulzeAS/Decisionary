@@ -124,7 +124,7 @@ app.get("/logout", (req, res) => {
      if (err) throw err;
      console.log('Replaced!');
    });
-
+     console.log("--------");
 
 }
 
@@ -143,7 +143,7 @@ function getPoll(req, res) {
 
 
 //file is now existant, return innerts in res.
-console.log(res); ///Dieses Kommentar wurde zensiert von Lukas
+console.log("getting " + res); 
 //res.params.data = fs.readFileSync(file_path);
 //cont = votes from other people
 cont = fs.readFileSync(file_path);
@@ -158,6 +158,7 @@ function saveVote(req, res) {
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
   poll = JSON.parse(req.params.poll);
     file_path = "polls/" + poll.id + "_votes.json";
+  console.log("saving vote");
   console.log(poll);
   console.log("================");
   console.log();
@@ -166,7 +167,8 @@ function saveVote(req, res) {
     //file exists and is actually JSON
   } else {
     format = {
-      "id" : poll.id,
+      "id": poll.id,
+      "pollTitle": poll.pollTitle,
       "votes" : [],
       "alternatives" : poll.alternatives
     }

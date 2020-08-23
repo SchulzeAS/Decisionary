@@ -2,17 +2,23 @@ extends ../layout
 
 block layout-content
     div#container
+        img(src='../icons/Logo.svg').logoImage
         div.stepsContainer
+            h3#auswertenTitle.fivePadding
             canvas#summaryChart
-            span(style="padding:5px") Mehrere Sieger pro Person möglich
-            div(style="padding:5px")
+            span.fivePadding Mehrere Sieger pro Person möglich
+            div.fivePadding
                 h4 Bisherige Teilnehmende
                 table#participantsTable
+            div.fivePadding
+                h4 Aggregrationsmatrix
+                table#aggTable
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js" type="text/javascript")
     script(src="../scripts/auswerten/summary.js" type="module")
     script(src="../scripts/auswerten/summaryData.js")
-    script(src="../scripts/teilnehmen/loadPoll.js")
     script(src="../scripts/poll.js")
+    script(src="../scripts/criteria.js")
+    
     
 
     span#dada(style="visibility:hidden") #{uuid}

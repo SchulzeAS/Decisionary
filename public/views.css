@@ -164,6 +164,11 @@
     height: 20px;
 }
 
+#summaryChart{
+max-height:600px;
+max-width:1302px;
+}
+
 #teilnehmerNameH2 {
     margin-top: 40px;
 }

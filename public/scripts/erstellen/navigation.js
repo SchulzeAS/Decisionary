@@ -17,18 +17,16 @@ function next() {
 		document.getElementById(schritte[currentView]).style.visibility = "visible";
 		document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
 		specificViewChanges(currentView);
-		if (currentView == 4)  {
+		if (currentView == 4)  { // sending the data to the server to create a poll
 				//madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
             $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g,"FRAGEZEICHEN"),
 					function(data, status){
 
-				});
-
-
+                });
+            sendEmptyResult();
 	}
 }
 
-}
 
 
 /**
@@ -115,4 +113,13 @@ function assertView()
 			return true;
 	}
 	return true;
+}
+    /**
+     * create an empty result file when first creating a poll
+     * */
+function sendEmptyResult() {
+    pair = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
+    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)),
+        function (data, status) { });
+}
 }

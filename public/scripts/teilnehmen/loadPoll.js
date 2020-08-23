@@ -1,4 +1,4 @@
-//Niklas: ich erstelle mir hier ein Dummy Poll Object um schonmal das layout machen zu können
+//Niklas: ich erstelle mir hier ein Dummy Poll Object als defaults
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");

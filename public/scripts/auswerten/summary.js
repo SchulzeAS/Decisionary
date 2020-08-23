@@ -21,7 +21,14 @@ if(jayson == ""){
   data.addParticipant("Martha");
 } else {
 var cont = JSON.parse(jayson);
-console.log(cont.alternatives);
+    //console.log(cont.alternatives);
+    if (cont.pollTitle != undefined)
+        document.getElementById("auswertenTitle").innerHTML = cont.pollTitle;
+    else
+        document.getElementById("auswertenTitle").innerHTML = "";
+
+
+//console.log(cont);
 
 var casts = [];
 for (var ob in cont.alternatives){
@@ -38,7 +45,7 @@ for (let i = 0; i < cont.votes.length; i++) {
   }
 }
 }
-console.log(casts);
+//console.log(casts);
 Object.keys(casts).forEach((item, i) => {
 //console.log(" Item:" + item + "   cont:" + casts[item]);
 data.addVote(item, casts[item]);
@@ -46,7 +53,24 @@ data.addVote(item, casts[item]);
 
 
 
-fillWelcomeAltTable("participantsTable", data.participants);
+fillParticipants("participantsTable", data.participants);
+
+
+function fillParticipants(tableName, alts) {
+    var WelcomeAltTable = document.getElementById(tableName);
+        for (var i = 0; i < alts.length; i++) {
+            var row = document.createElement("tr");
+            var cell2 = document.createElement("td");
+            var textnode2 = document.createTextNode(alts[i]);
+
+            cell2.appendChild(textnode2);
+            row.appendChild(cell2);
+            WelcomeAltTable.appendChild(row);
+        }
+
+
+}
+
 var myChart = new Chart(ctx, {
     type: "bar",
     data: {
