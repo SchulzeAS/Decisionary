@@ -63,12 +63,16 @@ app.get("/teilnehmen", (req, res) => {
 
 app.get('/add/:poll', savePoll);
 app.get('/addvote/:poll', saveVote);
+app.get('/addAggMatrix/:poll', aggMatrixVote);
 app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
 
 app.get('/auswertung/:uuid', (req, res) => {
-  console.log(req.params.uuid);
-    res.render("auswerten/index",{uuid: fs.readFileSync("polls/"+req.params.uuid + '_votes.json',
-    (err, data) => {  if (err) throw err;  console.log(data)})
+  //console.log("called auswertung for " + req.params.uuid);
+    res.render("auswerten/index", {
+        uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json', 
+            (err, data) => { if (err) throw err; console.log(data) }),
+        aggMatrixJSON: fs.readFileSync("polls/" + req.params.uuid + '_aggMatrix.json',
+            (err, data) => { if (err) throw err; console.log(data) }),
 })});
 
 app.get("/auswertung", (req, res) => {
@@ -77,9 +81,9 @@ app.get("/auswertung", (req, res) => {
 
 
 
-app.get("/test", (req, res) => {
+/**app.get("/test", (req, res) => {
     res.render("dragdropPrototype");
-});
+}); **/
 
 app.get("/print/:uuid", (req, res) => {
     temp = fs.readFileSync("polls/" + req.params.uuid + "_votes.json");
@@ -184,3 +188,101 @@ fs.writeFileSync(file_path, JSON.stringify(cont));
 
 res.send();
 }
+
+function aggMatrixVote(req, res) {
+
+    console.log("saving agg Matrix entry");
+    receivedData = JSON.parse(req.params.poll);
+    file_path = "polls/" + receivedData.id + "_aggMatrix.json";
+    
+    console.log("receivedData: ");
+    console.log(receivedData);
+    console.log("================");
+    console.log();
+
+    if (fs.existsSync(file_path)) {
+        //file exists and is actually JSON
+        console.log("file already exists\n");
+
+        temp = fs.readFileSync(file_path);
+        readData = JSON.parse(temp);
+        console.log("read in data: ");
+        console.log(readData)
+        console.log();
+
+        //var modifiedMatrix = addToAggMatrix(readData.matrix, receivedData.matrix);
+        oldMatrix = readData.matrix;
+
+        limiter = readData.critList.length;
+        console.log("crit limiter: " + limiter)
+        alternativesLimiter = oldMatrix[readData.critList[0]].length;
+        console.log("alternativesLimiter: " + alternativesLimiter)
+        console.log("now trying to write data");
+
+        for (var i = 0; i < limiter; i++) {
+            //console.log(readData.critList[i] + " was ");console.log(oldMatrix[readData.critList[i]]);
+            //console.log(readData.critList[i] + " adding ");console.log(receivedData.matrix[readData.critList[i]]);
+            for (var j = 0; j < alternativesLimiter; j++) {
+                oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
+                console.log("before " + oldMatrix[readData.critList[i]][j]);
+                oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
+                console.log("after " + oldMatrix[readData.critList[i]][j]);
+            }
+        }
+
+        console.log("finished write!");
+
+        //readData.matrix[cont.matrix.length] = { "name": receivedData.name, "winner": receivedData.winner };
+
+        fs.writeFileSync(file_path, JSON.stringify(readData));
+
+    } else {
+        console.log("creating file\n");
+        format = {
+            "id": receivedData.id,
+            "critList": receivedData.critList,
+            "matrix": receivedData.matrix
+            
+        }
+        fs.writeFileSync(file_path, JSON.stringify(format));
+    }
+
+
+
+    res.send();
+}
+
+function removeDuplicateCharacters(string) {
+    return string
+        .split('')
+        .filter(function (item, pos, self) {
+            return self.indexOf(item) == pos;
+        })
+        .join('');
+}
+
+function sortString(str) {
+    var arr = str.split('');
+    var tmp;
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+            /* if ASCII code greater then swap the elements position*/
+            if (arr[i] > arr[j]) {
+                tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
+        }
+    }
+    return arr.join('');
+}
+
+
+/**
+ * takes a users votes and adds them to the aggregation matrix
+ * @param {any} oldMatrix the current data written to file
+ * @param {any} newMatrix the votes received from a user to be added to oldMatrix
+ */
+//function addToAggMatrix(oldMatrix, newMatrix) {
+    
+//}

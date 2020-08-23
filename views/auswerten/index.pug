@@ -6,13 +6,16 @@ block layout-content
         div.stepsContainer
             h3#auswertenTitle.fivePadding
             canvas#summaryChart
-            span.fivePadding Mehrere Sieger pro Person möglich
-            div.fivePadding
-                h4 Bisherige Teilnehmende
-                table#participantsTable
-            div.fivePadding
-                h4 Aggregrationsmatrix
-                table#aggTable
+            span.fivePadding#mehrere Mehrere Sieger pro Person möglich
+            div
+                div.fivePadding(style='float:left')
+                    h4#bisherige Bisherige Teilnehmende
+                    table#participantsTable
+                div.fivePadding#aggMatrixContainer(style='float:left')
+                    h4 Aggregrationsmatrix
+                    table#aggTable
+    span#dada(style="visibility:hidden;z-index: -2;") #{uuid}
+    span#xaxa(style="visibility:hidden;z-index: -2;") #{aggMatrixJSON}
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js" type="text/javascript")
     script(src="../scripts/auswerten/summary.js" type="module")
     script(src="../scripts/auswerten/summaryData.js")
@@ -21,4 +24,4 @@ block layout-content
     
     
 
-    span#dada(style="visibility:hidden") #{uuid}
+    

@@ -64,6 +64,7 @@ function specificViewChanges(curView) {
  * */
 function endOfTeilnehmen() {
     sendData();
+    sendAggMatrix()
     document.getElementById("navNext").remove();
     document.getElementById("navBack").remove();
     document.getElementById("step4Overview").innerHTML = "";
@@ -74,9 +75,9 @@ function endOfTeilnehmen() {
     endSpan.innerHTML = "Vielen Dank für Ihre Teilnahme";
     document.getElementById("navigatorTop").appendChild(endSpan);
    
-    console.log("called clear teilnehmen");
+    //console.log("called clear teilnehmen");
     var t = endTable();
-    console.log(t);
+    //console.log(t);
     document.getElementById("step4Overview").appendChild(t);
 }
 
@@ -100,6 +101,26 @@ function endTable() {
     SecondRow.appendChild(cell2); // empty first cell in first row
     table.appendChild(SecondRow);
     return table;
+}
+
+function sendAggMatrix() {
+
+    var aggMatrix = {};
+    for (var i = 0; i < currentPoll.criterias.length; i++) {
+        aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
+        for (var j = 0; j < currentPoll.alternatives.length; j++) {
+            aggMatrix[currentPoll.criterias[i].name][j] = currentPoll.criterias[i].values[j];
+        }
+    }
+
+    var data = {
+        "id": currentPoll.id,
+        "matrix": aggMatrix,
+        "numberOfCriterias": currentPoll.criterias.length
+    };
+
+    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+        function (data, status) { });
 }
 
 /**

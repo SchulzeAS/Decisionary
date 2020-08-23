@@ -1,31 +1,31 @@
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
 var jayson = document.getElementById("dada").innerHTML;
+var aggJSON = document.getElementById("xaxa").innerHTML;
 jayson = jayson.replace(/FRAGEZEICHEN/g, "?");
-if(jayson == ""){
-  data.addVote("Döner", 2);
+if(jayson == ""){ // default testing case
+  data.addVote("Döner", 0);
   data.addVote("Döner", 1);
   data.addVote("Brot", 0);
-  data.addVote("Salat", 1);
-  data.addVote("Käseschnitzel", 6);
+  data.addVote("Salat", 0);
+  data.addVote("Käseschnitzel", 0);
   data.addVote("Yoghurt", 2);
   data.addParticipant("Michelle");
-  data.addParticipant("Jana");
-  data.addParticipant("Lukas");
-  data.addParticipant("Adrian");
-  data.addParticipant("Niklas");
-  data.addParticipant("Pauline");
-  data.addParticipant("Jonas");
   data.addParticipant("Christopher");
-  data.addParticipant("Caroline");
-  data.addParticipant("Martha");
-} else {
+} else { // real data
 var cont = JSON.parse(jayson);
+    var aggConverted = JSON.parse(aggJSON);
+    var aggArray = aggConverted.matrix;
+    var aggCrits = aggConverted.critList;
+    console.log(aggArray);
+    createTable(cont.alternatives, aggArray, "aggTable", aggCrits);
     //console.log(cont.alternatives);
     if (cont.pollTitle != undefined)
         document.getElementById("auswertenTitle").innerHTML = cont.pollTitle;
     else
         document.getElementById("auswertenTitle").innerHTML = "";
+
+
 
 
 //console.log(cont);
@@ -58,18 +58,82 @@ fillParticipants("participantsTable", data.participants);
 
 function fillParticipants(tableName, alts) {
     var WelcomeAltTable = document.getElementById(tableName);
-        for (var i = 0; i < alts.length; i++) {
+    for (var i = 0; i < alts.length; i++) {
+
             var row = document.createElement("tr");
             var cell2 = document.createElement("td");
             var textnode2 = document.createTextNode(alts[i]);
 
-            cell2.appendChild(textnode2);
+        if (i == 0) { // if no one has participated yet 
+            if (cont.votes.length == 1 && cont.votes[0].name === "") {
+                console.log("no one yet");
+                document.getElementById("bisherige").remove();
+                document.getElementById("mehrere").remove();
+                document.getElementById("aggMatrixContainer").remove();
+                textnode2 = document.createTextNode("bis jetzt keine Teilnehmer");
+                var link = document.createElement("a");
+                link.innerHTML = "Link zum Teilnehmen"
+                link.href = baseUrl + "/" + cont.id;
+                link.target = "_blank";
+                console.log(link);
+                cell2.appendChild(link);
+                var bre = document.createElement("br");
+                cell2.prepend(bre);
+                //cell2.style.fontStyle = "italic";
+            }
+        }
+
+            cell2.prepend(textnode2);
             row.appendChild(cell2);
             WelcomeAltTable.appendChild(row);
         }
 
 
 }
+
+function createTable(altArray, critArray, tableId,critList) {
+    console.log(critList);
+    var FirstRow = document.createElement("tr");
+
+    var cell = document.createElement("td");
+    var textnode = document.createTextNode("");
+    cell.appendChild(textnode);
+    FirstRow.appendChild(cell); // empty first cell in first row
+
+    for (var i = 0; i < altArray.length; i++) {
+        var cell = document.createElement("td");
+        cell.className = "alternativeTd";
+        var textnode = document.createTextNode(altArray[i]);
+        cell.appendChild(textnode);
+        FirstRow.appendChild(cell);
+    }
+    document.getElementById(tableId).appendChild(FirstRow);
+    
+    for (var i = 0; i < critList.length; i++) {
+        console.log(critList[i]);
+        var row = document.createElement("tr");
+        var cell2 = document.createElement("td");
+        cell2.className = "critTdTable";
+
+        var textnode2 = document.createTextNode(critList[i]);
+
+        cell2.appendChild(textnode2);
+        row.appendChild(cell2);
+
+        for (var j = 0; j < altArray.length; j++) {
+            var cellALT = document.createElement("td");
+            var textnodeALT = document.createTextNode(critArray[critList[i]][j]);
+            cellALT.className = "rateTd";
+
+            cellALT.appendChild(textnodeALT);
+            row.appendChild(cellALT);
+        }
+
+
+        document.getElementById(tableId).appendChild(row);
+    }
+}
+
 
 var myChart = new Chart(ctx, {
     type: "bar",

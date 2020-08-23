@@ -2,29 +2,30 @@
  * move to the next view
  */
 function next() {
-	if (assertView())
-	{
-		hideView(schritte[currentView]);
+    if (assertView()) {
+        hideView(schritte[currentView]);
 
 
-		disableNavElement(schritteNav[currentView]);
-		modifyData(currentView); // was macht diese Funktion hier?
-		if (currentView < schritte.length - 1) {
-			currentView += 1;
-		} else {
-			currentView = 0;
-		}
-		document.getElementById(schritte[currentView]).style.visibility = "visible";
-		document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
-		specificViewChanges(currentView);
-		if (currentView == 4)  { // sending the data to the server to create a poll
-				//madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g,"FRAGEZEICHEN"),
-					function(data, status){
+        disableNavElement(schritteNav[currentView]);
+        modifyData(currentView); // was macht diese Funktion hier?
+        if (currentView < schritte.length - 1) {
+            currentView += 1;
+        } else {
+            currentView = 0;
+        }
+        document.getElementById(schritte[currentView]).style.visibility = "visible";
+        document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
+        specificViewChanges(currentView);
+        if (currentView == 4) { // sending the data to the server to create a poll
+            //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
+            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g, "FRAGEZEICHEN"),
+                function (data, status) {
 
                 });
-            sendEmptyResult();
-	}
+            sendEmptyResult();// send an empty vote to fill up the results file to show some empty data even before the first person has participated
+            iniliazeAggMatrix();
+        }
+    }
 }
 
 
@@ -122,4 +123,25 @@ function sendEmptyResult() {
     $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)),
         function (data, status) { });
 }
+function iniliazeAggMatrix() {
+
+
+    var aggMatrix = {};
+    for (var i = 0; i < currentPoll.criterias.length; i++) {
+        aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
+    }
+
+    var critList = new Array(currentPoll.criterias.length);
+    for (var i = 0; i < currentPoll.criterias.length; i++) {
+        critList[i] = currentPoll.criterias[i].name;
+    }
+
+    var data = {
+        "id": currentPoll.id,
+        "matrix": aggMatrix,
+        "critList": critList
+    };
+
+    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+        function (data, status) { });
 }
