@@ -1,4 +1,4 @@
-#Decisionary
+# Decisionary
 Decisionary ist eine NodeJS basierte Entscheidungsfindungswebapplikation.
 
 # Informationen zum Projekt
