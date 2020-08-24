@@ -9,7 +9,7 @@ node index.js
 
 Um alle erforderlichen Pakete zu installieren muss zuvor folgender Befehl ausgeführt werden.
 ```
-npm install
+npm ci
 ```
 
 - nodemon (Neustart des Servers bei Änderungen)
