@@ -15,9 +15,12 @@ function createTableRating(critArray, ratingNamesWords, tableId) {
         var row = document.createElement("tr");
         row.className = "ratingRowClass";
         var cellCritName = document.createElement("td");
+        var cellCritNameSpan = document.createElement("span");
         cellCritName.className = "critTd"
         var textnode = document.createTextNode(critArray[i]);
-        cellCritName.appendChild(textnode);
+
+        cellCritNameSpan.appendChild(textnode);
+        cellCritName.appendChild(cellCritNameSpan);
         row.appendChild(cellCritName);
 
         for (j = 0; j < ratingNamesWords.length; j++) {
@@ -166,7 +169,7 @@ function nextAlternative() {
  * updates the alternative name and number
  */
 function updateAlternativeHUD() {
-    document.getElementById("curAlt").innerHTML = (currentAlternative + 1) + " / " + currentPoll.alternatives.length;
+    document.getElementById("curAlt").innerHTML = "(" + (currentAlternative + 1) + " / " + currentPoll.alternatives.length + ")";
     document.getElementById("currentAlternativeSpan").innerHTML = currentPoll.getAllAlternatives()[currentAlternative];
     clearRatings();
     loadRatings();

@@ -3,19 +3,20 @@ block layout-content
         div.w3-col.l10.s10
             div.innerPadding
                 h1 Bewerten
-                span 
+                span Bewerten Sie, wie die einzelnen Kriterien zu der Alternative passen
                 div#ratingContainer
                     div.w3-row
                         div.w3-col.l5.s5
                             span.invisible --
                         div.w3-col.l7.s7
                             h3#currentAlternativeSpan
+                            h3#curAlt(style='display:inline') 1
                     table#alternativeRatingTable 
         div.w3-col.l2.s2.hundredHeight
                 div.hint#rateHint
                     h4 Infotext
                     span 
-                        span.HintFirstLine Bitte bewerten Sie alle Alternativen
+                        span.HintFirstLine Bitte bewerten Sie alle Kriterien
                     img.hideHint(onClick="hideHintALT('rateHint')" src='icons/kreuz.svg') 
     
             

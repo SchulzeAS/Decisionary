@@ -7,7 +7,7 @@
     font-size: 20px;
     width: 100%;
     height: auto;
-   
+    
 }
 
 .stepsContainer {
@@ -22,6 +22,7 @@
     border-bottom: var(--ui-shawdow-border);
     box-shadow: var(--ui-shawdow);
     background-color: #FEF9C7;
+    overflow-y: auto;
     /*background-color: #F5F5F5;*/
 }
 

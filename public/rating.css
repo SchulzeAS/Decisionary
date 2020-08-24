@@ -1,6 +1,6 @@
 #currentAlternativeSpan {
     position: relative;
-
+    display: inline;
 }
 #ratingContainer {
     height: 100%;
@@ -14,13 +14,14 @@
 }
 
 #curAlt {
-    
     /*margin-left: auto;
     margin-right: auto;
 
     margin-bottom: 50px;
     left: 51%;*/
     visibility: hidden;
+    display: inline;
+    padding-left: 12px;
 }
 
 #alternativeRatingTable {
