@@ -22,7 +22,7 @@ function addInput(type) {
                 c[0].childNodes[1].childNodes[0].focus();
             }
 
-			currentPoll.addAlternative("");
+			
 		}
         if (type == "Crit" && critCounter < maxCriterias) {
             toPrepend = createInput(type);
@@ -36,7 +36,7 @@ function addInput(type) {
                 c[0].childNodes[1].childNodes[0].focus();
 			}
 
-			currentPoll.addCriteria("");
+			
 		}
 	}
 	else {
@@ -56,7 +56,7 @@ function removeSpecificInput(divId) {
 		var index = divId.replace(altId, '');
 		altCounter--;
 		divToBeRemoved.remove();
-		currentPoll.removeAlternative(index);
+		//currentPoll.removeAlternative(index);
         var container = document.getElementById('alternativesContainer').childNodes[0].childNodes;
 		for (let i = 0; i < (container.length-1); i++) {
 			// change id of remaining inputs to new position
@@ -73,7 +73,7 @@ function removeSpecificInput(divId) {
 		var index = divId.replace(critId, '');
 		critCounter--;
 		divToBeRemoved.remove();
-		currentPoll.removeCriteria(index);
+		//currentPoll.removeCriteria(index);
         var container = document.getElementById('criteriasContainer').childNodes[0].childNodes;
         for (let i = 0; i < (container.length - 1); i++) {
 			// change id of remaining inputs to new position
@@ -206,7 +206,7 @@ function createInput(type) {
 	newInput.addEventListener("mouseenter", activeInput);
 
 
-	newInput.addEventListener("input", onUpdateInput);
+	//newInput.addEventListener("input", onUpdateInput);
 	typeTextSpan.innerHTML = tempString;
 	newSpanNumber.innerHTML = (index+1);
 	//typeTextTd.appendChild(newSpanNumber);
@@ -257,6 +257,7 @@ function showBtn(Btn) {
 }
 
 /**
+ * DEPRECIATED use clearPoll() and fillPoll()
  * reacting to the input changed event
  * @param {event} e input changed event arguments
  */

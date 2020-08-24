@@ -19,7 +19,32 @@ function overview() {
         descriptionSpan.style.fontStyle = "normal";
 
     }
+    clearPoll();
+    fillPoll();
+
 	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.getAllCriterias());
+}
+/**
+ * clear poll alternatives and criterias before filling them up again
+ * */
+function clearPoll() {
+    currentPoll.alternatives = [];
+    currentPoll.criterias = [];
+}
+
+/**
+ * fill poll object with data from the inputs
+ * */
+function fillPoll() {
+    alternativeInputs = document.getElementsByClassName("AlternativeInputs");
+    criteriaInputs = document.getElementsByClassName("CriteriaInputs");
+
+    for (var i = 0; i < alternativeInputs.length; i++) {
+        currentPoll.addAlternative(alternativeInputs[i].value);
+    }
+    for (var i = 0; i < criteriaInputs.length; i++) {
+        currentPoll.addCriteria(criteriaInputs[i].value);
+    }
 }
 
 /**

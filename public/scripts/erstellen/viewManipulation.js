@@ -125,7 +125,7 @@ function makeNavClickable(){
  * BUG POTENTIAL
  * */
 function passiveNavHover() {
-    console.log("callPassive1")
+    
     for (var i = 0; i < schritteNav.length; i++) {
         if (document.getElementById(schritteNav[i]).childNodes.length > 1) {
             var x = document.getElementById(schritteNav[i]).childNodes[1].childNodes;
@@ -134,10 +134,9 @@ function passiveNavHover() {
             else x[0].className = "navSpanNoDrop";
         }
     }
-    console.log("left loop");
-    console.log(document.getElementById(schritteNav[currentView]).childNodes);
+
     var c = document.getElementById(schritteNav[currentView]).childNodes[0].childNodes;
-    if (c.length > 1) { c[1].className = "navSpanDrop"; console.log("two!")}
+    if (c.length > 1) { c[1].className = "navSpanDrop";}
     else c[0].className = "navSpanDrop";
 }
 

@@ -17,6 +17,10 @@ function next() {
         document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
         specificViewChanges(currentView);
         if (currentView == 4) { // sending the data to the server to create a poll
+
+            clearPoll();// fill poll object again just to be on the safe side
+            fillPoll();
+
             //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
             $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g, "FRAGEZEICHEN"),
                 function (data, status) {
