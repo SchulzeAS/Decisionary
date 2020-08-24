@@ -34,6 +34,6 @@ var activeRadioColor = navActiveTeilnehmenColor;
 var passiveRadioColor = "white";
 var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRadioColor
 
-var navAuswertenColor = "#708F28"; // same as erstellen passiv farbe
+var navAuswertenColor = "#ff9854"; // same as erstellen passiv farbe
 
 var currentPoll;

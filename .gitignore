@@ -7,3 +7,5 @@ dragdropPrototype.html
 **/.idea
 *.json
 conventions.txt
+
+config.js
