@@ -43,11 +43,11 @@ function createTableRating(critArray, ratingNamesWords, tableId) {
             newInput.onchange= function () {
                 radioColoring();
             };
-            newLabel.onmouseenter = function () {
+            cell.onmouseenter = function () {
                 ratingLabelHoverIn(this);
             };
-            newLabel.onmouseleave = function () {
-                ratingLabelHoverOut(this, this.childNodes[0].checked);
+            cell.onmouseleave = function () {
+                ratingLabelHoverOut(this, this.childNodes[0].childNodes[0].checked);
             };
 
             newLabel.appendChild(newInput);
@@ -75,6 +75,17 @@ function rateAlternative(critNumber, rating) {
     currentPoll.criterias[critNumber].values[currentAlternative] = ratingNames[rating];
     if (currentAlternativeAssertClicked == true) {
         recolorAfterRatingIfMarked();
+    }
+}
+/**
+ * debug function to automatically randomly rate everything
+ * */
+function debugRandomRate() {
+    for (var i = 0; i < currentPoll.alternatives.length; i++) {
+        for (var j = 0; j < currentPoll.criterias.length; j++) {
+            randomRated = Math.floor(Math.random() * 3);
+            currentPoll.criterias[j].values[i] = ratingNames[randomRated];
+        }
     }
 }
 
@@ -195,13 +206,16 @@ function backAlternative() {
 function radioChangeState(thisRadio, parent) {
     // it is actually always true but checking anyway
     if (thisRadio.checked == true) {
+
         parent.style.backgroundColor = activeRadioColor;
+        parent.parentElement.style.backgroundColor = activeRadioColor;
     }
     passiveRadioColoring();
 }
 
 function ratingLabelHoverIn(elem) {
-    elem.style.backgroundColor = hoverRadioColor // - irgendein wert, ein wenig transparenters;
+    //elem.style.backgroundColor = hoverRadioColor // - irgendein wert, ein wenig transparenters;
+    elem.style.backgroundColor = hoverRadioColor 
 }
 
 function ratingLabelHoverOut(elem,state) {
@@ -213,9 +227,11 @@ function radioColoring() {
     inputs = document.getElementsByClassName("ratingRadioInput");
     for (i = 0; i < inputs.length; i++) {
         if (inputs[i].checked == false) {
-            inputs[i].parentElement.style.backgroundColor = passiveRadioColor;
+            //inputs[i].parentElement.style.backgroundColor = passiveRadioColor;
+            inputs[i].parentElement.parentElement.style.backgroundColor = passiveRadioColor;
         } else {
-            inputs[i].parentElement.style.backgroundColor = activeRadioColor;
+            //inputs[i].parentElement.style.backgroundColor = activeRadioColor;
+            inputs[i].parentElement.parentElement.style.backgroundColor = activeRadioColor; // color the cell not just the input
         }
     }
     

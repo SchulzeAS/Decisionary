@@ -39,7 +39,15 @@ maxCurrentAlternatives = 0;
 function loadPoll(poll)
 {
     document.getElementById("ThemaSpan").innerHTML = poll.title;
-    document.getElementById("BeschreibungSpan").innerHTML = poll.description;
+    if (poll.description != "") {
+        document.getElementById("BeschreibungSpan").innerHTML = poll.description;
+        document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
+    }
+    else {
+        document.getElementById("BeschreibungSpan").innerHTML = "leider keine Beschreibung vorhanden";
+        document.getElementById("BeschreibungSpan").style.fontStyle = "italic";
+        document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
+    }
     loadCriterias(poll.getAllCriterias(), "critOrder");
     prepareAlternatives(poll.alternatives);
     maxCurrentAlternatives = poll.alternatives.length;
@@ -49,6 +57,7 @@ function loadPoll(poll)
 
 function ifOneCriteria() {
     document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen"
+    document.getElementById("orderHint").style.visibility = "hidden";
 }
 
 

@@ -36,18 +36,25 @@
 
 }
 
-.alternativeTd {
+#teilnehmenTable .alternativeTd {
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
+    background-color: #e6e6e6;
 }
-.critTdTable {
+#teilnehmenTable .critTdTable {
     padding-right: 10px;
+    background-color: #e6e6e6;
+    
 }
 
-#resultSpan{
-    position:relative;
-    top:0px;
+.critTdTable {
+    text-align: right;
+}
+
+#resultSpan {
+    position: relative;
+    top: 0px;
 }
 
 #decisiveIndexSpan {

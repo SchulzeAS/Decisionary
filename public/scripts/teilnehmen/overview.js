@@ -24,18 +24,34 @@ function overview() {
     }
 
     highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable", tableBackgroundColor, lighterNavActiveTeilnehmenColor);
+    boldResult(result);
 
 
 
+}
 
+function boldResult(result) {
+    altTdsTop = document.getElementsByClassName("alternativeTd");
+    allCritCells = document.getElementsByClassName("overviewRow");
+    for (var i = 0; i < result.bestAlternatives.length; i++) {
 
+        for (var j = 0; j < currentPoll.alternatives.length; j++) {
 
+            if (altTdsTop[j].innerHTML == result.bestAlternatives[i]) {
+                
+                altTdsTop[j].style.fontWeight = "bold";
+                for (var x = 0; x < allCritCells.length; x++) {
+                    
+                    allCritCells[x].children[j+1].style.fontWeight = "bold";
+                }
+            }
+        }
+    } 
 }
 /**
  * send the poll data to the server
  * */
 function sendData() {
-    //Dieses Kommentar wurde zensiert von Lukas
     //return object to the server
     console.log(currentPoll);
     pair = { "id": currentPoll.id, "pollTitle": currentPoll.title,"name": nameInput.value, "winner": result.bestAlternatives, "alternatives": currentPoll.alternatives };
@@ -54,6 +70,7 @@ function sendData() {
  */
 function createTableOverview(altArray, critArray,tableId) {
 	var FirstRow = document.createElement("tr");
+    FirstRow.className = "overviewRow";
 
 	var cell = document.createElement("td");
 	var textnode = document.createTextNode("");
@@ -70,7 +87,8 @@ function createTableOverview(altArray, critArray,tableId) {
 	document.getElementById(tableId).appendChild(FirstRow);
 
 	for (i = 0; i < critArray.length; i++) {
-		var row = document.createElement("tr");
+        var row = document.createElement("tr");
+        row.className = "overviewRow";
 		var cell2 = document.createElement("td");
 		cell2.className = "critTdTable";
 
