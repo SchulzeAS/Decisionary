@@ -21,7 +21,7 @@ npm ci
 - Browsersync (für Frontend Entwicklung)
 
 ## Konfigurieren der URL
-Die URL kann in der Datei config.js
+Die URL kann in der Datei config.js ersetzt werden, sofern nicht unter **decisionary.ddns.net** gearbeitet werden soll.
 
 ## Dokumentation der Skripte
 
