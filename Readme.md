@@ -1,3 +1,6 @@
+#Decisionary
+Decisionary ist eine NodeJS basierte Entscheidungsfindungswebapplikation.
+
 # Informationen zum Projekt
 
 Um den Server zu starten muss der folgende Befehl im Verzeichnis mit der `index.js` ausgeführt werden.
@@ -16,6 +19,9 @@ npm ci
 - express (für Views)
 - pug (Template Engine für Express)
 - Browsersync (für Frontend Entwicklung)
+
+## Konfigurieren der URL
+Die URL kann in der Datei config.js
 
 ## Dokumentation der Skripte
 
