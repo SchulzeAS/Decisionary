@@ -1,3 +1,7 @@
+
+document.getElementsByClassName("navAuswerten")[0].style.backgroundColor = navAuswertenColor;
+console.log(document.getElementsByClassName("navAuswerten")[0]);
+
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
 var jayson = document.getElementById("dada").innerHTML;

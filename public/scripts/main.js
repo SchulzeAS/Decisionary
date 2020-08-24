@@ -19,8 +19,8 @@ var minCriterias = 1;
 var maxCriterias = 15;
 var critCounter = 0;
 
-var alternativesContainer = "alternativesContainer"
-var criteriasContainer = "criteriasContainer"
+var alternativesContainer = "alternativesContainer";
+var criteriasContainer = "criteriasContainer";
 
 var navActiveColor = "#A0C940"; 
 var navDisabledColor = "#708F28"; 
@@ -33,5 +33,7 @@ var lighterNavActiveTeilnehmenColor = "rgba(143, 239, 236,0.3)";
 var activeRadioColor = navActiveTeilnehmenColor; 
 var passiveRadioColor = "white";
 var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRadioColor
+
+var navAuswertenColor = "#708F28"; // same as erstellen passiv farbe
 
 var currentPoll;

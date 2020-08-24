@@ -202,53 +202,38 @@ function aggMatrixVote(req, res) {
 
     if (fs.existsSync(file_path)) {
         //file exists and is actually JSON
-        console.log("file already exists\n");
 
         temp = fs.readFileSync(file_path);
         readData = JSON.parse(temp);
         console.log("read in data: ");
         console.log(readData)
-        console.log();
 
-        //var modifiedMatrix = addToAggMatrix(readData.matrix, receivedData.matrix);
         oldMatrix = readData.matrix;
 
         limiter = readData.critList.length;
-        console.log("crit limiter: " + limiter)
         alternativesLimiter = oldMatrix[readData.critList[0]].length;
-        console.log("alternativesLimiter: " + alternativesLimiter)
-        console.log("now trying to write data");
 
         for (var i = 0; i < limiter; i++) {
             //console.log(readData.critList[i] + " was ");console.log(oldMatrix[readData.critList[i]]);
             //console.log(readData.critList[i] + " adding ");console.log(receivedData.matrix[readData.critList[i]]);
             for (var j = 0; j < alternativesLimiter; j++) {
+                if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
                 oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
                 console.log("before " + oldMatrix[readData.critList[i]][j]);
                 oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
                 console.log("after " + oldMatrix[readData.critList[i]][j]);
             }
         }
-
-        console.log("finished write!");
-
-        //readData.matrix[cont.matrix.length] = { "name": receivedData.name, "winner": receivedData.winner };
-
         fs.writeFileSync(file_path, JSON.stringify(readData));
-
     } else {
-        console.log("creating file\n");
+        //console.log("creating file\n");
         format = {
             "id": receivedData.id,
             "critList": receivedData.critList,
-            "matrix": receivedData.matrix
-            
+            "matrix": receivedData.matrix        
         }
         fs.writeFileSync(file_path, JSON.stringify(format));
     }
-
-
-
     res.send();
 }
 
@@ -266,7 +251,6 @@ function sortString(str) {
     var tmp;
     for (var i = 0; i < arr.length; i++) {
         for (var j = i + 1; j < arr.length; j++) {
-            /* if ASCII code greater then swap the elements position*/
             if (arr[i] > arr[j]) {
                 tmp = arr[i];
                 arr[i] = arr[j];
@@ -278,11 +262,4 @@ function sortString(str) {
 }
 
 
-/**
- * takes a users votes and adds them to the aggregation matrix
- * @param {any} oldMatrix the current data written to file
- * @param {any} newMatrix the votes received from a user to be added to oldMatrix
- */
-//function addToAggMatrix(oldMatrix, newMatrix) {
-    
-//}
+
