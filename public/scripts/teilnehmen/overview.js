@@ -40,9 +40,15 @@ function boldResult(result) {
             if (altTdsTop[j].innerHTML == result.bestAlternatives[i]) {
                 
                 altTdsTop[j].style.fontWeight = "bold";
-                for (var x = 0; x < allCritCells.length; x++) {
+                if (result.bestAlternatives.length > 1) {
+                    for (var x = 0; x < allCritCells.length; x++) {
+                        allCritCells[x].children[j + 1].style.fontWeight = "bold";
+                    }
+                }
+                else {
                     
-                    allCritCells[x].children[j+1].style.fontWeight = "bold";
+                        allCritCells[result.decidingIndex+1].children[j + 1].style.fontWeight = "bold";
+                    
                 }
             }
         }

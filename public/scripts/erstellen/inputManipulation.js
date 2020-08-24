@@ -109,7 +109,7 @@ function updateSpanNumbers(span){
 
 /**
  * creates a new input
- * @param {string} type name of the input type
+ * @param {string} type name of the input type (either criteria or alternative)
  */
 function createInput(type) {
 
