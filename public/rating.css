@@ -67,7 +67,7 @@ input[type="radio"]:hover {
 .radioLabel i {
     margin: 0px;
     position: relative;
-    bottom: 10px;
+    bottom: 14px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -81,4 +81,9 @@ input[type="radio"]:hover {
     z-index:-5!important;
     visibility:hidden;
     display:none;
+}
+
+.critTdSpan{
+    position:relative;
+    top:20px;
 }

@@ -25,7 +25,7 @@ const port = process.env.PORT || "8000";
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-//app.use(express.static(path.join(__dirname, "icons"))); funktioniert noch nicht
+//app.use(express.static(path.join(__dirname, "icons"))); //funktioniert nicht
 app.use(express.static(path.join(__dirname, "public")));
 
 
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
  */
 
 /*app.get("/", (req, res) => {
-  res.status(200).send("WHATABYTE: Food For Devs");
+  res.status(200).send("Decisionary");
 });*/
 //router for saving poll objects
 
@@ -79,12 +79,6 @@ app.get("/auswertung", (req, res) => {
     res.render("auswerten/index");
 });
 
-
-
-/**app.get("/test", (req, res) => {
-    res.render("dragdropPrototype");
-}); **/
-
 app.get("/print/:uuid", (req, res) => {
     temp = fs.readFileSync("polls/" + req.params.uuid + "_votes.json");
     cont = JSON.parse(temp);
@@ -102,10 +96,6 @@ app.get('/:uuid', (req, res) => {
 /*app.get("/user", (req, res) => {
   res.render("user", { title: "Profile", userProfile: { nickname: "User1" } });
 });
-
-app.get("/logout", (req, res) => {
-  res.render("logout", { title: "Profile", userProfile: { nickname: "Auth0" } });
-}); */
 
 /**
  * Server Activation
@@ -129,32 +119,22 @@ app.get("/logout", (req, res) => {
      console.log('Replaced!');
    });
      console.log("--------");
-
 }
 
 /**
-* function for h
+* function for getting polls
 *
 */
 function getPoll(req, res) {
-
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
   poll = JSON.parse(req.params.poll);
-
   //get "poll_votes.json"
-
-
-
-
 //file is now existant, return innerts in res.
 console.log("getting " + res); 
 //res.params.data = fs.readFileSync(file_path);
 //cont = votes from other people
 cont = fs.readFileSync(file_path);
 res.send(cont);
-
-
-
 }
 
 function saveVote(req, res) {
@@ -190,23 +170,17 @@ res.send();
 }
 
 function aggMatrixVote(req, res) {
-
-    console.log("saving agg Matrix entry");
     receivedData = JSON.parse(req.params.poll);
+    console.log("saving agg Matrix entry for " + receivedData.id);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
     
-    console.log("receivedData: ");
-    console.log(receivedData);
-    console.log("================");
-    console.log();
-
     if (fs.existsSync(file_path)) {
         //file exists and is actually JSON
 
         temp = fs.readFileSync(file_path);
         readData = JSON.parse(temp);
-        console.log("read in data: ");
-        console.log(readData)
+        //console.log("read in data: ");
+        //console.log(readData)
 
         oldMatrix = readData.matrix;
 
@@ -219,9 +193,9 @@ function aggMatrixVote(req, res) {
             for (var j = 0; j < alternativesLimiter; j++) {
                 if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
                 oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
-                console.log("before " + oldMatrix[readData.critList[i]][j]);
+                //console.log("before " + oldMatrix[readData.critList[i]][j]);
                 oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
-                console.log("after " + oldMatrix[readData.critList[i]][j]);
+                //console.log("after " + oldMatrix[readData.critList[i]][j]);
             }
         }
         fs.writeFileSync(file_path, JSON.stringify(readData));

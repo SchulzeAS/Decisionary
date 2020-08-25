@@ -17,6 +17,7 @@ function createTableRating(critArray, ratingNamesWords, tableId) {
         var cellCritName = document.createElement("td");
         var cellCritNameSpan = document.createElement("span");
         cellCritName.className = "critTd"
+        cellCritNameSpan.className = "critTdSpan"
         var textnode = document.createTextNode(critArray[i]);
 
         cellCritNameSpan.appendChild(textnode);

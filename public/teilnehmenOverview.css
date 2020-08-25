@@ -11,7 +11,9 @@
     position: relative;
     top: 10px;
     padding-bottom: 10px;
-    padding-right:30px;
+    padding-right: 30px;
+    max-height: 440px;
+    min-height: fit-content;
 }
 
 #teilnehmenTable th {

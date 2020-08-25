@@ -137,7 +137,11 @@ function createTable(altArray, critArray, tableId,critList) {
         document.getElementById(tableId).appendChild(row);
     }
 }
-
+//nice to have functionality, not done yet
+function saveImage() {
+    var url_base64 = document.getElementById('summaryChart').toDataURL('image/png');
+    document.getElementById("link").href = url_base64;
+}
 
 var myChart = new Chart(ctx, {
     type: "bar",
@@ -180,15 +184,20 @@ var myChart = new Chart(ctx, {
                 "rgba(75, 192, 192, 1)",
                 "rgba(153, 102, 255, 1)"
             ],
-            borderWidth: 1
+            borderWidth: 1.5
         }]
     },
     options: {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
-                }
+                    beginAtZero: true,
+                    stepSize: 1
+                },
+                /*scaleLabel: {
+                    display: true,
+                    labelString: 'Siege'
+                }*/
             }]
         }
     }
