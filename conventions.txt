@@ -1,3 +1,0 @@
-Methoden: camelCase
-Klassen: PascalCase
-Klammern  auf nächster Zeile
