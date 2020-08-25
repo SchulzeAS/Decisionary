@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/erstellen/inputManipulation.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/erstellen/inputManipulation.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var originalBtnPos; // save the original position of the add input button
+
+/**
+ * adds a new input
+ * @param {string} type name of the input type
+ */
+function addInput(type) {
+	if (type == "Alt" || type == "Crit") {
+        if (type == "Alt" &amp;&amp; altCounter &lt; maxAlternatives) {
+            toPrepend = createInput(type);
+            //document.getElementById(alternativesContainer).lastChild.prepend(toPrepend);
+            //document.getElementById("lastAltRow").parentNode.prepend(toPrepend);
+            e = document.getElementById("lastAltRow").parentNode;
+            e.insertBefore(toPrepend, e.lastChild);
+
+            //document.getElementById(alternativesContainer).appendChild(createInput(type));
+			//$("#" + alternativesContainer).prev().after(createInput(type));
+            c = document.getElementById(alternativesContainer).childNodes[0].childNodes;
+			if (altCounter > minAlternatives) {
+				c[c.length - 2].childNodes[1].childNodes[0].focus();
+			} else {
+                c[0].childNodes[1].childNodes[0].focus();
+            }
+
+			
+		}
+        if (type == "Crit" &amp;&amp; critCounter &lt; maxCriterias) {
+            toPrepend = createInput(type);
+            e = document.getElementById("lastCritRow").parentNode;
+            e.insertBefore(toPrepend, e.lastChild);
+
+            c = document.getElementById(criteriasContainer).childNodes[0].childNodes;
+			if (critCounter > minCriterias) { // very specific element to focus
+                c[c.length - 2].childNodes[1].childNodes[0].focus();
+			} else {
+                c[0].childNodes[1].childNodes[0].focus();
+			}
+
+			
+		}
+	}
+	else {
+		console.log("invalid type for adding input");
+	}
+}
+
+/**
+ * removed a specific div containing an input
+ * and moves all other elements up
+ * @param {string} div Id to be removed
+ */
+function removeSpecificInput(divId) {
+	var divToBeRemoved = document.getElementById(divId);
+	if (divId.includes(altId) &amp;&amp; altCounter > minAlternatives) {
+		
+		var index = divId.replace(altId, '');
+		altCounter--;
+		divToBeRemoved.remove();
+		//currentPoll.removeAlternative(index);
+        var container = document.getElementById('alternativesContainer').childNodes[0].childNodes;
+		for (let i = 0; i &lt; (container.length-1); i++) {
+			// change id of remaining inputs to new position
+			const element = container[i];
+			var elementIndex = element.id.replace(altId, '');
+			if (elementIndex > index) {
+				element.id = altId + (elementIndex - 1);
+			}
+		}
+		updateSpanNumbers("AlternativeSpanNumber");
+	}
+	if (divId.includes(critId) &amp;&amp; critCounter > minCriterias) {
+		
+		var index = divId.replace(critId, '');
+		critCounter--;
+		divToBeRemoved.remove();
+		//currentPoll.removeCriteria(index);
+        var container = document.getElementById('criteriasContainer').childNodes[0].childNodes;
+        for (let i = 0; i &lt; (container.length - 1); i++) {
+			// change id of remaining inputs to new position
+			const element = container[i];
+			var elementIndex = element.id.replace(critId, '');
+			if (elementIndex > index) {
+				element.id = critId + (elementIndex - 1);
+			}
+		}
+		updateSpanNumbers("CriteriaSpanNumber");
+	}
+
+	if (critCounter &lt; maxCriterias) {
+		showBtn(document.getElementById("addCriteriaButton"));
+	}
+	if (altCounter &lt; maxAlternatives) {
+		showBtn(document.getElementById("addAlternativeButton"));
+	}
+
+}
+
+/**
+ * updates numbering after removing an input
+ * @param {String} name of the span class
+ */
+function updateSpanNumbers(span){
+	var spans = document.getElementsByClassName(span);
+	
+	for (let i = 0; i &lt; spans.length; i++) {
+		spans[i].innerHTML = i+1;
+	}
+}
+
+/**
+ * creates a new input
+ * @param {string} type name of the input type (either criteria or alternative)
+ */
+function createInput(type) {
+
+	var newInputRow = document.createElement('tr');
+	var typeTextTd = document.createElement('td');
+	var typeTextSpan = document.createElement('div');
+    var newSpanNumber = document.createElement('span');
+    var inputTd = document.createElement('td');
+    var newInput = document.createElement('input');
+    var buttonTd = document.createElement('td');
+    var newInputDeleteBtn = document.createElement('img');
+    newInputDeleteBtn.src = "icons/Minus.svg";
+	
+	var index;
+
+	if (type == "Alt") {
+		index = altCounter++;
+		if(index == 0){
+			newInput.placeholder = "erste Alternative";
+		}
+		tempString = "Alternative";
+        newInput.className = "AlternativeInputs";
+		newInputRow.className = "Alternative";
+		newSpanNumber.className = "AlternativeSpanNumber";
+        
+		newInputRow.id = "alt" + index;
+		newInputDeleteBtn.id = "removeAlternativeBtn";
+		newInputDeleteBtn.onclick = function () {
+			removeSpecificInput(newInputRow.id);
+        };
+
+        newInput.addEventListener('keydown', function (event) {
+            if (event.code == 'Enter') {
+                var emptyInput = false;
+                var iHTML = document.getElementsByClassName("AlternativeInputs");
+                pos = Number(this.parentElement.parentElement.childNodes[0].childNodes[1].innerHTML) - 1;
+                for (var i = (pos + 1); i &lt; iHTML.length; i++) {
+                    if (iHTML[i].value == "") {
+                        iHTML[i].focus();
+                        emptyInput = true;
+                        break;
+                    }
+                }
+                if (emptyInput == false)addInput("Alt");
+            }
+        });
+
+		if (altCounter >= maxAlternatives) {
+			hideBtn(document.getElementById("addAlternativeButton"));
+		}
+    }
+
+	if (type == "Crit") {
+		index = critCounter++;
+		tempString = "Kriterium";
+		newInput.className = "CriteriaInputs";
+		newInputRow.className = "Criteria";
+		newSpanNumber.className = "CriteriaSpanNumber";
+		newInputRow.id = "crit" + index;
+		newInputDeleteBtn.id = "removeCriteriaBtn";
+		newInputDeleteBtn.onclick = function () {
+			removeSpecificInput(newInputRow.id);
+        };
+
+        newInput.addEventListener('keydown', function (event) {
+            if (event.code == 'Enter') {
+                var emptyInput = false;
+                var iHTML = document.getElementsByClassName("CriteriaInputs");
+                pos = Number(this.parentElement.parentElement.childNodes[0].childNodes[1].innerHTML) - 1;
+                for (var i = (pos + 1); i &lt; iHTML.length; i++) {
+                    if (iHTML[i].value == "") {
+                        iHTML[i].focus();
+                        emptyInput = true;
+                        break;
+                    }
+                }
+                if (emptyInput == false) addInput("Crit");
+            }
+        });
+
+		if (critCounter >= maxCriterias) {
+			hideBtn(document.getElementById("addCriteriaButton"));
+        }
+    }
+
+	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
+	typeTextSpan.className +="inputH3";
+    newSpanNumber.className += " SpanNumber";
+    inputTd.className = "inputTd";
+    typeTextTd.className = "typeTextTd";
+
+	newInput.addEventListener("focus", activeInput); 
+	newInput.addEventListener("mouseleave", unactiveInput); 
+	newInput.addEventListener("mouseenter", activeInput);
+
+
+	//newInput.addEventListener("input", onUpdateInput);
+	typeTextSpan.innerHTML = tempString;
+	newSpanNumber.innerHTML = (index+1);
+	//typeTextTd.appendChild(newSpanNumber);
+    //typeTextTd.appendChild(newInput);
+
+    typeTextTd.appendChild(typeTextSpan);
+    typeTextTd.appendChild(newSpanNumber);
+    newInputRow.appendChild(typeTextTd);
+
+    inputTd.appendChild(newInput);
+    newInputRow.appendChild(inputTd);
+
+    if (newInputRow.className == "Criteria" &amp;&amp; critCounter > minCriterias || newInputRow.className == "Alternative" &amp;&amp; altCounter > minAlternatives) {
+        buttonTd.appendChild(newInputDeleteBtn);
+    }
+    else {
+        buttonTd.innerHTML = "";
+    }
+    newInputRow.appendChild(buttonTd);
+	newInputRow.className += " inputDiv";
+	
+
+	return newInputRow;
+}
+
+/**
+ * hides an object
+ * @param {DOMElement} Element to hide
+ */
+function hideBtn(Btn) {
+	//Btn.style.visibility = "hidden";
+	// the button can not be hidden using the visibilty property because of using views
+	// it caused the button to be still visible even in other views/steps after showing it again
+	//move the button out of the render area to make it unclickable
+	Btn.style.opacity = 0;
+	originalBtnPos = Btn.style.left;
+	Btn.style.left="-500px";
+
+}
+/**
+ * shows a hidden object
+ * @param {DOMElement} Element to show
+ */
+function showBtn(Btn) {
+	//Btn.style.visibility = "visible";
+	Btn.style.opacity = 1;
+	Btn.style.left = originalBtnPos;
+}
+
+/**
+ * DEPRECIATED use clearPoll() and fillPoll()
+ * reacting to the input changed event
+ * @param {event} e input changed event arguments
+ */
+function onUpdateInput(e) {
+	var input = e.target.value;
+	var parent = e.target.parentElement.parentElement;
+	var idx;
+	if (parent.className.includes("Alternative")) {
+		idx = parent.id.replace(altId, "");
+		currentPoll.alternatives[idx] = input;
+	}
+	if (parent.className.includes("Criteria")) {
+		idx = parent.id.replace(critId, "");
+		currentPoll.criterias[idx].name = input;
+	}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:12 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

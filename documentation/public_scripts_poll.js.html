@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/poll.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/poll.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class Poll
+{
+    /**
+     * representation of a poll
+     * @param {string} id Identifier for the poll
+     * @param {string} title Title of the poll
+     * @param {string} description Description of the poll
+     */
+    constructor(id, title, description)
+    {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.alternatives = new Array();
+        this.criterias = new Array();
+    }
+
+    /**
+     * adds a new alternative to the array of alternatives
+     * @param {string} alternative Name of the alternative
+     */
+    addAlternative(alternative)
+    {
+        this.alternatives.push(alternative);
+        this.criterias.forEach(e =>
+                               {
+                                   e.values[e.values.length] = "";
+                               });
+        return this.alternatives;
+    }
+
+    /**
+     * removes the alternative at a given index
+     * @param {int} index Index of the alternative to be removed
+     */
+    removeAlternative(index)
+    {
+        if (index >= 0 &amp;&amp; index &lt; this.alternatives.length &amp;&amp; this.alternatives.length > 2)
+        {
+            this.alternatives.splice(index, 1);
+            this.criterias.forEach(e =>
+                                   {
+                                       e.values.pop();
+                                   });
+        }
+        return this.alternatives;
+    }
+
+    /**
+     * returns a string array containing all alternatives
+     */
+    getAllAlternatives()
+    {
+        var array = new Array();
+        this.alternatives.forEach(element =>
+                                  {
+                                      array.push(element);
+                                  });
+        return array;
+    }
+
+    /**
+     * adds a new criteria to the array of criterias
+     * @param {string} criteriaName Name of the criteria
+     */
+    addCriteria(criteriaName)
+    {
+        this.criterias.push(new Criteria(criteriaName, this.alternatives.length));
+        return this.criterias;
+    }
+
+    /**
+     * removes the criteria at a given index
+     * @param {int} index Index of the criteria to be removed
+     */
+    removeCriteria(index)
+    {
+        if (index >= 0 &amp;&amp; index &lt; this.criterias.length &amp;&amp; this.criterias.length > 1)
+        {
+            this.criterias.splice(index, 1);
+        }
+        return this.criterias;
+    }
+
+    /**
+     * returns a string array containing all criterias
+     */
+    getAllCriterias()
+    {
+        var array = new Array();
+        this.criterias.forEach(element =>
+                               {
+                                   array.push(element.name);
+                               });
+        return array;
+    }
+
+    /**
+     * moves the criteria at given index one position to the front
+     * @param {int} index Index of the criteria to be moved
+     */
+    moveCriteriaUp(index)
+    {
+        if (index > 0 &amp;&amp; index &lt; this.criterias.length)
+        {
+            this.swapCriterias(index - 1, index);
+        }
+        return this;
+    }
+
+    /**
+     * moves the criteria at given index one position to the back
+     * @param {int} index Index of the criteria to be moved
+     */
+    moveCriteriaDown(index)
+    {
+        if (index >= 0 &amp;&amp; index &lt; this.criterias.length - 1)
+        {
+            this.swapCriterias(index, index + 1);
+        }
+        return this;
+    }
+
+    /**
+     * swaps criteria at index1 with criteria at index2
+     * @param {int} index1 Index of the first criteria
+     * @param {int} index2 Index of the second criteria
+     */
+    swapCriterias(index1, index2)
+    {
+        if (index1 >= 0 &amp;&amp; index1 &lt; this.criterias.length - 1 &amp;&amp;
+            index2 > 0 &amp;&amp; index2 &lt; this.criterias.length &amp;&amp;
+            index1 &lt; index2)
+        {
+            var tmp = this.criterias[index1];
+            this.criterias[index1] = this.criterias[index2];
+            this.criterias[index2] = tmp;
+        }
+    }
+
+    /**
+     * returns the name of the best alternative, based on the criteria ratings
+     */
+    evaluate()
+    {
+        var valueMatrix = [ this.alternatives.slice() ];
+        for (let i = 0; i &lt; this.criterias.length; i++)
+        {
+            const element = this.criterias[i];
+            valueMatrix.push(element.values.slice());
+        }
+        for (let valueIdx = 1; valueIdx &lt; valueMatrix.length; valueIdx++)
+        {
+            const row = valueMatrix[valueIdx];
+            var ref = "";
+            for (let j = 0; j &lt; row.length; j++)
+            {
+                if (row[j].length == 1 &amp;&amp; (row[j].toUpperCase() == ratingNames[0] || row[j].toUpperCase() == ratingNames[1] || row[j].toUpperCase() == ratingNames[2]))
+                {
+                    if (ref.length &lt; 1 || row[j] &lt; ref)
+                    {
+                        ref = row[j].toUpperCase();
+                    }
+                }
+            }
+
+            if (ref.length == 0)
+            {
+                continue;
+            }
+
+            for (let j = row.length - 1; j >= 0; j--)
+            {
+                if (row[j].length == 0 || row[j] > ref)
+                {
+                    valueMatrix.forEach(element =>
+                                        {
+                                            element.splice(j, 1);
+                                        });
+                }
+            }
+
+            if (valueMatrix[0].length == 1)
+            {
+                return { decidingIndex: valueIdx - 1, bestAlternatives: valueMatrix[0] };
+            }
+        }
+        if (valueMatrix[0].length > 0)
+        {
+            return { decidingIndex: -1, bestAlternatives: valueMatrix[0] };
+        }
+        else
+        {
+            return { decidingIndex: -1, bestAlternatives: new Array() };
+        }
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:13 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

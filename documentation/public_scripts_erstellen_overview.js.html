@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/erstellen/overview.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/erstellen/overview.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+* base function called to create the overview of all inputs up to now
+*/
+function overview() {
+	var nameSpan = document.getElementById("nameSpan");
+	var descriptionSpan = document.getElementById("descriptionSpan");
+
+	showHints(document.getElementById("overviewHint"));
+
+	clearTable(document.getElementById("combinedTable"));
+
+    nameSpan.innerHTML = currentPoll.title;
+    if (currentPoll.description == "") {
+        descriptionSpan.innerHTML = " keine Beschreibung angegeben";
+        descriptionSpan.style.fontStyle = "italic";
+    }
+    else {
+        descriptionSpan.innerHTML = currentPoll.description;
+        descriptionSpan.style.fontStyle = "normal";
+
+    }
+    clearPoll();
+    fillPoll();
+
+	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.getAllCriterias());
+}
+/**
+ * clear poll alternatives and criterias before filling them up again
+ * */
+function clearPoll() {
+    currentPoll.alternatives = [];
+    currentPoll.criterias = [];
+}
+
+/**
+ * fill poll object with data from the inputs
+ * */
+function fillPoll() {
+    alternativeInputs = document.getElementsByClassName("AlternativeInputs");
+    criteriaInputs = document.getElementsByClassName("CriteriaInputs");
+
+    for (var i = 0; i &lt; alternativeInputs.length; i++) {
+        currentPoll.addAlternative(alternativeInputs[i].value);
+    }
+    for (var i = 0; i &lt; criteriaInputs.length; i++) {
+        currentPoll.addCriteria(criteriaInputs[i].value);
+    }
+}
+
+/**
+ * fills the overview table with alternatives and criteria
+ * @param {array} altArray collection of alternatives
+ * @param {array} critArray collection of criterias
+ */
+function createTableOverview(altArray, critArray) {
+	var FirstRow = document.createElement("tr");
+
+	var cell = document.createElement("td");
+	var textnode = document.createTextNode("");
+	cell.appendChild(textnode);
+	FirstRow.appendChild(cell);
+
+	for (i = 0; i &lt; altArray.length; i++) {
+		var cell = document.createElement("td");
+		var textnode = document.createTextNode(altArray[i]);
+		cell.appendChild(textnode);
+		FirstRow.appendChild(cell);
+	}
+	document.getElementById("combinedTable").appendChild(FirstRow);
+
+	for (i = 0; i &lt; critArray.length; i++) {
+		var row = document.createElement("tr");
+		var cell2 = document.createElement("td");
+		textnode2 = document.createTextNode(critArray[i]);
+
+		cell2.appendChild(textnode2);
+		row.appendChild(cell2);
+
+		for (j = 0; j &lt; altArray.length; j++) {
+			var cellT = document.createElement("td");
+			row.appendChild(cellT);
+		}
+
+
+
+		document.getElementById("combinedTable").appendChild(row);
+	}
+}
+
+/**
+ * used to clear a table
+ * @param {DOMElement} table element
+ */
+function clearTable(table) {
+	while (table.childNodes.length > 0) {
+		table.removeChild(table.lastChild);
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:13 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

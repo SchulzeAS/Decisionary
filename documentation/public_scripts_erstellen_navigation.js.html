@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/erstellen/navigation.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/erstellen/navigation.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * move to the next view
+ */
+function next() {
+    if (assertView()) {
+        hideView(schritte[currentView]);
+
+
+        disableNavElement(schritteNav[currentView]);
+        modifyData(currentView); // was macht diese Funktion hier?
+        if (currentView &lt; schritte.length - 1) {
+            currentView += 1;
+        } else {
+            currentView = 0;
+        }
+        document.getElementById(schritte[currentView]).style.visibility = "visible";
+        document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
+        specificViewChanges(currentView);
+        if (currentView == 4) { // sending the data to the server to create a poll
+
+            clearPoll();// fill poll object again just to be on the safe side
+            fillPoll();
+
+            //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
+            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g, "FRAGEZEICHEN"),
+                function (data, status) {
+
+                });
+            sendEmptyResult();// send an empty vote to fill up the results file to show some empty data even before the first person has participated
+            iniliazeAggMatrix();
+        }
+    }
+}
+
+
+
+/**
+ * move to the previous view
+ */
+function back()
+{
+	hideView(schritte[currentView]);
+	disableNavElement(schritteNav[currentView]);
+	if (currentView > 0) {
+		currentView -= 1;
+	} else {
+		currentView = schritte.length - 1;
+	}
+	document.getElementById(schritte[currentView]).style.visibility = "visible";
+	document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
+	specificViewChanges(currentView);
+}
+/**
+ * check if all inputs have been entered before moving to next view
+ * */
+function assertView()
+{
+
+	switch (currentView)
+	{
+		case 0: // current view is "Thema", we are at the beginning
+			nameInput = document.getElementById("NameInput");
+			startHint = document.getElementById("startHint");
+			unHighlightInput(nameInput);
+			hideHints(startHint);
+			//startHint.style.opacity = 0;
+
+			if (nameInput.value == "") {
+				highlightInput(nameInput);
+				nameInput.placeholder = "Bitte einen Namen eingeben";
+
+				showHints(startHint);
+				return false;
+			}
+
+			break;
+		case 1:	// current view is "Alternativen"
+			altFlagAssert = true;
+			altHint = document.getElementById("altHint");
+			hideHints(altHint);
+			altsCheck = document.getElementsByClassName("AlternativeInputs");
+			for (var i = 0; i &lt; altsCheck.length; i++) {
+				unHighlightInput(altsCheck[i]);
+				if (altsCheck[i].value == "") {
+					highlightInput(altsCheck[i]);
+					altsCheck[i].placeholder = "Alternative eingeben";
+					showHints(altHint);
+					altFlagAssert = false;
+				}
+			}
+			return altFlagAssert;
+
+			break;
+		case 2: // current view is "Kriterien"
+			critFlagAssert = true;
+			critsCheck = document.getElementsByClassName("CriteriaInputs");
+			critHint = document.getElementById("critHint");
+			hideHints(critHint);
+
+			for (var i = 0; i &lt; critsCheck.length; i++) {
+				unHighlightInput(critsCheck[i]);
+				if (critsCheck[i].value == "") {
+					highlightInput(critsCheck[i]);
+					critsCheck[i].placeholder = "Kriterium eingeben";
+					showHints(critHint);
+					critFlagAssert = false;
+				}
+			}
+			return critFlagAssert;
+			break;
+		case 3:	// current view is "Uebersicht"
+			return true;
+			break;
+		case 4:	// current view is "Link teilen" aka we are done
+			return true;
+			break;
+		default:
+			return true;
+	}
+	return true;
+}
+    /**
+     * create an empty result file when first creating a poll
+     * */
+function sendEmptyResult() {
+    pair = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
+    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)),
+        function (data, status) { });
+}
+function iniliazeAggMatrix() {
+
+
+    var aggMatrix = {};
+    for (var i = 0; i &lt; currentPoll.criterias.length; i++) {
+        aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
+    }
+
+    var critList = new Array(currentPoll.criterias.length);
+    for (var i = 0; i &lt; currentPoll.criterias.length; i++) {
+        critList[i] = currentPoll.criterias[i].name;
+    }
+
+    var data = {
+        "id": currentPoll.id,
+        "matrix": aggMatrix,
+        "critList": critList
+    };
+
+    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+        function (data, status) { });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:12 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

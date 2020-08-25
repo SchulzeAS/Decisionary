@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/dataProcessing.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/dataProcessing.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * prepares the Poll oject for the next step
+ * @param {int} viewIndex Index of the current view
+ */
+function modifyData(viewIndex) {
+	switch (viewIndex) {
+		case 0:
+			var name = document.getElementById('NameInput').value;
+			var description = document.getElementById('DescriptionInput').value;
+			if (!currentPoll) {
+				currentPoll = new Poll(
+					createUuid(),
+					name,
+					description
+				);
+			} else {
+				currentPoll.title = name;
+				currentPoll.description = description;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+/**
+ * copies the content of the input field and changes the tooltip as feed back
+ * @param {string} inputFieldId identifier of the inputfield
+ * @param {string} tooltipId identifier of the tooltip
+ */
+function copyLink(inputFieldId, tooltipId) {
+	var copyText = document.getElementById(inputFieldId);
+	copyText.select();
+	copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+	document.execCommand("copy");
+	var tooltip = document.getElementById(tooltipId);
+	tooltip.innerHTML = "Link Kopiert!";
+	//tooltip.innerHTML = "Kopiert: " + copyText.value;
+}
+
+/**
+ * hide the tooltip when the mouse moves out of the button area
+ * @param {string} id of the tooltip
+ */
+
+function toolTipMouseOut(tooltipId) {
+	var tooltip = document.getElementById(tooltipId);
+	tooltip.innerHTML = "Link kopieren";
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:13 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

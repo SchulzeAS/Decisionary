@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/teilnehmen/overview.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/teilnehmen/overview.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+* base function called to create the overview of all inputs up to now
+*/
+function overview() {
+	//var nameSpan = document.getElementById("nameSpan");
+	//var descriptionSpan = document.getElementById("descriptionSpan");
+
+	clearTable(document.getElementById("teilnehmenTable"));
+
+	//nameSpan.innerHTML = currentPoll.title;
+	//descriptionSpan.innerHTML = currentPoll.description;
+
+	createTableOverview(currentPoll.getAllAlternatives(), currentPoll.criterias, "teilnehmenTable");
+    result = currentPoll.evaluate(); //let had to go because then saving votes to server will be 100x easier.
+    tableBackgroundColor = document.getElementById("teilnehmenTable").childNodes[0].style.backgroundColor;
+    document.getElementById("result").innerHTML = result.bestAlternatives.join(", ");
+    if (result.decidingIndex >= 0) {
+        document.getElementById("decisiveIndexSpan").style.opacity = 1;
+        document.getElementById("decisiveIndex").innerHTML = currentPoll.criterias[result.decidingIndex].name;
+    } else {
+        document.getElementById("decisiveIndexSpan").style.opacity = 0;
+        document.getElementById("decisiveIndex").innerHTML = "keins, weil es keinen klaren Gewinner gibt ";
+    }
+
+    highlightDecidingCriteria(result.decidingIndex, "teilnehmenTable", tableBackgroundColor, lighterNavActiveTeilnehmenColor);
+    boldResult(result);
+
+
+
+}
+
+function boldResult(result) {
+    altTdsTop = document.getElementsByClassName("alternativeTd");
+    allCritCells = document.getElementsByClassName("overviewRow");
+    for (var i = 0; i &lt; result.bestAlternatives.length; i++) {
+
+        for (var j = 0; j &lt; currentPoll.alternatives.length; j++) {
+
+            if (altTdsTop[j].innerHTML == result.bestAlternatives[i]) {
+                
+                altTdsTop[j].style.fontWeight = "bold";
+                if (result.bestAlternatives.length > 1) {
+                    for (var x = 0; x &lt; allCritCells.length; x++) {
+                        allCritCells[x].children[j + 1].style.fontWeight = "bold";
+                    }
+                }
+                else {
+                    
+                        allCritCells[result.decidingIndex+1].children[j + 1].style.fontWeight = "bold";
+                    
+                }
+            }
+        }
+    } 
+}
+/**
+ * send the poll data to the server
+ * */
+function sendData() {
+    //return object to the server
+    console.log(currentPoll);
+    pair = { "id": currentPoll.id, "pollTitle": currentPoll.title,"name": nameInput.value, "winner": result.bestAlternatives, "alternatives": currentPoll.alternatives };
+    //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
+    //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
+    //change this.
+    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)).replace(/\?/g,"FRAGEZEICHEN"),
+        function (data, status) { });
+}
+
+/**
+ * fills the overview table with alternatives and criteria
+ * @param {array} altArray collection of alternatives
+ * @param {array} critArray collection of criterias
+ * @param {string} tableId if of table to append to
+ */
+function createTableOverview(altArray, critArray,tableId) {
+	var FirstRow = document.createElement("tr");
+    FirstRow.className = "overviewRow";
+
+	var cell = document.createElement("td");
+	var textnode = document.createTextNode("");
+	cell.appendChild(textnode);
+	FirstRow.appendChild(cell); // empty first cell in first row
+
+	for (i = 0; i &lt; altArray.length; i++) {
+		var cell = document.createElement("td");
+		cell.className = "alternativeTd";
+		var textnode = document.createTextNode(altArray[i]);
+		cell.appendChild(textnode);
+		FirstRow.appendChild(cell);
+	}
+	document.getElementById(tableId).appendChild(FirstRow);
+
+	for (i = 0; i &lt; critArray.length; i++) {
+        var row = document.createElement("tr");
+        row.className = "overviewRow";
+		var cell2 = document.createElement("td");
+		cell2.className = "critTdTable";
+
+		textnode2 = document.createTextNode(critArray[i].name);
+
+		cell2.appendChild(textnode2);
+		row.appendChild(cell2);
+
+		for (j = 0; j &lt; altArray.length; j++) {
+			var cellALT = document.createElement("td");
+
+            convertedRating = ratingNamesWords[ratingNames.indexOf(critArray[i].values[j])];
+            textnodeALT = document.createTextNode(convertedRating);
+			cellALT.className = "rateTd";
+
+			cellALT.appendChild(textnodeALT);
+			row.appendChild(cellALT);
+        }
+
+
+		document.getElementById(tableId).appendChild(row);
+	}
+}
+/**
+ * highlights the decisive row
+ * @param {int} index of the criteria that was decisive in the evaluation
+ * @param {string} tableId of the table to work on
+ * @param {string} defaultColor background color
+ * @param {string} highlightColor highlights
+ */
+
+function highlightDecidingCriteria(index, tableId, defaultColor,highlightColor) {
+    rows = document.getElementById(tableId).childNodes;
+    for (var i = 0; i &lt; rows.length; i++) {
+        rows[i].style.backgroundColor = defaultColor;
+    }
+
+    if (index >= 0) { // catch -1 aka undecisive
+        rows[index + 1].style.backgroundColor = highlightColor;
+    }
+}
+
+/**
+ * used to clear a table
+ * @param {DOMElement} table element
+ */
+function clearTable(table) {
+	while (table.childNodes.length > 0) {
+		table.removeChild(table.lastChild);
+	}
+}
+
+function hideHint(id) {
+	$("#" + id).css("visibility", "hidden");
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:13 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

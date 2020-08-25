@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: public/scripts/teilnehmen/rating.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: public/scripts/teilnehmen/rating.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+createTableRating(currentPoll.getAllCriterias(), ratingNamesWords, "alternativeRatingTable");
+var currentAlternative = 0;
+var inputRatingClassName = "ratingRadioInput";
+var currentAlternativeAssertClicked = false;
+
+/**
+ * creates the table to rate each alternative
+ * @param {array} critArray array of criterias
+ * @param {array} ratingNames containing he simplified names for our ABX-Algorithm
+ * @param {string} tableId of the table to append to
+ */
+function createTableRating(critArray, ratingNamesWords, tableId) {
+    for (i = 0; i &lt; critArray.length; i++) {
+        var row = document.createElement("tr");
+        row.className = "ratingRowClass";
+        var cellCritName = document.createElement("td");
+        var cellCritNameSpan = document.createElement("span");
+        cellCritName.className = "critTd"
+        cellCritNameSpan.className = "critTdSpan"
+        var textnode = document.createTextNode(critArray[i]);
+
+        cellCritNameSpan.appendChild(textnode);
+        cellCritName.appendChild(cellCritNameSpan);
+        row.appendChild(cellCritName);
+
+        for (j = 0; j &lt; ratingNamesWords.length; j++) {
+            var cell = document.createElement("td");
+            cell.className = "ratingTd";
+            newLabel = document.createElement('label');
+            newLabel.className = "radioLabel";
+
+            newInput = document.createElement('input');
+            newInput.type = "radio";
+            newInput.className = "ratingRadioInput";
+            tmpInputName = i;
+            newInput.name = tmpInputName;
+            newInput.value = critArray[i];
+            newInput.setAttribute('data-rating', j);
+            newInput.onclick = function () {
+                //alert(this.name + "" + this.getAttribute('data-rating'));
+                rateAlternative(this.name, this.getAttribute('data-rating'));
+            };
+            newInput.onchange= function () {
+                radioColoring();
+            };
+            cell.onmouseenter = function () {
+                ratingLabelHoverIn(this);
+            };
+            cell.onmouseleave = function () {
+                ratingLabelHoverOut(this, this.childNodes[0].childNodes[0].checked);
+            };
+
+            newLabel.appendChild(newInput);
+
+            newDescriptor = document.createElement('i');
+
+            newDescriptor.innerHTML = ratingNamesWords[j]
+            newLabel.appendChild(newDescriptor);
+
+            cell.appendChild(newLabel);
+
+            row.appendChild(cell);
+        }
+        document.getElementById(tableId).appendChild(row);
+        
+    }
+}
+
+/**
+ * rates an alternative acording to a criteria
+ * @param {int} critNumber the number of the criteria to rate
+ * @param {int} ratingNames the rating to give the criteria
+ */
+function rateAlternative(critNumber, rating) {
+    currentPoll.criterias[critNumber].values[currentAlternative] = ratingNames[rating];
+    if (currentAlternativeAssertClicked == true) {
+        recolorAfterRatingIfMarked();
+    }
+}
+/**
+ * debug function to automatically randomly rate everything
+ * */
+function debugRandomRate() {
+    for (var i = 0; i &lt; currentPoll.alternatives.length; i++) {
+        for (var j = 0; j &lt; currentPoll.criterias.length; j++) {
+            randomRated = Math.floor(Math.random() * 3);
+            currentPoll.criterias[j].values[i] = ratingNames[randomRated];
+        }
+    }
+}
+
+/**
+ * clear all ratings when moving to the next/previous alternative
+ */
+function clearRatings() {
+    var inputs = document.getElementsByClassName("ratingRadioInput");
+    for (i = 0; i &lt; inputs.length; i++) {
+        inputs[i].checked = false;
+    }
+}
+
+/**
+ * load ratings when moving to the next/previous alternative
+ */
+function loadRatings() {
+    for (i = 0; i &lt; currentPoll.criterias.length; i++) {
+        currentPoll.criterias[i].values
+        if (currentPoll.criterias[i].values[currentAlternative] != null) {
+            rateNumber = ratingNames.indexOf(currentPoll.criterias[i].values[currentAlternative]);
+            $('input[name=' + i + ']')[rateNumber].checked = true; // excuse my jquery here but it's the easiest way to check a specific radio btn
+            }
+    }
+}
+
+/**
+ * if the inputs have been marked as still to rate, then update the coloring after each click
+ * reverting the color of already rated inputs
+ * */
+function recolorAfterRatingIfMarked() {
+    rateH = document.getElementById("rateHint");
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i &lt; rLabels.length; i++) {
+        //rLabels[0].style.outline = "inital";
+        rLabels[i].style.color = "black";
+    }
+    unvalidatedViewAlternative();
+}
+
+/**
+ * check if all alternatives/criteria have been rated before moving to the next one
+ */
+function validateAllInputsAlternative() {
+    rateH = document.getElementById("rateHint");
+    hideHints(rateH);
+
+
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i &lt; rLabels.length; i++) {
+        //rLabels[0].style.outline = "inital";
+        rLabels[i].style.color = "black";
+    }
+    res = true;
+    for (i = 0; i &lt; currentPoll.criterias.length; i++) {
+        //console.log(i+"|"+currentPoll.criterias[i].values[currentAlternative]);
+        if (currentPoll.criterias[i].values[currentAlternative] == null) {
+            //console.log("not empty: " + currentPoll.criterias[i].values[currentAlternative]);
+            res = false;
+            showHints(rateH);
+        }
+    }
+    return res;
+}
+/**
+ * instructions to do when not all rated
+ */
+function unvalidatedViewAlternative() {
+    currentAlternativeAssertClicked = true;
+    ratingRows = document.getElementsByClassName("ratingRowClass");
+    for (i = 0; i &lt; currentPoll.criterias.length; i++) {
+        if (currentPoll.criterias[i].values[currentAlternative] == null) {
+            //ratingRows[i].style.backgroundColor = "red";
+            for (j = 1; j &lt; 4; j++) {
+                //ratingRows[i].childNodes[j].childNodes[0].style.outline = "1px solid red";
+                ratingRows[i].childNodes[j].childNodes[0].style.color = " red";
+            }
+        }
+    }
+    
+}
+
+/**
+ * move to the next alternative rating
+ */
+function nextAlternative() {
+    currentAlternative++;
+    updateAlternativeHUD();
+    currentAlternativeAssertClicked = false;
+}
+/**
+ * updates the alternative name and number
+ */
+function updateAlternativeHUD() {
+    document.getElementById("curAlt").innerHTML = "(" + (currentAlternative + 1) + " / " + currentPoll.alternatives.length + ")";
+    document.getElementById("currentAlternativeSpan").innerHTML = currentPoll.getAllAlternatives()[currentAlternative];
+    clearRatings();
+    loadRatings();
+    radioColoring();
+}
+/**
+ * move to the previous alternative rating
+ */
+function backAlternative() {
+    rLabels = document.getElementsByClassName("radioLabel");
+    for (i = 0; i &lt; rLabels.length; i++) {
+        rLabels[i].style.color = "black";
+    }
+    currentAlternative--;
+    updateAlternativeHUD();
+}
+
+/**
+ * color active radio
+ * @param {DOMElement} thisRadio active radio
+ * @param {DOMElement} parent the label to color
+ */
+function radioChangeState(thisRadio, parent) {
+    // it is actually always true but checking anyway
+    if (thisRadio.checked == true) {
+
+        parent.style.backgroundColor = activeRadioColor;
+        parent.parentElement.style.backgroundColor = activeRadioColor;
+    }
+    passiveRadioColoring();
+}
+
+function ratingLabelHoverIn(elem) {
+    //elem.style.backgroundColor = hoverRadioColor // - irgendein wert, ein wenig transparenters;
+    elem.style.backgroundColor = hoverRadioColor 
+}
+
+function ratingLabelHoverOut(elem,state) {
+    if (state == true) elem.style.backgroundColor = activeRadioColor;
+    if (state == false) elem.style.backgroundColor = passiveRadioColor;
+}
+
+function radioColoring() {
+    inputs = document.getElementsByClassName("ratingRadioInput");
+    for (i = 0; i &lt; inputs.length; i++) {
+        if (inputs[i].checked == false) {
+            //inputs[i].parentElement.style.backgroundColor = passiveRadioColor;
+            inputs[i].parentElement.parentElement.style.backgroundColor = passiveRadioColor;
+        } else {
+            //inputs[i].parentElement.style.backgroundColor = activeRadioColor;
+            inputs[i].parentElement.parentElement.style.backgroundColor = activeRadioColor; // color the cell not just the input
+        }
+    }
+    
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Criteria.html">Criteria</a></li><li><a href="Poll.html">Poll</a></li><li><a href="Sortable.html">Sortable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#activeInput">activeInput</a></li><li><a href="global.html#addInput">addInput</a></li><li><a href="global.html#addPencil">addPencil</a></li><li><a href="global.html#afterCritOrder">afterCritOrder</a></li><li><a href="global.html#altSafeguard">altSafeguard</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#assertView">assertView</a></li><li><a href="global.html#back">back</a></li><li><a href="global.html#backAlternative">backAlternative</a></li><li><a href="global.html#clearPoll">clearPoll</a></li><li><a href="global.html#clearRatings">clearRatings</a></li><li><a href="global.html#clearTable">clearTable</a></li><li><a href="global.html#clickToChangeView">clickToChangeView</a></li><li><a href="global.html#copyLink">copyLink</a></li><li><a href="global.html#createInput">createInput</a></li><li><a href="global.html#createTableOverview">createTableOverview</a></li><li><a href="global.html#createTableRating">createTableRating</a></li><li><a href="global.html#createUuid">createUuid</a></li><li><a href="global.html#debugRandomRate">debugRandomRate</a></li><li><a href="global.html#disableNavElement">disableNavElement</a></li><li><a href="global.html#endOfTeilnehmen">endOfTeilnehmen</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#fillPoll">fillPoll</a></li><li><a href="global.html#fillWelcomeAltTable">fillWelcomeAltTable</a></li><li><a href="global.html#findOldIndex">findOldIndex</a></li><li><a href="global.html#getPoll">getPoll</a></li><li><a href="global.html#hideBtn">hideBtn</a></li><li><a href="global.html#hideHint">hideHint</a></li><li><a href="global.html#hideHintALT">hideHintALT</a></li><li><a href="global.html#hideHints">hideHints</a></li><li><a href="global.html#hideView">hideView</a></li><li><a href="global.html#highlightDecidingCriteria">highlightDecidingCriteria</a></li><li><a href="global.html#highlightInput">highlightInput</a></li><li><a href="global.html#highlightRadio">highlightRadio</a></li><li><a href="global.html#loadCriterias">loadCriterias</a></li><li><a href="global.html#loadPoll">loadPoll</a></li><li><a href="global.html#loadRatings">loadRatings</a></li><li><a href="global.html#makeNavClickable">makeNavClickable</a></li><li><a href="global.html#makeNavUnclickable">makeNavUnclickable</a></li><li><a href="global.html#modifyData">modifyData</a></li><li><a href="global.html#next">next</a></li><li><a href="global.html#nextAlternative">nextAlternative</a></li><li><a href="global.html#onUpdateInput">onUpdateInput</a></li><li><a href="global.html#overview">overview</a></li><li><a href="global.html#passiveNavHover">passiveNavHover</a></li><li><a href="global.html#prepareAlternatives">prepareAlternatives</a></li><li><a href="global.html#radioChangeState">radioChangeState</a></li><li><a href="global.html#rateAlternative">rateAlternative</a></li><li><a href="global.html#rearrangedCrits">rearrangedCrits</a></li><li><a href="global.html#recolorAfterRatingIfMarked">recolorAfterRatingIfMarked</a></li><li><a href="global.html#removePencil">removePencil</a></li><li><a href="global.html#removeSpecificInput">removeSpecificInput</a></li><li><a href="global.html#savePoll">savePoll</a></li><li><a href="global.html#sendData">sendData</a></li><li><a href="global.html#sendEmptyResult">sendEmptyResult</a></li><li><a href="global.html#showBtn">showBtn</a></li><li><a href="global.html#showHints">showHints</a></li><li><a href="global.html#specificViewChanges">specificViewChanges</a></li><li><a href="global.html#toolTipMouseOut">toolTipMouseOut</a></li><li><a href="global.html#unactiveInput">unactiveInput</a></li><li><a href="global.html#unHighlightInput">unHighlightInput</a></li><li><a href="global.html#unHighlightRadio">unHighlightRadio</a></li><li><a href="global.html#unvalidatedViewAlternative">unvalidatedViewAlternative</a></li><li><a href="global.html#updateAlternativeHUD">updateAlternativeHUD</a></li><li><a href="global.html#updateSpanNumbers">updateSpanNumbers</a></li><li><a href="global.html#validateAllInputsAlternative">validateAllInputsAlternative</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Aug 25 2020 19:46:12 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
