@@ -148,7 +148,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: data.getLabels(),
         datasets: [{
-            label: "Anzahl der Siege",
+            label: "Anzahl der Siege (Mehrere Sieger pro Person möglich)",
             data: data.getAmounts(),
             backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
@@ -188,16 +188,25 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        legend: {
+            display: false,
+            labels: {
+                boxWidth: 0,
+                boxHeight:0,
+                fontSize: 15,                
+                //fontColor:'#FFFFFF'
+            },
+        },
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
                     stepSize: 1
                 },
-                /*scaleLabel: {
-                    display: true,
-                    labelString: 'Siege'
-                }*/
+                scaleLabel: {
+                    display: false,
+                    labelString: 'Anzahl der Siege (Mehrere Sieger pro Person möglich)'
+                }
             }]
         }
     }

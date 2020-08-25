@@ -87,7 +87,7 @@ function endTable() {
 
     var FirstRow = document.createElement("tr");
     var cell = document.createElement("td");
-    var textnode = document.createTextNode("Ihre Ergebnisse wurden erfolgreich gespeichert");
+    var textnode = document.createTextNode("Ihre Ergebnisse wurden erfolgreich gespeichert.");
     cell.appendChild(textnode);
     FirstRow.appendChild(cell); // empty first cell in first row
     table.appendChild(FirstRow);

@@ -11,11 +11,11 @@ function overview() {
 
     nameSpan.innerHTML = currentPoll.title;
     if (currentPoll.description == "") {
-        descriptionSpan.innerHTML = " keine Beschreibung angegeben";
+        descriptionSpan.innerHTML = " nicht vorhanden";
         descriptionSpan.style.fontStyle = "italic";
     }
     else {
-        descriptionSpan.innerHTML = currentPoll.description;
+        descriptionSpan.innerHTML = " " + currentPoll.description;
         descriptionSpan.style.fontStyle = "normal";
 
     }
@@ -72,7 +72,7 @@ function createTableOverview(altArray, critArray) {
 		var row = document.createElement("tr");
 		var cell2 = document.createElement("td");
 		textnode2 = document.createTextNode(critArray[i]);
-
+        cell2.className = "overviewCritRight";
 		cell2.appendChild(textnode2);
 		row.appendChild(cell2);
 

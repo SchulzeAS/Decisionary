@@ -44,7 +44,7 @@ function loadPoll(poll)
         document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
     }
     else {
-        document.getElementById("BeschreibungSpan").innerHTML = "leider keine Beschreibung vorhanden";
+        document.getElementById("BeschreibungSpan").innerHTML = "nicht vorhanden";
         document.getElementById("BeschreibungSpan").style.fontStyle = "italic";
         document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
     }
@@ -56,7 +56,7 @@ function loadPoll(poll)
 }
 
 function ifOneCriteria() {
-    document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen"
+    document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen."
     document.getElementById("orderHint").style.visibility = "hidden";
 }
 

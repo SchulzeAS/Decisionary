@@ -65,6 +65,9 @@
     max-height: 440px;
     white-space: nowrap;
 }
+.overviewCritRight {
+    text-align: right;
+}
 
 #combinedTable {
     position: relative;
@@ -226,4 +229,13 @@ max-width:1302px;
      -webkit-margin-start: 0;
      -webkit-margin-end: 0;
     font-weight: bold;
+}
+
+#legend {
+    text-align: center;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #666666;
+    font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
 }
