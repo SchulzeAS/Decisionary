@@ -119,7 +119,11 @@ function sendAggMatrix() {
         "numberOfCriterias": currentPoll.criterias.length
     };
 
-    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+    console.log("-- agg matrix debug Teilnehmen -- ");
+    console.log(data);
+    console.log(specialCharacterEncode(JSON.stringify(data)));
+
+    $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
         function (data, status) { });
 }
 

@@ -64,7 +64,7 @@ function sendData() {
     //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
     //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
     //change this.
-    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)).replace(/\?/g,"FRAGEZEICHEN"),
+    $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(pair)),
         function (data, status) { });
 }
 

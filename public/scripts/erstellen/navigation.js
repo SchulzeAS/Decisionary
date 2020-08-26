@@ -22,7 +22,7 @@ function next() {
             fillPoll();
 
             //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g, "FRAGEZEICHEN"),
+            $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
                 function (data, status) {
 
                 });
@@ -124,7 +124,7 @@ function assertView()
      * */
 function sendEmptyResult() {
     pair = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
-    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)),
+    $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(pair)),
         function (data, status) { });
 }
 function iniliazeAggMatrix() {
@@ -133,7 +133,11 @@ function iniliazeAggMatrix() {
     var aggMatrix = {};
     for (var i = 0; i < currentPoll.criterias.length; i++) {
         aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
+        for (var j = 0; j < currentPoll.alternatives.length; j++) {
+            aggMatrix[currentPoll.criterias[i].name][j] = "";
+        }
     }
+    console.log(aggMatrix);
 
     var critList = new Array(currentPoll.criterias.length);
     for (var i = 0; i < currentPoll.criterias.length; i++) {
@@ -145,7 +149,9 @@ function iniliazeAggMatrix() {
         "matrix": aggMatrix,
         "critList": critList
     };
-
-    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+    console.log("-- agg matrix debug -- ");
+    console.log(data);
+    console.log(specialCharacterEncode(JSON.stringify(data)));
+    $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
         function (data, status) { });
 }

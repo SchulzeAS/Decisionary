@@ -116,7 +116,7 @@ app.get('/:uuid', (req, res) => {
 
    fs.writeFile("polls/" + poll.id + '.json', JSON.stringify(poll), function (err) {
      if (err) throw err;
-     console.log('Replaced!');
+     //console.log('Replaced!');
    });
      console.log("--------");
 }
@@ -170,6 +170,7 @@ res.send();
 }
 
 function aggMatrixVote(req, res) {
+    console.log(req.params);
     receivedData = JSON.parse(req.params.poll);
     console.log("saving agg Matrix entry for " + receivedData.id);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";

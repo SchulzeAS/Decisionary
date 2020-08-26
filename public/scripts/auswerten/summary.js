@@ -6,7 +6,8 @@ var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
 var jayson = document.getElementById("dada").innerHTML;
 var aggJSON = document.getElementById("xaxa").innerHTML;
-jayson = jayson.replace(/FRAGEZEICHEN/g, "?");
+jayson = specialCharacterDecode(jayson);
+aggJSON = specialCharacterDecode(aggJSON);
 if(jayson == ""){ // default testing case
   data.addVote("Döner", 0);
   data.addVote("Döner", 1);
@@ -72,7 +73,6 @@ function fillParticipants(tableName, alts) {
             if (cont.votes.length == 1 && cont.votes[0].name === "") {
                 console.log("no one yet");
                 document.getElementById("bisherige").remove();
-                document.getElementById("mehrere").remove();
                 document.getElementById("aggMatrixContainer").remove();
                 textnode2 = document.createTextNode("bis jetzt keine Teilnehmer");
                 var link = document.createElement("a");
@@ -83,7 +83,16 @@ function fillParticipants(tableName, alts) {
                 cell2.appendChild(link);
                 var bre = document.createElement("br");
                 cell2.prepend(bre);
+
+
+
                 //cell2.style.fontStyle = "italic";
+            }
+        } else {
+            window.onload = function () {
+                document.getElementById("aggSpoiler").addEventListener("click", function () {
+                    toggleMatrix();
+                });
             }
         }
 
@@ -139,8 +148,22 @@ function createTable(altArray, critArray, tableId,critList) {
 }
 //nice to have functionality, not done yet
 function saveImage() {
+    console.log("saving iamge");
     var url_base64 = document.getElementById('summaryChart').toDataURL('image/png');
     document.getElementById("link").href = url_base64;
+}
+
+function toggleMatrix() {
+    var x = document.getElementById("aggTable");
+    var y = document.getElementById("aggToggle");
+    //console.log(x.style.display);
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+        y.innerHTML = "-";
+    } else {
+        x.style.display = "none";
+        y.innerHTML = "+";
+    }
 }
 
 var myChart = new Chart(ctx, {
@@ -193,7 +216,8 @@ var myChart = new Chart(ctx, {
             labels: {
                 boxWidth: 0,
                 boxHeight:0,
-                fontSize: 15,                
+                fontSize: 15, 
+
                 //fontColor:'#FFFFFF'
             },
         },
@@ -201,7 +225,8 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    stepSize: 1
+                    stepSize: 1,
+                    suggestedMax: 2
                 },
                 scaleLabel: {
                     display: false,
@@ -211,3 +236,5 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+

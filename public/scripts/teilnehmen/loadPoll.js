@@ -8,7 +8,7 @@ tempPoll.addCriteria("Verfügbarkeit");
 
 
 jayson = document.getElementById("eidi").innerHTML;
-jayson = jayson.replace(/FRAGEZEICHEN/g,"?");
+jayson = specialCharacterDecode(jayson);
 if(jayson == ""){
 
 } else {

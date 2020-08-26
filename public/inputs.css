@@ -20,6 +20,7 @@
     max-width: 580px;
     width: 100%;
     bottom: 4px;
+    margin-left:0;
 }
 .LinkContainer {
     margin-top: 40px;

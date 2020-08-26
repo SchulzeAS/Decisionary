@@ -37,3 +37,10 @@ var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRad
 var navAuswertenColor = "#ff9854"; // same as erstellen passiv farbe
 
 var currentPoll;
+
+function specialCharacterEncode(object) {
+    return object.replace(/\?/g, "FRAGEZEICHEN").replace(/\#/g, "HASHTAG").replace(/\%/g, "PROZENT");
+}
+function specialCharacterDecode(object) {
+    return object.replace(/FRAGEZEICHEN/g, "?").replace(/HASHTAG/g, "#").replace(/PROZENT/g, "%");
+}
