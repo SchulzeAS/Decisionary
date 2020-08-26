@@ -29,7 +29,10 @@ function overview() {
 
 
 }
-
+/**
+ * highlights important information to the user
+ * @param {any} result result to highlight in table
+ */
 function boldResult(result) {
     altTdsTop = document.getElementsByClassName("alternativeTd");
     allCritCells = document.getElementsByClassName("overviewRow");
@@ -59,12 +62,12 @@ function boldResult(result) {
  * */
 function sendData() {
     //return object to the server
-    console.log(currentPoll);
+    //console.log(currentPoll);
     pair = { "id": currentPoll.id, "pollTitle": currentPoll.title,"name": nameInput.value, "winner": result.bestAlternatives, "alternatives": currentPoll.alternatives };
     //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
     //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:
     //change this.
-    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)).replace(/\?/g,"FRAGEZEICHEN"),
+    $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(pair)),
         function (data, status) { });
 }
 

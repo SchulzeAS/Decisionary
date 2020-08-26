@@ -68,7 +68,8 @@
     width: 25px;
     height: 25px;
     position: relative;
-    top:19px;
+    top: 19px;
+    left: -4px;
 }
 
 .copyButton:hover {
@@ -79,9 +80,6 @@
     position: relative;
     display: inline-block;
     
-}
-#hotFixToolTip{
-    left:-14px;
 }
 
 .tooltip .tooltiptext {

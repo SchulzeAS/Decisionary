@@ -21,9 +21,9 @@ function unHighlightInput(inpt) {
  */
 function highlightRadio(inpt) {
 	radioChildren = inpt.childNodes;
-	console.log(radioChildren);
+	//console.log(radioChildren);
 	for (i = 1; i < inpt.childNodes.length; i++) {
-		console.log(radioChildren[i]);
+		//console.log(radioChildren[i]);
 		radioChildren[i].childNodes[0].style.backgroundColor = "red";
     }
 }
@@ -34,9 +34,9 @@ function highlightRadio(inpt) {
  */
 function unHighlightRadio(inpt) {
 	radioChildren = inpt.childNodes;
-	console.log(radioChildren);
+	//console.log(radioChildren);
 	for (i = 1; i < inpt.childNodes.length; i++) {
-		console.log(radioChildren[i]);
+		//console.log(radioChildren[i]);
 		radioChildren[i].childNodes[0].style.backgroundColor = "white";
 	}
 }

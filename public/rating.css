@@ -22,6 +22,7 @@
     visibility: hidden;
     display: inline;
     padding-left: 12px;
+    white-space: nowrap;
 }
 
 #alternativeRatingTable {
@@ -83,7 +84,10 @@ input[type="radio"]:hover {
     display:none;
 }
 
-.critTdSpan{
-    position:relative;
-    top:20px;
+.critTdSpan {
+    position: relative;
+    top: 20px;
+    white-space: nowrap;
 }
+
+

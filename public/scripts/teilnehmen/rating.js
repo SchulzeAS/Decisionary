@@ -213,17 +213,27 @@ function radioChangeState(thisRadio, parent) {
     }
     passiveRadioColoring();
 }
-
+/**
+ * on hover over event for the labels containing the rating possibilities
+ * changes background color
+ * @param {DOMelement} elem DOMelement to modifiy
+ */
 function ratingLabelHoverIn(elem) {
     //elem.style.backgroundColor = hoverRadioColor // - irgendein wert, ein wenig transparenters;
     elem.style.backgroundColor = hoverRadioColor 
 }
-
+/**
+ * inverse to ratingLabelHoverIn
+ * @param {DOMelement} elem element to modify
+ * @param {boolean} state true or false
+ */
 function ratingLabelHoverOut(elem,state) {
     if (state == true) elem.style.backgroundColor = activeRadioColor;
     if (state == false) elem.style.backgroundColor = passiveRadioColor;
 }
-
+/**
+ * changes background color of cells in the rating table when click
+ * */
 function radioColoring() {
     inputs = document.getElementsByClassName("ratingRadioInput");
     for (i = 0; i < inputs.length; i++) {

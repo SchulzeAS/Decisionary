@@ -1,12 +1,13 @@
 
 document.getElementsByClassName("navAuswerten")[0].style.backgroundColor = navAuswertenColor;
-console.log(document.getElementsByClassName("navAuswerten")[0]);
+//console.log(document.getElementsByClassName("navAuswerten")[0]);
 
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
 var jayson = document.getElementById("dada").innerHTML;
 var aggJSON = document.getElementById("xaxa").innerHTML;
-jayson = jayson.replace(/FRAGEZEICHEN/g, "?");
+jayson = specialCharacterDecode(jayson);
+aggJSON = specialCharacterDecode(aggJSON);
 if(jayson == ""){ // default testing case
   data.addVote("Döner", 0);
   data.addVote("Döner", 1);
@@ -21,7 +22,7 @@ var cont = JSON.parse(jayson);
     var aggConverted = JSON.parse(aggJSON);
     var aggArray = aggConverted.matrix;
     var aggCrits = aggConverted.critList;
-    console.log(aggArray);
+    //console.log(aggArray);
     createTable(cont.alternatives, aggArray, "aggTable", aggCrits);
     //console.log(cont.alternatives);
     if (cont.pollTitle != undefined)
@@ -59,7 +60,11 @@ data.addVote(item, casts[item]);
 
 fillParticipants("participantsTable", data.participants);
 
-
+/**
+ * fills the participant table with data
+ * @param {any} tableName table to fill
+ * @param {any} alts participant array to fill with
+ */
 function fillParticipants(tableName, alts) {
     var WelcomeAltTable = document.getElementById(tableName);
     for (var i = 0; i < alts.length; i++) {
@@ -70,20 +75,28 @@ function fillParticipants(tableName, alts) {
 
         if (i == 0) { // if no one has participated yet 
             if (cont.votes.length == 1 && cont.votes[0].name === "") {
-                console.log("no one yet");
+                //console.log("no one yet");
                 document.getElementById("bisherige").remove();
-                document.getElementById("mehrere").remove();
                 document.getElementById("aggMatrixContainer").remove();
                 textnode2 = document.createTextNode("bis jetzt keine Teilnehmer");
                 var link = document.createElement("a");
                 link.innerHTML = "Link zum Teilnehmen"
                 link.href = baseUrl + "/" + cont.id;
                 link.target = "_blank";
-                console.log(link);
+                //console.log(link);
                 cell2.appendChild(link);
                 var bre = document.createElement("br");
                 cell2.prepend(bre);
+
+
+
                 //cell2.style.fontStyle = "italic";
+            }
+        } else {
+            window.onload = function () {
+                document.getElementById("aggSpoiler").addEventListener("click", function () {
+                    toggleMatrix();
+                });
             }
         }
 
@@ -94,9 +107,15 @@ function fillParticipants(tableName, alts) {
 
 
 }
-
+/**
+ * creates the aggregation matrix from data
+ * @param {any} altArray alternatives array 
+ * @param {any} critArray criteria array
+ * @param {any} tableId table id to work with
+ * @param {any} critList list of criterias
+ */
 function createTable(altArray, critArray, tableId,critList) {
-    console.log(critList);
+    //console.log(critList);
     var FirstRow = document.createElement("tr");
 
     var cell = document.createElement("td");
@@ -114,7 +133,7 @@ function createTable(altArray, critArray, tableId,critList) {
     document.getElementById(tableId).appendChild(FirstRow);
     
     for (var i = 0; i < critList.length; i++) {
-        console.log(critList[i]);
+        //console.log(critList[i]);
         var row = document.createElement("tr");
         var cell2 = document.createElement("td");
         cell2.className = "critTdTable";
@@ -139,16 +158,32 @@ function createTable(altArray, critArray, tableId,critList) {
 }
 //nice to have functionality, not done yet
 function saveImage() {
+    console.log("saving iamge");
     var url_base64 = document.getElementById('summaryChart').toDataURL('image/png');
     document.getElementById("link").href = url_base64;
 }
-
+/**
+ * toggles visibility of aggregation matrix
+ * */
+function toggleMatrix() {
+    var x = document.getElementById("aggTable");
+    var y = document.getElementById("aggToggle");
+    //console.log(x.style.display);
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+        y.innerHTML = "-";
+    } else {
+        x.style.display = "none";
+        y.innerHTML = "+";
+    }
+}
+// created the bar graph showing the poll results
 var myChart = new Chart(ctx, {
     type: "bar",
     data: {
         labels: data.getLabels(),
         datasets: [{
-            label: "Anzahl der Siege",
+            label: "Anzahl der Siege (Mehrere Sieger pro Person möglich)",
             data: data.getAmounts(),
             backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
@@ -188,17 +223,30 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        legend: {
+            display: false,
+            labels: {
+                boxWidth: 0,
+                boxHeight:0,
+                fontSize: 15, 
+
+                //fontColor:'#FFFFFF'
+            },
+        },
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    stepSize: 1
+                    stepSize: 1,
+                    suggestedMax: 2
                 },
-                /*scaleLabel: {
-                    display: true,
-                    labelString: 'Siege'
-                }*/
+                scaleLabel: {
+                    display: false,
+                    labelString: 'Anzahl der Siege (Mehrere Sieger pro Person möglich)'
+                }
             }]
         }
     }
 });
+
+

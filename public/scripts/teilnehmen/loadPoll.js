@@ -1,4 +1,4 @@
-//Niklas: ich erstelle mir hier ein Dummy Poll Object als defaults
+//Niklas: ich erstelle mir hier ein Dummy Poll Object als default
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
@@ -8,7 +8,8 @@ tempPoll.addCriteria("Verfügbarkeit");
 
 
 jayson = document.getElementById("eidi").innerHTML;
-jayson = jayson.replace(/FRAGEZEICHEN/g,"?");
+jayson = specialCharacterDecode(jayson);
+//jayson is printed in to the html page by the server in a div and then extracted from that div for further use
 if(jayson == ""){
 
 } else {
@@ -44,7 +45,7 @@ function loadPoll(poll)
         document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
     }
     else {
-        document.getElementById("BeschreibungSpan").innerHTML = "leider keine Beschreibung vorhanden";
+        document.getElementById("BeschreibungSpan").innerHTML = "nicht vorhanden";
         document.getElementById("BeschreibungSpan").style.fontStyle = "italic";
         document.getElementById("BeschreibungSpan").style.fontWeight = "normal";
     }
@@ -56,7 +57,7 @@ function loadPoll(poll)
 }
 
 function ifOneCriteria() {
-    document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen"
+    document.getElementById("CritH3changeable").innerHTML = "Da es nur ein Kriterium gibt, können Sie keine Reihenfolge festlegen."
     document.getElementById("orderHint").style.visibility = "hidden";
 }
 

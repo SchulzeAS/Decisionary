@@ -8,15 +8,18 @@ block layout-content
                 h3#auswertenTitle.fivePadding
                 
         div.stepsContainerNoMaxHeight.auswertenScroll
+            span#legend Anzahl der Siege (Mehrere Sieger pro Person möglich)
             canvas#summaryChart
-            span.fivePadding#mehrere Mehrere Sieger pro Person möglich
+            //-span.fivePadding#mehrere 
             //-a#link(download='filename.png') Save as Image
             div
-                div.fivePadding(style='float:left')
+                div.fivePadding
                     h4#bisherige Bisherige Teilnehmer
                     table#participantsTable
-                div.fivePadding#aggMatrixContainer(style='float:left')
-                    h4 Aggregationsmatrix
+                div.fivePadding#aggMatrixContainer
+                    span(style="padding-right:5px")#aggToggle +
+                    h4#aggSpoiler(onLoad='console.log("d")').noselect Aggregationsmatrix
+                    img(onClick="hideHint('critHint')" src='../icons/Aufklappen.svg' style="padding-right:5px")#aggToggleArrow 
                     table#aggTable
     span#dada(style="visibility:hidden;z-index: -2;") #{uuid}
     span#xaxa(style="visibility:hidden;z-index: -2;") #{aggMatrixJSON}
