@@ -60,7 +60,11 @@ data.addVote(item, casts[item]);
 
 fillParticipants("participantsTable", data.participants);
 
-
+/**
+ * fills the participant table with data
+ * @param {any} tableName table to fill
+ * @param {any} alts participant array to fill with
+ */
 function fillParticipants(tableName, alts) {
     var WelcomeAltTable = document.getElementById(tableName);
     for (var i = 0; i < alts.length; i++) {
@@ -103,7 +107,13 @@ function fillParticipants(tableName, alts) {
 
 
 }
-
+/**
+ * creates the aggregation matrix from data
+ * @param {any} altArray alternatives array 
+ * @param {any} critArray criteria array
+ * @param {any} tableId table id to work with
+ * @param {any} critList list of criterias
+ */
 function createTable(altArray, critArray, tableId,critList) {
     //console.log(critList);
     var FirstRow = document.createElement("tr");
@@ -152,7 +162,9 @@ function saveImage() {
     var url_base64 = document.getElementById('summaryChart').toDataURL('image/png');
     document.getElementById("link").href = url_base64;
 }
-
+/**
+ * toggles visibility of aggregation matrix
+ * */
 function toggleMatrix() {
     var x = document.getElementById("aggTable");
     var y = document.getElementById("aggToggle");
@@ -165,7 +177,7 @@ function toggleMatrix() {
         y.innerHTML = "+";
     }
 }
-
+// created the bar graph showing the poll results
 var myChart = new Chart(ctx, {
     type: "bar",
     data: {

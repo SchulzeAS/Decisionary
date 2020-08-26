@@ -29,7 +29,10 @@ function overview() {
 
 
 }
-
+/**
+ * highlights important information to the user
+ * @param {any} result result to highlight in table
+ */
 function boldResult(result) {
     altTdsTop = document.getElementsByClassName("alternativeTd");
     allCritCells = document.getElementsByClassName("overviewRow");

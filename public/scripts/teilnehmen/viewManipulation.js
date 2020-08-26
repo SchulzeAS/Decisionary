@@ -80,7 +80,9 @@ function endOfTeilnehmen() {
     //console.log(t);
     document.getElementById("step4Overview").appendChild(t);
 }
-
+/**
+ * after clicking send in the last step remove nav buttons and show an encouraging message
+ * */
 function endTable() {
     var table = document.createElement("table");
     table.className = "innerPadding";
@@ -102,7 +104,9 @@ function endTable() {
     table.appendChild(SecondRow);
     return table;
 }
-
+/**
+ * send user results to be added to the aggregation matrix
+ * */
 function sendAggMatrix() {
 
     var aggMatrix = {};
@@ -205,7 +209,9 @@ function makeNavUnclickable(){
 		})
 	}
 }
-
+/**
+ * changes the cursor to pointer while hovering over the navigation elements
+ * */
 function addMouseHover(){
 	for (var i = 0; i < schritteNavTeilnehmen.length; i++) {
 		$("#" + schritteNavTeilnehmen[i]).mouseenter(function() {

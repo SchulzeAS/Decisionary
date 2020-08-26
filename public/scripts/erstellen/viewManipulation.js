@@ -153,7 +153,9 @@ function makeNavUnclickable(){
 		})
 	}
 }
-
+/**
+ * mose hover over nav elements
+ * */
 function addMouseHover(){
 	for (var i = 0; i < schritteNav.length-1; i++) {
 		$("#"+schritteNav[i]).mouseenter(function() {

@@ -62,7 +62,10 @@ function back() {
         }
     }
 }
-
+/**
+ * checks if all conditions are met before switching to next view
+ * same as erstellen assertview but specific for teilnehmen
+ * */
 function assertView() {
     
 	switch (currentView)

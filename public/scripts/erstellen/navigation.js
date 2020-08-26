@@ -127,6 +127,9 @@ function sendEmptyResult() {
     $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(pair)),
         function (data, status) { });
 }
+/**
+ * sends empty data to already initliaze the aggregation matrix for viewing before anyone has even participated
+ * */
 function iniliazeAggMatrix() {
 
 

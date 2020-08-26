@@ -1,4 +1,4 @@
-//Niklas: ich erstelle mir hier ein Dummy Poll Object als defaults
+//Niklas: ich erstelle mir hier ein Dummy Poll Object als default
 tempPoll = new Poll("uniqueid", "Abendbrot", "Was sollen wir essen?");
 tempPoll.alternatives = ["Döner", "Brot", "Salat","Käseschnitzel","Yoghurt"];
 tempPoll.addCriteria("Preis");
@@ -9,6 +9,7 @@ tempPoll.addCriteria("Verfügbarkeit");
 
 jayson = document.getElementById("eidi").innerHTML;
 jayson = specialCharacterDecode(jayson);
+//jayson is printed in to the html page by the server in a div and then extracted from that div for further use
 if(jayson == ""){
 
 } else {
