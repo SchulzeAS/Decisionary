@@ -26,6 +26,7 @@
     -o-user-select: none;
     color: black;
     white-space: nowrap;
+    z-index:50;
 }
 
 .navSpanDrop {
