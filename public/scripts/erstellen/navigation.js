@@ -119,12 +119,14 @@ function assertView()
 	}
 	return true;
 }
+
+//http://decisionary.ddns.net/addvote/%7B%22id%22:%222678bb3e-67a8-4a42-8f79-917582c0c2d6%22,%22pollTitle%22:%22Ist%20Decisionary%20das%20beste%20ueberhaupt?%22,%22name%22:%22%22,%22winner%22:[],%22alternatives%22:[%22Ja%22,%22Nein%22,%22Vielleicht%22,%22Bratwurst%22,%22Kekse%20sind%20ihh%22]}
     /**
      * create an empty result file when first creating a poll
      * */
 function sendEmptyResult() {
-    pair = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
-    $.get(baseUrl + "/addvote/" + (JSON.stringify(pair)),
+    poll = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
+    $.get(baseUrl + "/addvote/" + (JSON.stringify(poll).replace(/\?/g, "FRAGEZEICHEN")),
         function (data, status) { });
 }
 function iniliazeAggMatrix() {

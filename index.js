@@ -69,7 +69,7 @@ app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
 app.get('/auswertung/:uuid', (req, res) => {
   //console.log("called auswertung for " + req.params.uuid);
     res.render("auswerten/index", {
-        uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json', 
+        uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json',
             (err, data) => { if (err) throw err; console.log(data) }),
         aggMatrixJSON: fs.readFileSync("polls/" + req.params.uuid + '_aggMatrix.json',
             (err, data) => { if (err) throw err; console.log(data) }),
@@ -130,7 +130,7 @@ function getPoll(req, res) {
   poll = JSON.parse(req.params.poll);
   //get "poll_votes.json"
 //file is now existant, return innerts in res.
-console.log("getting " + res); 
+console.log("getting " + res);
 //res.params.data = fs.readFileSync(file_path);
 //cont = votes from other people
 cont = fs.readFileSync(file_path);
@@ -139,8 +139,11 @@ res.send(cont);
 
 function saveVote(req, res) {
 
+
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
+  console.log(req.params);
   poll = JSON.parse(req.params.poll);
+
     file_path = "polls/" + poll.id + "_votes.json";
   console.log("saving vote");
   console.log(poll);
@@ -173,7 +176,7 @@ function aggMatrixVote(req, res) {
     receivedData = JSON.parse(req.params.poll);
     console.log("saving agg Matrix entry for " + receivedData.id);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
-    
+
     if (fs.existsSync(file_path)) {
         //file exists and is actually JSON
 
@@ -204,7 +207,7 @@ function aggMatrixVote(req, res) {
         format = {
             "id": receivedData.id,
             "critList": receivedData.critList,
-            "matrix": receivedData.matrix        
+            "matrix": receivedData.matrix
         }
         fs.writeFileSync(file_path, JSON.stringify(format));
     }
@@ -234,6 +237,3 @@ function sortString(str) {
     }
     return arr.join('');
 }
-
-
-
