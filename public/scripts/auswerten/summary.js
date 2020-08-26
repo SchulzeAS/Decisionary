@@ -1,6 +1,6 @@
 
 document.getElementsByClassName("navAuswerten")[0].style.backgroundColor = navAuswertenColor;
-console.log(document.getElementsByClassName("navAuswerten")[0]);
+//console.log(document.getElementsByClassName("navAuswerten")[0]);
 
 var ctx = document.getElementById("summaryChart").getContext("2d");
 var data = new SummaryData();
@@ -22,7 +22,7 @@ var cont = JSON.parse(jayson);
     var aggConverted = JSON.parse(aggJSON);
     var aggArray = aggConverted.matrix;
     var aggCrits = aggConverted.critList;
-    console.log(aggArray);
+    //console.log(aggArray);
     createTable(cont.alternatives, aggArray, "aggTable", aggCrits);
     //console.log(cont.alternatives);
     if (cont.pollTitle != undefined)
@@ -71,7 +71,7 @@ function fillParticipants(tableName, alts) {
 
         if (i == 0) { // if no one has participated yet 
             if (cont.votes.length == 1 && cont.votes[0].name === "") {
-                console.log("no one yet");
+                //console.log("no one yet");
                 document.getElementById("bisherige").remove();
                 document.getElementById("aggMatrixContainer").remove();
                 textnode2 = document.createTextNode("bis jetzt keine Teilnehmer");
@@ -79,7 +79,7 @@ function fillParticipants(tableName, alts) {
                 link.innerHTML = "Link zum Teilnehmen"
                 link.href = baseUrl + "/" + cont.id;
                 link.target = "_blank";
-                console.log(link);
+                //console.log(link);
                 cell2.appendChild(link);
                 var bre = document.createElement("br");
                 cell2.prepend(bre);
@@ -105,7 +105,7 @@ function fillParticipants(tableName, alts) {
 }
 
 function createTable(altArray, critArray, tableId,critList) {
-    console.log(critList);
+    //console.log(critList);
     var FirstRow = document.createElement("tr");
 
     var cell = document.createElement("td");
@@ -123,7 +123,7 @@ function createTable(altArray, critArray, tableId,critList) {
     document.getElementById(tableId).appendChild(FirstRow);
     
     for (var i = 0; i < critList.length; i++) {
-        console.log(critList[i]);
+        //console.log(critList[i]);
         var row = document.createElement("tr");
         var cell2 = document.createElement("td");
         cell2.className = "critTdTable";

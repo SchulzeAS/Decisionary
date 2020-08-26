@@ -19,6 +19,7 @@ block layout-content
                 div.fivePadding#aggMatrixContainer
                     span(style="padding-right:5px")#aggToggle +
                     h4#aggSpoiler(onLoad='console.log("d")').noselect Aggregationsmatrix
+                    img(onClick="hideHint('critHint')" src='../icons/Aufklappen.svg' style="padding-right:5px")#aggToggleArrow 
                     table#aggTable
     span#dada(style="visibility:hidden;z-index: -2;") #{uuid}
     span#xaxa(style="visibility:hidden;z-index: -2;") #{aggMatrixJSON}

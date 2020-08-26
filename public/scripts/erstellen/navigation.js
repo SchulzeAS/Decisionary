@@ -137,7 +137,7 @@ function iniliazeAggMatrix() {
             aggMatrix[currentPoll.criterias[i].name][j] = "";
         }
     }
-    console.log(aggMatrix);
+    //console.log(aggMatrix);
 
     var critList = new Array(currentPoll.criterias.length);
     for (var i = 0; i < currentPoll.criterias.length; i++) {
@@ -149,9 +149,7 @@ function iniliazeAggMatrix() {
         "matrix": aggMatrix,
         "critList": critList
     };
-    console.log("-- agg matrix debug -- ");
-    console.log(data);
-    console.log(specialCharacterEncode(JSON.stringify(data)));
+
     $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
         function (data, status) { });
 }

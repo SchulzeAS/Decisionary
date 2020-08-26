@@ -59,7 +59,7 @@ function boldResult(result) {
  * */
 function sendData() {
     //return object to the server
-    console.log(currentPoll);
+    //console.log(currentPoll);
     pair = { "id": currentPoll.id, "pollTitle": currentPoll.title,"name": nameInput.value, "winner": result.bestAlternatives, "alternatives": currentPoll.alternatives };
     //again misusing nodejs path wildcards to use get request in order to save up on some network capability, might result in
     //better scalability in case this ever leaves "academic project for CP"-stage, which it shouldn't do. In case it does:

@@ -65,31 +65,47 @@ app.get('/add/:poll', savePoll);
 app.get('/addvote/:poll', saveVote);
 app.get('/addAggMatrix/:poll', aggMatrixVote);
 app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
-
+/**
+ * returns poll data for the auswertung page
+ * */
 app.get('/auswertung/:uuid', (req, res) => {
   //console.log("called auswertung for " + req.params.uuid);
     res.render("auswerten/index", {
         uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json', 
-            (err, data) => { if (err) throw err; console.log(data) }),
+            (err, data) => {
+                if (err) throw err;
+                //console.log(data);
+            }),
         aggMatrixJSON: fs.readFileSync("polls/" + req.params.uuid + '_aggMatrix.json',
-            (err, data) => { if (err) throw err; console.log(data) }),
+            (err, data) => {
+                if (err) throw err;
+                //console.log(data);
+            }),
 })});
-
+/**
+ * basic auswertung page with a pre defined poll for testing
+ * */
 app.get("/auswertung", (req, res) => {
     res.render("auswerten/index");
 });
-
+/**
+ * debug function to print a poll to the server console
+ * */
 app.get("/print/:uuid", (req, res) => {
     temp = fs.readFileSync("polls/" + req.params.uuid + "_votes.json");
     cont = JSON.parse(temp);
     console.log(cont);
 });
-
+/**
+ * returns a page for teilnehmen, specific poll is parsed from the url
+ * */
 app.get('/:uuid', (req, res) => {
 //*  parsed = JSON.parse(obj);
   //*string = JSON.stringify(parsed);
     res.render("teilnehmen/index",{uuid: fs.readFileSync("polls/" + req.params.uuid + '.json',
-    (err, data) => {  if (err) throw err;  console.log(data)})
+        (err, data) => {
+            if (err) throw err; //console.log(data);
+        })
 });
 });
 
@@ -106,7 +122,7 @@ app.get('/:uuid', (req, res) => {
 });
 
 /**
- * function for handling pseudo post requests.
+ * function for handling pseudo post requests and saving created polls.
  */
  function savePoll(req, res) {
    console.log("saving poll");
@@ -136,7 +152,11 @@ console.log("getting " + res);
 cont = fs.readFileSync(file_path);
 res.send(cont);
 }
-
+/**
+ * saves a users results from teilnehmen
+ * @param {any} req
+ * @param {any} res
+ */
 function saveVote(req, res) {
 
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
@@ -150,7 +170,7 @@ function saveVote(req, res) {
   if (fs.existsSync(file_path)) {
     //file exists and is actually JSON
   } else {
-    format = {
+    format = {// use this format for the object
       "id": poll.id,
       "pollTitle": poll.pollTitle,
       "votes" : [],
@@ -168,16 +188,18 @@ fs.writeFileSync(file_path, JSON.stringify(cont));
 
 res.send();
 }
-
+/**
+ * saves a users results in the aggregation matrix
+ * @param {any} req
+ * @param {any} res
+ */
 function aggMatrixVote(req, res) {
-    console.log(req.params);
+    //console.log(req.params);
     receivedData = JSON.parse(req.params.poll);
     console.log("saving agg Matrix entry for " + receivedData.id);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
     
-    if (fs.existsSync(file_path)) {
-        //file exists and is actually JSON
-
+    if (fs.existsSync(file_path)) {//file exists and is actually JSON
         temp = fs.readFileSync(file_path);
         readData = JSON.parse(temp);
         //console.log("read in data: ");
@@ -189,14 +211,12 @@ function aggMatrixVote(req, res) {
         alternativesLimiter = oldMatrix[readData.critList[0]].length;
 
         for (var i = 0; i < limiter; i++) {
-            //console.log(readData.critList[i] + " was ");console.log(oldMatrix[readData.critList[i]]);
-            //console.log(readData.critList[i] + " adding ");console.log(receivedData.matrix[readData.critList[i]]);
             for (var j = 0; j < alternativesLimiter; j++) {
+                // concat the new results to the old results
+                // then remove duplicate letters and sort it again
                 if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
                 oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
-                //console.log("before " + oldMatrix[readData.critList[i]][j]);
                 oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
-                //console.log("after " + oldMatrix[readData.critList[i]][j]);
             }
         }
         fs.writeFileSync(file_path, JSON.stringify(readData));
@@ -211,7 +231,12 @@ function aggMatrixVote(req, res) {
     }
     res.send();
 }
-
+/**
+ * removes duplicate chars from a string
+ * used for aggregation matrix
+ * returns a string
+ * @param {string} string string to remove duplicates from
+ */
 function removeDuplicateCharacters(string) {
     return string
         .split('')
@@ -220,7 +245,11 @@ function removeDuplicateCharacters(string) {
         })
         .join('');
 }
-
+/**
+ * sort a string alphabetically
+ * returns a sorted string
+ * @param {string} str string to sort
+ */
 function sortString(str) {
     var arr = str.split('');
     var tmp;
