@@ -71,16 +71,16 @@ app.get('/get/:poll', getPoll);//implemented, but not used. Why, actually?
 app.get('/auswertung/:uuid', (req, res) => {
   //console.log("called auswertung for " + req.params.uuid);
     res.render("auswerten/index", {
-<<<<<<< HEAD
+
         uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json',
             (err, data) => { if (err) throw err; console.log(data) }),
-=======
+
         uuid: fs.readFileSync("polls/" + req.params.uuid + '_votes.json', 
             (err, data) => {
                 if (err) throw err;
                 //console.log(data);
             }),
->>>>>>> 0892e3092ca531ce9ea6d18f52c4003cbdabaec4
+// 0892e3092ca531ce9ea6d18f52c4003cbdabaec4
         aggMatrixJSON: fs.readFileSync("polls/" + req.params.uuid + '_aggMatrix.json',
             (err, data) => {
                 if (err) throw err;
@@ -206,45 +206,45 @@ function aggMatrixVote(req, res) {
     receivedData = JSON.parse(req.params.poll);
     console.log("saving agg Matrix entry for " + receivedData.id);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
-<<<<<<< HEAD
+
 
     if (fs.existsSync(file_path)) {
         //file exists and is actually JSON
 
-=======
-    
-    if (fs.existsSync(file_path)) {//file exists and is actually JSON
->>>>>>> 0892e3092ca531ce9ea6d18f52c4003cbdabaec4
-        temp = fs.readFileSync(file_path);
-        readData = JSON.parse(temp);
-        //console.log("read in data: ");
-        //console.log(readData)
 
-        oldMatrix = readData.matrix;
 
-        limiter = readData.critList.length;
-        alternativesLimiter = oldMatrix[readData.critList[0]].length;
+        if (fs.existsSync(file_path)) {//file exists and is actually JSON
+            temp = fs.readFileSync(file_path);
+            readData = JSON.parse(temp);
+            //console.log("read in data: ");
+            //console.log(readData)
 
-        for (var i = 0; i < limiter; i++) {
-            for (var j = 0; j < alternativesLimiter; j++) {
-                // concat the new results to the old results
-                // then remove duplicate letters and sort it again
-                if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
-                oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
-                oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
+            oldMatrix = readData.matrix;
+
+            limiter = readData.critList.length;
+            alternativesLimiter = oldMatrix[readData.critList[0]].length;
+
+            for (var i = 0; i < limiter; i++) {
+                for (var j = 0; j < alternativesLimiter; j++) {
+                    // concat the new results to the old results
+                    // then remove duplicate letters and sort it again
+                    if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
+                    oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
+                    oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
+                }
             }
+            fs.writeFileSync(file_path, JSON.stringify(readData));
+        } else {
+            //console.log("creating file\n");
+            format = {
+                "id": receivedData.id,
+                "critList": receivedData.critList,
+                "matrix": receivedData.matrix
+            }
+            fs.writeFileSync(file_path, JSON.stringify(format));
         }
-        fs.writeFileSync(file_path, JSON.stringify(readData));
-    } else {
-        //console.log("creating file\n");
-        format = {
-            "id": receivedData.id,
-            "critList": receivedData.critList,
-            "matrix": receivedData.matrix
-        }
-        fs.writeFileSync(file_path, JSON.stringify(format));
+        res.send();
     }
-    res.send();
 }
 /**
  * removes duplicate chars from a string
