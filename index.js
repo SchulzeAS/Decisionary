@@ -199,14 +199,13 @@ res.send();
  * @param {any} res
  */
 function aggMatrixVote(req, res) {
-    //console.log(req.params);
     receivedData = JSON.parse(req.params.poll);
     console.log("saving agg Matrix entry for " + receivedData.id);
+    console.log(req.params);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
 
 
-    if (fs.existsSync(file_path)) {
-        //file exists and is actually JSON
+
 
 
 
@@ -241,7 +240,6 @@ function aggMatrixVote(req, res) {
             fs.writeFileSync(file_path, JSON.stringify(format));
         }
         res.send();
-    }
 }
 /**
  * removes duplicate chars from a string
