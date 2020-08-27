@@ -22,8 +22,8 @@ function next() {
             fillPoll();
 
 
-            //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-            $.get(baseUrl + "/add/" + (JSON.stringify(currentPoll)).replace(/\?/g, "FRAGEZEICHEN"),
+            //mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
+            $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
                 function (data, status) {
 
                 });
@@ -127,12 +127,10 @@ function assertView()
      * */
 function sendEmptyResult() {
     poll = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
-    $.get(baseUrl + "/addvote/" + (JSON.stringify(poll).replace(/\?/g, "FRAGEZEICHEN")),
+    $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(poll)),
         function (data, status) { });
 }
 function iniliazeAggMatrix() {
-
-
     var aggMatrix = {};
     for (var i = 0; i < currentPoll.criterias.length; i++) {
         aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
@@ -149,18 +147,8 @@ function iniliazeAggMatrix() {
         "critList": critList
     };
 
-    $.get(baseUrl + "/addAggMatrix/" + (JSON.stringify(data)),
+    $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
         function (data, status) { });
-
-
-
-            //madly mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-            $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
-                function (data, status) {
-
-                });
-            sendEmptyResult();// send an empty vote to fill up the results file to show some empty data even before the first person has participated
-            iniliazeAggMatrix();
 }
 
 
