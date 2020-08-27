@@ -11,7 +11,7 @@ block layout-content
                     td(style="width:69%")
                         input#InputTeilnehmen.linkInput(readonly value="example.org")
                     td.tooltip
-                        img.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')" src="icons/Kopie.svg") 
+                        img.noselect.copyButton#copyButtonTeilnehmen(onclick="copyLink('InputTeilnehmen','copyTooltipTeilnehmen')" onmouseout="toolTipMouseOut('copyTooltipTeilnehmen')" src="icons/Kopie.svg") 
                         span.tooltiptext#copyTooltipTeilnehmen Link kopieren
                 tr
                         td
@@ -26,5 +26,5 @@ block layout-content
                     td(style="width:69%")
                         input#InputAuswerten.linkInput(readonly value="example.org/example")
                     td.tooltip
-                        img.copyButton#copyButtonAuswerten(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')" src="icons/Kopie.svg")
+                        img.noselect.copyButton#copyButtonAuswerten(onclick="copyLink('InputAuswerten','copyTooltipAuswerten')" onmouseout="toolTipMouseOut('copyTooltipAuswerten')" src="icons/Kopie.svg")
                         span.tooltiptext#copyTooltipAuswerten Link kopieren

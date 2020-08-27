@@ -265,3 +265,6 @@
 #aggSpoiler:hover {
     cursor: pointer;
 }
+.overflowStepAuto{
+    overflow:auto;
+}

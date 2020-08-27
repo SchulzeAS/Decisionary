@@ -1,7 +1,7 @@
 extends ../layout
 block layout-content
     div#creationContainer
-        img(src='icons/Logo.svg').logoImage
+        img(src='icons/Logo.svg').logoImage.noselect
         div.navigator#navigatorTop
             include navigator.pug
         div.stepsContainer
@@ -18,8 +18,8 @@ block layout-content
             div#step5Share.Steps
                 include Step5Share.pug
             
-        img.navButton#navBack(onclick='back()' src='icons/Zuruck.svg') 
-        img.navButton#navNext(onclick='next()' src='icons/Weiter_grun.svg') 
+        img.navButton#navBack(onclick='back()' src='icons/Zuruck.svg').noselect
+        img.navButton#navNext(onclick='next()' src='icons/Weiter_grun.svg').noselect 
     
     script(src="scripts/criteria.js")
     script(src="scripts/dataProcessing.js")

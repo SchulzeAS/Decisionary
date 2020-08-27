@@ -21,12 +21,7 @@ function next() {
             clearPoll();// fill poll object again just to be on the safe side
             fillPoll();
 
-
-            //mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-            $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
-                function (data, status) {
-
-                });
+            sendPoll();
             sendEmptyResult();// send an empty vote to fill up the results file to show some empty data even before the first person has participated
             iniliazeAggMatrix();
         }
@@ -121,6 +116,13 @@ function assertView()
 	return true;
 }
 
+function sendPoll() {
+    //mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
+    $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
+        function (data, status) {
+
+        });
+}
 
     /**
      * create an empty result file when first creating a poll

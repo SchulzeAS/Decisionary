@@ -43,16 +43,41 @@ function addInput(type) {
 		console.log("invalid type for adding input");
 	}
 }
+/**
+ * remove the parent of this object and update counters
+ * Replaces removeSpecificInput()
+ * @param {DOMElement} ob object to remove parent from
+ * @param {char} flag either 'a' for alternative or 'c' for criteria
+ */
+function removeParent(ob,flag) {
+    
+    if (flag == 'a' && altCounter > minAlternatives) {
+        ob.remove();
+        altCounter--;
+        updateSpanNumbers("AlternativeSpanNumber");
+        if (altCounter < maxAlternatives) {
+            showBtn(document.getElementById("addAlternativeButton"));
+        }
+    } else if (flag == 'c' && critCounter > minCriterias) {
+        ob.remove();
+        critCounter--;
+        updateSpanNumbers("CriteriaSpanNumber");
+        if (critCounter < maxCriterias) {
+            showBtn(document.getElementById("addCriteriaButton"));
+        }
+    }
+}
 
 /**
+ * DEPRECIATED use removeParent()
  * removed a specific div containing an input
  * and moves all other elements up
  * @param {string} div Id to be removed
  */
 function removeSpecificInput(divId) {
+    //console.log("removing: " + divId);
 	var divToBeRemoved = document.getElementById(divId);
 	if (divId.includes(altId) && altCounter > minAlternatives) {
-		
 		var index = divId.replace(altId, '');
 		altCounter--;
 		divToBeRemoved.remove();
@@ -138,7 +163,8 @@ function createInput(type) {
 		newInputRow.id = "alt" + index;
 		newInputDeleteBtn.id = "removeAlternativeBtn";
 		newInputDeleteBtn.onclick = function () {
-			removeSpecificInput(newInputRow.id);
+            //(/removeSpecificInput(newInputRow.id);
+            removeParent(this.parentElement.parentElement,'a');
         };
 
         newInput.addEventListener('keydown', function (event) {
@@ -171,7 +197,8 @@ function createInput(type) {
 		newInputRow.id = "crit" + index;
 		newInputDeleteBtn.id = "removeCriteriaBtn";
 		newInputDeleteBtn.onclick = function () {
-			removeSpecificInput(newInputRow.id);
+			//removeSpecificInput(newInputRow.id);
+            removeParent(this.parentElement.parentElement, 'c');
         };
 
         newInput.addEventListener('keydown', function (event) {
@@ -195,7 +222,7 @@ function createInput(type) {
         }
     }
 
-	newInputDeleteBtn.className = "removeBtn plusMinusButtons";
+    newInputDeleteBtn.className = "removeBtn plusMinusButtons noselect";
 	typeTextSpan.className +="inputH3";
     newSpanNumber.className += " SpanNumber";
     inputTd.className = "inputTd";

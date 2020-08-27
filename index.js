@@ -125,21 +125,31 @@ app.get('/:uuid', (req, res) => {
  app.listen(port,'0.0.0.0', () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });
+/**
+ * decodes an object after receiving from client
+ * intended for future expansion
+ * @param {any} ob request to decode
+ */
+function decodeObject(ob) {
+    return decodeURIComponent(ob);
+}
 
 /**
  * function for handling pseudo post requests and saving created polls.
  */
  function savePoll(req, res) {
-   console.log("saving poll");
+   
    //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
-   console.log(req.params);
-   poll = JSON.parse(req.params.poll);
-
+     //console.log(decodeURIComponent(req.params.poll));
+     //console.log((req));
+     //console.log("");
+     poll = JSON.parse(req.params.poll);
+     console.log("saving poll " + poll.id);
    fs.writeFile("polls/" + poll.id + '.json', JSON.stringify(poll), function (err) {
      if (err) throw err;
      //console.log('Replaced!');
    });
-     console.log("--------");
+     //console.log("\n---- saving success ----\n");
 }
 
 /**
@@ -165,12 +175,12 @@ res.send(cont);
 function saveVote(req, res) {
 
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
-  poll = JSON.parse(req.params.poll);
+    poll = JSON.parse(req.params.poll);
     file_path = "polls/" + poll.id + "_votes.json";
-  console.log("saving vote");
-  console.log(poll);
+    console.log("saving vote for " + poll.id);
+  /*console.log(poll);
   console.log("================");
-  console.log();
+  console.log();*/
 
   if (fs.existsSync(file_path)) {
     //file exists and is actually JSON
@@ -199,9 +209,8 @@ res.send();
  * @param {any} res
  */
 function aggMatrixVote(req, res) {
-    receivedData = JSON.parse(req.params.poll);
+    receivedData = JSON.parse((req.params.poll));
     console.log("saving agg Matrix entry for " + receivedData.id);
-    console.log(req.params);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
         if (fs.existsSync(file_path)) {//file exists and is actually JSON
             temp = fs.readFileSync(file_path);
@@ -210,7 +219,6 @@ function aggMatrixVote(req, res) {
             //console.log(readData)
 
             oldMatrix = readData.matrix;
-
             limiter = readData.critList.length;
             alternativesLimiter = oldMatrix[readData.critList[0]].length;
 
