@@ -288,3 +288,4 @@ function iniliazeAggMatrix() {
     $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
         function (data, status) { });
 }
+}

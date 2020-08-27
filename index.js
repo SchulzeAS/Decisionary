@@ -151,7 +151,7 @@ function getPoll(req, res) {
   poll = JSON.parse(req.params.poll);
   //get "poll_votes.json"
 //file is now existant, return innerts in res.
-console.log("getting " + res);
+console.log("getting " + res); 
 //res.params.data = fs.readFileSync(file_path);
 //cont = votes from other people
 cont = fs.readFileSync(file_path);
@@ -164,11 +164,8 @@ res.send(cont);
  */
 function saveVote(req, res) {
 
-
   //res.addHeader("Access-Control-Allow-Origin", "*"); obsolete due to CORS library usage
-  console.log(req.params);
   poll = JSON.parse(req.params.poll);
-
     file_path = "polls/" + poll.id + "_votes.json";
   console.log("saving vote");
   console.log(poll);
