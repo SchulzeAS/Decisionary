@@ -23,7 +23,7 @@ npm ci
 
 ## Konfigurieren der URL
 Die URL kann in der Datei config.js ersetzt werden, sofern nicht unter **decisionary.ddns.net** gearbeitet werden soll.
-Wenn der Server nur lokal laufen soll, kann localhost:8000 verwendet werden. Kein "/" am Ende der URL angeben 
+Wenn der Server nur lokal laufen soll, kann **http://localhost:8000** verwendet werden. Kein "/" am Ende der URL angeben.
 
 ## Dokumentation der Skripte
 

@@ -67,6 +67,7 @@
 }
 .overviewCritRight {
     text-align: right;
+    background-color: #e6e6e6!important;
 }
 
 #combinedTable {
@@ -76,12 +77,14 @@
 
 #combinedTable td {
     border-right: 1px solid black;
+    background-color: white;
 }
 
 #combinedTable td:first-child {
     border-left: 1px solid black;
     padding-left: 7px;
     padding-right: 5px;
+
 }
 
 #combinedTable tr:first-child td {
@@ -89,14 +92,17 @@
     padding-top: 5px;
     padding-left: 7px;
     padding-right: 5px;
+    background-color: #e6e6e6!important;
 }
 
-#combinedTable tr:first-child td:first-child {
-    border:1px solid black;
-}
+    #combinedTable tr:first-child td:first-child {
+        border: 1px solid black;
+        background-color: #757575 !important;
+    }
 
 #combinedTable tr:last-child td {
     border-bottom: 1px solid black;
+    
 }
 #aggTable {
     border-collapse: collapse;

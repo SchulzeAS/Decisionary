@@ -44,6 +44,7 @@ var currentPoll;
  */
 function specialCharacterEncode(object) {
     return object.replace(/\?/g, "FRAGEZEICHEN").replace(/\#/g, "HASHTAG").replace(/\%/g, "PROZENT");
+    //return encodeURIComponent(object);
 }
 /**
  * decode special character received from server
@@ -52,4 +53,5 @@ function specialCharacterEncode(object) {
  */
 function specialCharacterDecode(object) {
     return object.replace(/FRAGEZEICHEN/g, "?").replace(/HASHTAG/g, "#").replace(/PROZENT/g, "%");
+    //return decodeURIComponent(object);
 }

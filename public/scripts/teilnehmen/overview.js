@@ -81,7 +81,8 @@ function createTableOverview(altArray, critArray,tableId) {
 	var FirstRow = document.createElement("tr");
     FirstRow.className = "overviewRow";
 
-	var cell = document.createElement("td");
+    var cell = document.createElement("td");
+    cell.id = "firstTdFirstRowTeilnehmen";
 	var textnode = document.createTextNode("");
 	cell.appendChild(textnode);
 	FirstRow.appendChild(cell); // empty first cell in first row

@@ -31,11 +31,12 @@
     padding-top: 5px;
     padding-left: 7px;
 }
-
+#firstTdFirstRowTeilnehmen {
+    background-color: #757575;
+}
 
 
 #teilnehmenTable tr {
-
 }
 
 #teilnehmenTable .alternativeTd {

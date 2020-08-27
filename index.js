@@ -203,12 +203,6 @@ function aggMatrixVote(req, res) {
     console.log("saving agg Matrix entry for " + receivedData.id);
     console.log(req.params);
     file_path = "polls/" + receivedData.id + "_aggMatrix.json";
-
-
-
-
-
-
         if (fs.existsSync(file_path)) {//file exists and is actually JSON
             temp = fs.readFileSync(file_path);
             readData = JSON.parse(temp);
@@ -224,6 +218,7 @@ function aggMatrixVote(req, res) {
                 for (var j = 0; j < alternativesLimiter; j++) {
                     // concat the new results to the old results
                     // then remove duplicate letters and sort it again
+                    if (receivedData.matrix[readData.critList[i]][j] == null) break;
                     if (oldMatrix[readData.critList[i]][j] == null) oldMatrix[readData.critList[i]][j] = "";
                     oldMatrix[readData.critList[i]][j] += receivedData.matrix[readData.critList[i]][j];
                     oldMatrix[readData.critList[i]][j] = sortString(removeDuplicateCharacters(oldMatrix[readData.critList[i]][j]));
