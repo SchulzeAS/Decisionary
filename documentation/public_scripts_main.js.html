@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: public/scripts/erstellen/navigation.js</title>
+    <title>JSDoc: Source: public/scripts/main.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: public/scripts/erstellen/navigation.js</h1>
+    <h1 class="page-title">Source: public/scripts/main.js</h1>
 
     
 
@@ -26,166 +26,72 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * move to the next view
- */
-function next() {
-    
-    if (assertView()) {
-        scrollToTop("stepsContainer");
-        hideView(schritte[currentView]);
+            <pre class="prettyprint source linenums"><code>const altId = "alt";
+const critId = "crit";
+
+var currentView = 0;
+var clickViewBool = false;
+var schritte = ["step1Topic", "step2Alternatives", "step3Criterias", "step4Overview", "step5Share"];
+var schritteNav = ["navTopic", "navAlternatives", "navCriterias", "navOverview", "navShare"];
+var schritteNavTeilnehmen = ["navName", "navCriteriaOrder", "navRating", "navOverview"];
+var schritteTeilnehmen = ["step1Name", "step2CriteriaOrder", "step3Rating", "step4Overview"];
+
+var ratingNames = ["A", "B", "X"];
+var ratingNamesWords = ["Sehr gut", "Gut genug", "Überhaupt nicht"]; // has to have the same amount of elements as ratingNames!
+
+var minAlternatives = 2;
+var maxAlternatives = 15;
+var altCounter = 0;
+
+var minCriterias = 1;
+var maxCriterias = 15;
+var critCounter = 0;
+
+var alternativesContainer = "alternativesContainer";
+var criteriasContainer = "criteriasContainer";
+
+var navActiveColor = "#A0C940"; 
+var navDisabledColor = "#708F28"; 
 
 
-        disableNavElement(schritteNav[currentView]);
-        modifyData(currentView); // was macht diese Funktion hier?
-        if (currentView &lt; schritte.length - 1) {
-            currentView += 1;
-        } else {
-            currentView = 0;
-        }
-        document.getElementById(schritte[currentView]).style.visibility = "visible";
-        document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
-        specificViewChanges(currentView);
-        if (currentView == 4) { // sending the data to the server to create a poll
+var navActiveTeilnehmenColor = "#8fefec";
+var navDisabledTeilnehmenColor = "#1abbb6";
+var lighterNavActiveTeilnehmenColor = "rgba(143, 239, 236,0.3)";
 
-            clearPoll();// fill poll object again just to be on the safe side
-            fillPoll();
+var activeRadioColor = navActiveTeilnehmenColor; 
+var passiveRadioColor = "white";
+var hoverRadioColor = "rgba(189,236,232,0.5)"; // ein wenig heller als activeRadioColor
 
-            sendPoll();
-            sendEmptyResult();// send an empty vote to fill up the results file to show some empty data even before the first person has participated
-            iniliazeAggMatrix();
-        }
-    }
-}
+var navAuswertenColor = "#ff9854"; // same as erstellen passiv farbe
 
-
-
+var currentPoll;
 /**
- * move to the previous view
+ * encode special characters for sending to the server
+ * reserve function to specialCharacterDecode
+ * @param {string} object string to perform replacements on
  */
-function back()
-{
-    scrollToTop("stepsContainer");
-	hideView(schritte[currentView]);
-	disableNavElement(schritteNav[currentView]);
-	if (currentView > 0) {
-		currentView -= 1;
-	} else {
-		currentView = schritte.length - 1;
-	}
-	document.getElementById(schritte[currentView]).style.visibility = "visible";
-	document.getElementById(schritteNav[currentView]).style.backgroundColor = navActiveColor;
-	specificViewChanges(currentView);
+function specialCharacterEncode(object) {
+    //return object.replace(/\?/g, "FRAGEZEICHEN").replace(/\#/g, "HASHTAG").replace(/\%/g, "PROZENT");
+    return encodeURIComponent(object);
 }
 /**
- * check if all inputs have been entered before moving to next view
- * */
-function assertView()
-{
-
-	switch (currentView)
-	{
-		case 0: // current view is "Thema", we are at the beginning
-			nameInput = document.getElementById("NameInput");
-			startHint = document.getElementById("startHint");
-			unHighlightInput(nameInput);
-			hideHints(startHint);
-			//startHint.style.opacity = 0;
-
-			if (nameInput.value == "") {
-				highlightInput(nameInput);
-				nameInput.placeholder = "Bitte einen Namen eingeben";
-
-				showHints(startHint);
-				return false;
-			}
-
-			break;
-		case 1:	// current view is "Alternativen"
-			altFlagAssert = true;
-			altHint = document.getElementById("altHint");
-			hideHints(altHint);
-			altsCheck = document.getElementsByClassName("AlternativeInputs");
-			for (var i = 0; i &lt; altsCheck.length; i++) {
-				unHighlightInput(altsCheck[i]);
-				if (altsCheck[i].value == "") {
-					highlightInput(altsCheck[i]);
-					altsCheck[i].placeholder = "Alternative eingeben";
-					showHints(altHint);
-					altFlagAssert = false;
-				}
-			}
-			return altFlagAssert;
-
-			break;
-		case 2: // current view is "Kriterien"
-			critFlagAssert = true;
-			critsCheck = document.getElementsByClassName("CriteriaInputs");
-			critHint = document.getElementById("critHint");
-			hideHints(critHint);
-
-			for (var i = 0; i &lt; critsCheck.length; i++) {
-				unHighlightInput(critsCheck[i]);
-				if (critsCheck[i].value == "") {
-					highlightInput(critsCheck[i]);
-					critsCheck[i].placeholder = "Kriterium eingeben";
-					showHints(critHint);
-					critFlagAssert = false;
-				}
-			}
-			return critFlagAssert;
-			break;
-		case 3:	// current view is "Uebersicht"
-			return true;
-			break;
-		case 4:	// current view is "Link teilen" aka we are done
-			return true;
-			break;
-		default:
-			return true;
-	}
-	return true;
+ * decode special character received from server
+ * reserve function to specialCharacterEncode
+ * @param {string} object string to perform replacements on
+ */
+function specialCharacterDecode(object) {
+    //return object.replace(/FRAGEZEICHEN/g, "?").replace(/HASHTAG/g, "#").replace(/PROZENT/g, "%");
+    return object.replace(/&amp;amp;/g,"&amp;"); 
+    //return decodeURIComponent(object);
 }
-
-
-function sendPoll() {
-    //mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.
-    $.get(baseUrl + "/add/" + specialCharacterEncode(JSON.stringify(currentPoll)),
-        function (data, status) {
-
-        });
-}
-
-    /**
-     * create an empty result file when first creating a poll
-     * */
-function sendEmptyResult() {
-    poll = { "id": currentPoll.id, "pollTitle": currentPoll.title, "name": "", "winner": [], "alternatives": currentPoll.alternatives };
-    $.get(baseUrl + "/addvote/" + specialCharacterEncode(JSON.stringify(poll)),
-        function (data, status) { });
-}
-function iniliazeAggMatrix() {
-    var aggMatrix = {};
-    for (var i = 0; i &lt; currentPoll.criterias.length; i++) {
-        aggMatrix[currentPoll.criterias[i].name] = new Array(currentPoll.alternatives.length);
-    }
-
-    var critList = new Array(currentPoll.criterias.length);
-    for (var i = 0; i &lt; currentPoll.criterias.length; i++) {
-        critList[i] = currentPoll.criterias[i].name;
-    }
-
-    var data = {
-        "id": currentPoll.id,
-        "matrix": aggMatrix,
-        "critList": critList
-    };
-
-    $.get(baseUrl + "/addAggMatrix/" + specialCharacterEncode(JSON.stringify(data)),
-        function (data, status) { });
-}
-
-</code></pre>
+/**
+ * scrolls to the top of a class element
+ * @param {any} classNameDiv class to scroll to top
+ */
+function scrollToTop(classNameDiv) {
+    var myDiv = document.getElementsByClassName(classNameDiv)[0];
+    myDiv.scrollTop = 0;
+}</code></pre>
         </article>
     </section>
 
