@@ -224,7 +224,7 @@ var myChart = new Chart(ctx, {
     },
     options: {
         legend: {
-            display: false,
+            display: false,//we are manually adding the axis labels with html
             labels: {
                 boxWidth: 0,
                 boxHeight:0,
@@ -241,7 +241,7 @@ var myChart = new Chart(ctx, {
                     suggestedMax: 2
                 },
                 scaleLabel: {
-                    display: false,
+                    display: false, //we are manually adding the axis labels with html
                     labelString: 'Anzahl der Siege (Mehrere Sieger pro Person möglich)'
                 }
             }]

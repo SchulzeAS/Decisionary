@@ -2,7 +2,9 @@
  * move to the next view
  */
 function next() {
+    
     if (assertView()) {
+        scrollToTop("stepsContainer");
         hideView(schritte[currentView]);
 
 
@@ -35,6 +37,7 @@ function next() {
  */
 function back()
 {
+    scrollToTop("stepsContainer");
 	hideView(schritte[currentView]);
 	disableNavElement(schritteNav[currentView]);
 	if (currentView > 0) {
@@ -115,6 +118,7 @@ function assertView()
 	}
 	return true;
 }
+
 
 function sendPoll() {
     //mistreating a get request as a pseudo post to save on some header space, because only literal knowledge is transferred and no semantic is required.

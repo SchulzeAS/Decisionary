@@ -63,6 +63,7 @@ function specificViewChanges(curView) {
  * removes send button and clears current view to show link for the results
  * */
 function endOfTeilnehmen() {
+    scrollToTop("stepsContainer");
     sendData();
     sendAggMatrix()
     document.getElementById("navNext").remove();
@@ -175,7 +176,8 @@ function  removePencil(){
  * @param {int} the view to jump to
  */
 function clickToChangeView(view){
-	if(clickViewBool == true){
+    if (clickViewBool == true) {
+        scrollToTop("stepsContainer");
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
 		currentView = view;

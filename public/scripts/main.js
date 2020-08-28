@@ -56,3 +56,11 @@ function specialCharacterDecode(object) {
     return object.replace(/&amp;/g,"&"); 
     //return decodeURIComponent(object);
 }
+/**
+ * scrolls to the top of a class element
+ * @param {any} classNameDiv class to scroll to top
+ */
+function scrollToTop(classNameDiv) {
+    var myDiv = document.getElementsByClassName(classNameDiv)[0];
+    myDiv.scrollTop = 0;
+}

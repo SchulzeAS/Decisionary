@@ -93,7 +93,8 @@ function  removePencil(){
  * changes the view when clicking a nav element on the top
  * @param {int} the view to jump to
  */
-function clickToChangeView(view){
+function clickToChangeView(view) {
+    scrollToTop("stepsContainer");
     if (clickViewBool == true && assertView()){
 		hideView(schritte[currentView]);
 		disableNavElement(schritteNav[currentView]);

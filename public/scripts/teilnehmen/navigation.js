@@ -5,7 +5,8 @@ var alternativeRatingViewFlag = false;
  */
 function next() {
     
-	if (!alternativeRatingViewFlag && assertView()) {
+    if (!alternativeRatingViewFlag && assertView()) {
+        scrollToTop("stepsContainer");
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
 		if (currentView < schritteTeilnehmen.length - 1) {
@@ -24,7 +25,8 @@ function next() {
 			if (currentAlternative >= currentPoll.alternatives.length-1) { // leaving rating view
                 alternativeRatingViewFlag = false;
 				next();
-			} else {
+            } else {
+                scrollToTop("stepsContainer");
 				nextAlternative();
 			}
 		} else {
@@ -37,6 +39,7 @@ function next() {
  * move to the previous view
  */
 function back() {
+    scrollToTop("stepsContainer");
 	if (!alternativeRatingViewFlag) {
 		hideView(schritteTeilnehmen[currentView]);
 		disableNavElement(schritteNavTeilnehmen[currentView]);
